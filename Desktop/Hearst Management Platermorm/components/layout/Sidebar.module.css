@@ -1,0 +1,149 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  background-color: var(--color-bg);
+  color: white;
+  z-index: 50;
+  transition: transform 0.3s ease, width 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebarCollapsed {
+  width: 80px;
+}
+
+.sidebarHidden {
+  transform: translateX(-100%);
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+}
+
+.logo {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logoImageOpen {
+  object-fit: contain;
+  height: auto;
+  filter: none !important;
+  width: auto !important;
+  max-width: none !important;
+  height: 60px !important;
+}
+
+.logoImageCollapsed {
+  object-fit: contain;
+  height: auto;
+  filter: none !important;
+}
+
+.sidebarCollapsed .logo {
+  justify-content: center;
+}
+
+.toggleButton {
+  margin-bottom: 24px;
+  align-self: flex-start;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+  padding: 4px;
+}
+
+.toggleButton:hover {
+  color: white;
+}
+
+.nav {
+  flex: 1;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.navItem {
+  display: block;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.navLinkActive {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: rgba(16, 185, 129, 1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 260px;
+    transform: translateX(-100%);
+  }
+  
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+  
+  .sidebarContent {
+    padding: 20px;
+  }
+  
+  .logo {
+    margin-bottom: 32px;
+  }
+  
+  .logoText {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+  }
+  
+  .sidebarContent {
+    padding: 16px;
+  }
+}
+

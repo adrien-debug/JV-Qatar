@@ -1,0 +1,125 @@
+.container {
+  margin-bottom: 32px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 16px -48px 24px -48px;
+  padding: 20px 48px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    margin-left: -32px;
+    margin-right: -32px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.description {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+}
+
+.kpisGrid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-subtle) transparent;
+}
+
+.kpisGrid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.kpisGrid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kpisGrid::-webkit-scrollbar-thumb {
+  background: var(--color-border-subtle);
+  border-radius: 3px;
+}
+
+.kpiCard {
+  min-width: 200px;
+  flex: 1;
+}
+
+.kpiLabel {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.kpiValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.kpiValueSmall {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+

@@ -1,0 +1,353 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  margin: 16px -48px 48px -48px;
+  padding: 28px 48px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    margin: 16px -32px 40px -32px;
+    padding: 24px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin: 16px -16px 32px -16px;
+    padding: 20px 16px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin: 12px -12px 24px -12px;
+    padding: 16px 12px;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9375rem;
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text-main);
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.metricsGrid {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-subtle) transparent;
+}
+
+@media (max-width: 768px) {
+  .metricsGrid {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metricsGrid {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+}
+
+.metricsGrid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.metricsGrid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.metricsGrid::-webkit-scrollbar-thumb {
+  background: var(--color-border-subtle);
+  border-radius: 3px;
+}
+
+.breakdownGrid {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.metricCard {
+  min-width: 240px;
+  flex: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+}
+
+.metricCard:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-premium);
+}
+
+@media (max-width: 768px) {
+  .metricCard {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metricCard {
+    min-width: 180px;
+  }
+}
+
+.metricLabel {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.metricValue {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .metricValue {
+    font-size: 1.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .metricValue {
+    font-size: 1.5rem;
+  }
+}
+
+.metricValueSuccess {
+  color: var(--color-success);
+}
+
+.metricChange {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .chartsGrid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chartsGrid {
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+.trendCard {
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+}
+
+.trendCard:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-premium);
+}
+
+.trendTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.trendGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .trendGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trendGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trendGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.trendItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--color-surface-alt);
+  border-radius: 12px;
+  border: 1px solid var(--color-border-subtle);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .trendItem {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trendItem {
+    padding: 12px;
+  }
+}
+
+.trendItem:hover {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.trendPeriod {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.trendValue {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-success);
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 768px) {
+  .trendValue {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .trendValue {
+    font-size: 1.25rem;
+  }
+}
+
+.trendChange {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trendChangePositive {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.trendChangeLabel {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 1200px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trendGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .trendGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .breakdownGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .metricsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+

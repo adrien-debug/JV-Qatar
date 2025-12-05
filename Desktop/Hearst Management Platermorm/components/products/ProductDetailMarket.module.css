@@ -1,0 +1,190 @@
+.container {
+  width: 100%;
+}
+
+.tabsContainer {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.tabsList {
+  display: flex;
+  gap: 24px;
+}
+
+.tabButton {
+  padding-bottom: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--color-text-muted);
+}
+
+.tabButton:hover {
+  color: var(--color-text-main);
+}
+
+.tabButtonActive {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-text-main);
+}
+
+.tabContent {
+  width: 100%;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-text-main);
+}
+
+.sectionText {
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.infoLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.infoValue {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.badgeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chartPlaceholder {
+  margin-top: 32px;
+  height: 256px;
+  background-color: var(--color-surface-alt);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartPlaceholderLarge {
+  height: 384px;
+}
+
+.chartText {
+  color: var(--color-text-muted);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.metricCard {
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.05);
+}
+
+.metricTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-text-main);
+}
+
+.metricValue {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-text-main);
+}
+
+.metricValueDanger {
+  color: var(--color-danger);
+}
+
+.metricDescription {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.performancePeriod {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.performanceValue {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.jurisdictionTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.jurisdictionTag {
+  padding: 8px 16px;
+  background-color: var(--color-surface-alt);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.noteBox {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--color-surface-alt);
+  border-radius: 8px;
+}
+
+.noteText {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+

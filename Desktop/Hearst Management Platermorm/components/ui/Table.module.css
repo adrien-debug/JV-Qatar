@@ -1,0 +1,29 @@
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableRow {
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.tableCell {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--color-text-main);
+}
+
+.tableCellHeader {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-main);
+}
+

@@ -1,0 +1,140 @@
+.container {
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+}
+
+.container:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-premium);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--color-border-subtle);
+  margin-bottom: 16px;
+}
+
+.headerCell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background-color 0.2s ease;
+}
+
+.tableRow:hover {
+  background-color: var(--color-surface-alt);
+  margin: 0 -16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  color: var(--color-text-main);
+}
+
+.productName {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.aum {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.ytd {
+  font-weight: 700;
+  color: var(--color-success);
+  font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 2fr 1fr 1.5fr;
+  }
+  
+  .headerCell:nth-child(3),
+  .cell:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 24px;
+  }
+  
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .headerCell,
+  .cell {
+    display: block;
+  }
+  
+  .headerCell:nth-child(3),
+  .cell:nth-child(3) {
+    display: block;
+  }
+}
+

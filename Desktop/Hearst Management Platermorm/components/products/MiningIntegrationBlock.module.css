@@ -1,0 +1,146 @@
+.container {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-text-main);
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.statusLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.statusBadgeActive {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.statusBadgeInactive {
+  background-color: var(--color-surface-alt);
+  color: var(--color-text-muted);
+}
+
+.exposureRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.exposureLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.exposureValue {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.exposureNote {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text-main);
+}
+
+.poolsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.poolItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: var(--color-surface-alt);
+  border-radius: 8px;
+}
+
+.poolName {
+  font-weight: 500;
+  color: var(--color-text-main);
+}
+
+.poolCountry {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.roleContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.roleBadge {
+  padding: 8px 16px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.roleDescription {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.stressScenariosList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stressScenario {
+  padding: 16px;
+  background-color: var(--color-surface-alt);
+  border-radius: 8px;
+}
+
+.stressScenarioTitle {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--color-text-main);
+}
+
+.stressScenarioText {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
