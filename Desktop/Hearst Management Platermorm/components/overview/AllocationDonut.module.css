@@ -1,0 +1,194 @@
+.card {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-compact);
+  padding: var(--spacing-section) var(--spacing-section) var(--spacing-element) var(--spacing-section);
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(220px, 1fr);
+  align-items: center;
+  gap: var(--spacing-block);
+  padding: 0 var(--spacing-section) var(--spacing-section);
+}
+
+.donutWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut {
+  width: 280px;
+  height: 280px;
+}
+
+.donutTrack {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 36;
+}
+
+.donutSegmentGlow {
+  fill: none;
+  stroke-width: 64;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: opacity 0.2s ease, transform 0.35s ease, filter 0.25s ease;
+  opacity: 0.45;
+  filter: none;
+}
+
+.donutSegment {
+  fill: none;
+  stroke-width: 48;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: opacity 0.2s ease, transform 0.35s ease, filter 0.25s ease;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+}
+
+.donutSegmentInner {
+  fill: none;
+  stroke-width: 24;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: opacity 0.2s ease, transform 0.35s ease, filter 0.25s ease;
+  opacity: 0.9;
+}
+
+.donutSegment:hover {
+  opacity: 1;
+  transform: rotate(-90deg) scale(1.04);
+  filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.18));
+}
+
+.centerValue {
+  font-size: 1.9rem;
+  font-weight: 600;
+  fill: #f8fafc;
+}
+
+.centerLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  fill: #cbd5e1;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transform: none;
+  padding: 0;
+  align-items: flex-start;
+}
+
+.legendItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+}
+
+.legendTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legendLabel {
+  color: #f8fafc;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.005em;
+}
+
+.legendValue {
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    padding: 28px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding: 0 24px 24px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 24px 20px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    align-items: start;
+    text-align: center;
+    padding: 0 20px 20px;
+    gap: 20px;
+  }
+
+  .legend {
+    width: 100%;
+    align-items: center;
+  }
+
+  .legendItem {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .donut {
+    width: 220px;
+    height: 220px;
+  }
+}
+

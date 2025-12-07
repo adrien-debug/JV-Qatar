@@ -1,0 +1,148 @@
+.card {
+  background: transparent;
+  padding: var(--spacing-section);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-element);
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-element);
+}
+
+.headerTexts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-compact);
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  font-size: var(--font-size-body);
+  color: #cbd5e1;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-element);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-compact);
+  color: #f8fafc;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+}
+
+.legendDotPrimary,
+.legendDotSecondary {
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.legendDotPrimary {
+  background: var(--color-chart-green-1);
+}
+
+.legendDotSecondary {
+  background: #cbd5e1;
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 370px;
+  min-height: 370px;
+  position: relative;
+  padding: 0;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.axisLine {
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 1.5;
+}
+
+.axisLabel {
+  font-size: 0.85rem;
+  fill: #cbd5e1;
+  font-weight: 500;
+}
+
+.gridLine {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.areaPrimary {
+  fill: url(#area-primary);
+  stroke: none;
+  opacity: 0.6;
+}
+
+.areaSecondary {
+  fill: url(#area-secondary);
+  stroke: none;
+  opacity: 0.45;
+}
+
+.linePrimary {
+  fill: none;
+  stroke: var(--color-chart-green-1);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 12px rgba(138, 253, 129, 0.22));
+}
+
+.lineSecondary {
+  fill: none;
+  stroke: #cbd5e1;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+}
+
+.dot {
+  fill: #0f172a;
+  stroke-width: 3;
+}
+
+.dotPrimary {
+  stroke: var(--color-chart-green-1);
+}
+
+.dotSecondary {
+  stroke: #cbd5e1;
+}
+
+.valueLabel {
+  font-size: 0.82rem;
+  fill: #f8fafc;
+  font-weight: 600;
+}
+
