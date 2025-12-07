@@ -250,6 +250,14 @@
   text-align: center !important;
 }
 
+.table th:first-child,
+.table td:first-child {
+  text-align: left !important;
+  width: 18%;
+  min-width: 200px;
+  max-width: 270px;
+}
+
 .tableHeaderCell:last-child {
   border-right: none;
 }
@@ -321,7 +329,9 @@
   font-size: 0.9375rem;
   margin-bottom: 4px;
   word-wrap: break-word;
-  white-space: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1.4;
 }
 
@@ -428,7 +438,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   background: var(--color-primary);
-  color: white;
+  color: #000000;
   border: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

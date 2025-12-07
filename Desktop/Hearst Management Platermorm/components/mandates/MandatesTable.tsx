@@ -112,7 +112,7 @@ export default function MandatesTable() {
                   {formatCurrency(mandate.aum)}
                 </td>
                 <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
-                  <span style={{ color: mandate.ytdPerformance >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>
+                  <span style={{ color: '#000000' }}>
                     {mandate.ytdPerformance > 0 ? '+' : ''}{mandate.ytdPerformance.toFixed(1)}%
                   </span>
                 </td>

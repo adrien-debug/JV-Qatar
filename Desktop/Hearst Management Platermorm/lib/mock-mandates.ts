@@ -31,7 +31,7 @@ export interface Portfolio {
 export const mockMandates: Mandate[] = [
   {
     id: 'M1',
-    name: 'Qatar Sovereign Wealth Fund - Core Allocation',
+    name: 'Qatar Sovereign Wealth Fund',
     clientName: 'Qatar Investment Authority',
     type: 'sovereign',
     status: 'active',

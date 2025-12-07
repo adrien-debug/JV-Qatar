@@ -26,14 +26,12 @@ const statusColors = {
 
 export default function ExecutionsTable() {
   const [filterStatus, setFilterStatus] = useState<'all' | Execution['status']>('all');
-  const [filterType, setFilterType] = useState<'all' | Execution['type']>('all');
   const [selectedExecution, setSelectedExecution] = useState<Execution | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredExecutions = mockExecutions.filter(execution => {
     const statusMatch = filterStatus === 'all' || execution.status === filterStatus;
-    const typeMatch = filterType === 'all' || execution.type === filterType;
-    return statusMatch && typeMatch;
+    return statusMatch;
   });
 
   const totalValue = filteredExecutions.reduce((sum, e) => sum + e.value, 0);
@@ -45,96 +43,36 @@ export default function ExecutionsTable() {
     <>
       {/* Filters */}
       <div className={styles.filters}>
-        <div className={styles.filterGroup}>
-          <span className={styles.filterLabel}>Status</span>
-          <button
-            onClick={() => setFilterStatus('all')}
-            className={`${styles.filterButton} ${filterStatus === 'all' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setFilterStatus('pending')}
-            className={`${styles.filterButton} ${filterStatus === 'pending' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Pending
-          </button>
-          <button
-            onClick={() => setFilterStatus('executing')}
-            className={`${styles.filterButton} ${filterStatus === 'executing' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Executing
-          </button>
-          <button
-            onClick={() => setFilterStatus('completed')}
-            className={`${styles.filterButton} ${filterStatus === 'completed' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Completed
-          </button>
-          <button
-            onClick={() => setFilterStatus('failed')}
-            className={`${styles.filterButton} ${filterStatus === 'failed' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Failed
-          </button>
-        </div>
-        <div className={styles.filterGroup}>
-          <span className={styles.filterLabel}>Type</span>
-          <button
-            onClick={() => setFilterType('all')}
-            className={`${styles.filterButton} ${filterType === 'all' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setFilterType('buy')}
-            className={`${styles.filterButton} ${filterType === 'buy' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Buy
-          </button>
-          <button
-            onClick={() => setFilterType('sell')}
-            className={`${styles.filterButton} ${filterType === 'sell' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Sell
-          </button>
-          <button
-            onClick={() => setFilterType('rebalance')}
-            className={`${styles.filterButton} ${filterType === 'rebalance' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Rebalance
-          </button>
-          <button
-            onClick={() => setFilterType('allocation')}
-            className={`${styles.filterButton} ${filterType === 'allocation' ? styles.filterButtonActive : styles.filterButtonInactive}`}
-          >
-            Allocation
-          </button>
-        </div>
-      </div>
-
-      {/* Summary Cards */}
-      <div className={styles.summaryCards}>
-        <div className={styles.summaryCard}>
-          <div className={styles.summaryLabel}>Total Value</div>
-          <div className={styles.summaryValue}>{formatCurrency(totalValue)}</div>
-        </div>
-        <div className={styles.summaryCard}>
-          <div className={styles.summaryLabel}>Total Fees</div>
-          <div className={styles.summaryValue}>{formatCurrency(totalFees)}</div>
-        </div>
-        <div className={styles.summaryCard}>
-          <div className={styles.summaryLabel}>Completed</div>
-          <div className={styles.summaryValue} style={{ color: 'var(--color-success)' }}>
-            {completedCount}
-          </div>
-        </div>
-        <div className={styles.summaryCard}>
-          <div className={styles.summaryLabel}>Pending/Executing</div>
-          <div className={styles.summaryValue} style={{ color: 'var(--color-warning)' }}>
-            {pendingCount}
-          </div>
-        </div>
+        <button
+          onClick={() => setFilterStatus('all')}
+          className={`${styles.filterButton} ${filterStatus === 'all' ? styles.filterButtonActive : styles.filterButtonInactive}`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => setFilterStatus('pending')}
+          className={`${styles.filterButton} ${filterStatus === 'pending' ? styles.filterButtonActive : styles.filterButtonInactive}`}
+        >
+          Pending
+        </button>
+        <button
+          onClick={() => setFilterStatus('executing')}
+          className={`${styles.filterButton} ${filterStatus === 'executing' ? styles.filterButtonActive : styles.filterButtonInactive}`}
+        >
+          Executing
+        </button>
+        <button
+          onClick={() => setFilterStatus('completed')}
+          className={`${styles.filterButton} ${filterStatus === 'completed' ? styles.filterButtonActive : styles.filterButtonInactive}`}
+        >
+          Completed
+        </button>
+        <button
+          onClick={() => setFilterStatus('failed')}
+          className={`${styles.filterButton} ${filterStatus === 'failed' ? styles.filterButtonActive : styles.filterButtonInactive}`}
+        >
+          Failed
+        </button>
       </div>
 
       {/* Executions Table - Simplified */}

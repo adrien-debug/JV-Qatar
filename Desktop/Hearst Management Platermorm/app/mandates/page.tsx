@@ -23,7 +23,7 @@ export default function MandatesPage() {
     {
       label: 'Total Mandates',
       value: totalMandates,
-      change: `${sovereignCount} sovereign, ${institutionalCount} institutional, ${corporateCount} corporate, ${familyOfficeCount} family office`
+      change: `${sovereignCount} sovereign, ${institutionalCount} institutional, ${familyOfficeCount} family office`
     },
     {
       label: 'Total AUM',

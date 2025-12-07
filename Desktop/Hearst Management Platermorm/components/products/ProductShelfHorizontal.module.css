@@ -142,13 +142,13 @@
 
 .table th:first-child,
 .table td:first-child {
-  width: 15%;
-  min-width: 180px;
+  width: 22%;
+  min-width: 200px;
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
-  width: 27%;
+  width: 20%;
 }
 
 .table th:nth-child(3),
@@ -273,7 +273,7 @@
 .tableCellName {
   font-weight: 600;
   color: #000000;
-  min-width: 180px;
+  min-width: 200px;
   letter-spacing: -0.01em;
   text-align: left !important;
   white-space: nowrap;
