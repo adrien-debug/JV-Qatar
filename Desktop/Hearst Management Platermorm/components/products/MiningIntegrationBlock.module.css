@@ -6,7 +6,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 24px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .section {
@@ -22,24 +22,31 @@
 
 .statusLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .statusBadge {
-  padding: 4px 12px;
-  border-radius: 999px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
+  border: none;
+  border-bottom: 1px solid rgba(138, 253, 129, 0.4);
+  padding-bottom: 2px;
+  line-height: 1.4;
 }
 
 .statusBadgeActive {
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
+  color: #000000;
+  border-bottom: 1px solid rgba(138, 253, 129, 0.5);
 }
 
 .statusBadgeInactive {
-  background-color: var(--color-surface-alt);
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .exposureRow {
@@ -51,18 +58,18 @@
 
 .exposureLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .exposureValue {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .exposureNote {
   font-size: 0.75rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-top: 8px;
 }
 
@@ -70,7 +77,7 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .poolsList {
@@ -84,18 +91,18 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px;
-  background-color: var(--color-surface-alt);
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
 }
 
 .poolName {
   font-weight: 500;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .poolCountry {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .roleContainer {
@@ -108,14 +115,14 @@
   padding: 8px 16px;
   background-color: var(--color-primary-soft);
   color: var(--color-primary);
-  border-radius: 8px;
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
 .roleDescription {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-top: 12px;
   line-height: 1.6;
 }
@@ -128,19 +135,19 @@
 
 .stressScenario {
   padding: 16px;
-  background-color: var(--color-surface-alt);
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
 }
 
 .stressScenarioTitle {
   font-weight: 600;
   margin-bottom: 4px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .stressScenarioText {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   line-height: 1.6;
 }
 

@@ -23,12 +23,12 @@
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .description {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 24px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -51,7 +51,7 @@
 
 .metricLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .metricValue {

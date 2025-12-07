@@ -50,12 +50,12 @@
   font-size: 2.25rem;
   font-weight: 700;
   margin-bottom: 12px;
-  color: var(--color-text-main);
+  color: #ffffff;
   letter-spacing: -0.04em;
 }
 
 .subtitle {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: -0.01em;

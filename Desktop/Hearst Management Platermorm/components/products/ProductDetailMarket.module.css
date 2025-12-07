@@ -4,7 +4,7 @@
 
 .tabsContainer {
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .tabsList {
@@ -25,16 +25,16 @@
   border-right: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .tabButton:hover {
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .tabButtonActive {
   border-bottom-color: var(--color-primary);
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .tabContent {
@@ -51,11 +51,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 16px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .sectionText {
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 16px;
   line-height: 1.6;
 }
@@ -68,7 +68,7 @@
 
 .infoLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .infoValue {
@@ -85,8 +85,8 @@
 .chartPlaceholder {
   margin-top: 32px;
   height: 256px;
-  background-color: var(--color-surface-alt);
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,7 +97,7 @@
 }
 
 .chartText {
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .metricsGrid {
@@ -107,10 +107,10 @@
 }
 
 .metricCard {
-  background-color: var(--color-surface);
-  border-radius: 16px;
+  background-color: transparent;
+  border-radius: 0;
   padding: 20px 24px;
-  border: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 18px 35px rgba(15, 23, 42, 0.05);
 }
 
@@ -118,14 +118,14 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 16px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .metricValue {
   font-size: 1.875rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .metricValueDanger {
@@ -134,7 +134,7 @@
 
 .metricDescription {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .performanceGrid {
@@ -146,7 +146,7 @@
 
 .performancePeriod {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 4px;
 }
 
@@ -163,8 +163,8 @@
 
 .jurisdictionTag {
   padding: 8px 16px;
-  background-color: var(--color-surface-alt);
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -172,13 +172,13 @@
 .noteBox {
   margin-top: 24px;
   padding: 16px;
-  background-color: var(--color-surface-alt);
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
 }
 
 .noteText {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   line-height: 1.6;
 }
 

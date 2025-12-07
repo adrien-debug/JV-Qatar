@@ -1,0 +1,57 @@
+# ⚡ QUICK START — FLY.IO EN 30 SECONDES
+
+## 1️⃣ Télécharger les fichiers
+```
+✅ Tous les fichiers sont dans /outputs
+```
+
+## 2️⃣ Installer Fly CLI
+```bash
+curl -L https://fly.io/install.sh | sh
+flyctl auth login
+```
+
+## 3️⃣ Déployer
+```bash
+cd hearst-mining-dashboard/
+bash deploy.sh
+```
+
+## ✨ C'est en ligne !
+```
+🌐 https://hearst-mining-dashboard.fly.dev
+```
+
+---
+
+## 📝 Fichiers Clés
+
+| Fichier | Usage |
+|---------|-------|
+| `DASHBOARD__52_.html` | Dashboard (cœur de l'app) |
+| `Dockerfile` | Configuration Docker |
+| `fly.toml` | Configuration Fly.io |
+| `deploy.sh` | Script d'automatisation |
+| `README.md` | Guide complet |
+
+---
+
+## 🎯 Commandes Post-Deploy
+
+```bash
+# Voir les logs
+flyctl logs -f
+
+# Redéployer (après modif)
+flyctl deploy
+
+# Ouvrir l'app
+flyctl open
+
+# Statut
+flyctl status
+```
+
+---
+
+🚀 **C'est prêt ! Allez-y !**

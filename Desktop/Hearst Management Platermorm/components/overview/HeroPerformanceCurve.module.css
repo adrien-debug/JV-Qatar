@@ -1,7 +1,7 @@
 .wrapper {
   width: 100%;
   padding: var(--spacing-section);
-  background: #2a2a2a;
+  background: #ffffff;
   border: none;
   border-radius: 0;
   display: grid;
@@ -32,7 +32,7 @@
   margin: 0;
   font-size: var(--font-size-h1);
   font-weight: 600;
-  color: #ffffff;
+  color: #000000;
   letter-spacing: 0.01em;
 }
 
@@ -53,7 +53,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-compact);
-  color: #ffffff;
+  color: #000000;
   font-weight: 600;
   font-size: var(--font-size-body);
 }
@@ -74,7 +74,7 @@
 
 .tabsContainer {
   width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   margin-bottom: 0;
 }
 
@@ -106,7 +106,7 @@
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  color: #ffffff66;
+  color: #000000;
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -121,11 +121,11 @@
 }
 
 .filterBtn:hover {
-  color: #ffffff99;
+  color: #000000;
 }
 
 .filterBtnActive {
-  color: #ffffff;
+  color: #000000;
   border-bottom-color: rgba(138, 253, 129, 0.6);
 }
 
@@ -141,7 +141,7 @@
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  color: #ffffff66;
+  color: #000000;
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -156,11 +156,11 @@
 }
 
 .tab:hover {
-  color: #ffffff99;
+  color: #000000;
 }
 
 .tabActive {
-  color: #ffffff;
+  color: #000000;
   border-bottom-color: rgba(138, 253, 129, 0.6);
 }
 
@@ -184,7 +184,7 @@
 
 .metricLabel {
   font-size: 0.72rem;
-  color: #ffffffcc;
+  color: #000000;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
@@ -199,7 +199,7 @@
 .chartShell {
   width: 100%;
   background: #262727;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 0;
   padding: 20px 0 16px 0;
   margin-top: 0;
@@ -219,7 +219,7 @@
 }
 
 .gridLine {
-  stroke: rgba(255, 255, 255, 0.05);
+  stroke: rgba(0, 0, 0, 0.05);
   stroke-width: 0.5;
 }
 
@@ -231,7 +231,7 @@
 }
 
 .axisLine {
-  stroke: rgba(255, 255, 255, 0.12);
+  stroke: rgba(0, 0, 0, 0.12);
   stroke-width: 0.5;
 }
 
@@ -306,14 +306,14 @@
 .tooltipBox {
   background: #0a0a0a;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 12px;
   width: 144px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
 }
 
 .tooltipDate {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.06em;

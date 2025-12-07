@@ -10,6 +10,7 @@
   transition: transform 0.3s ease, width 0.3s ease;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sidebarCollapsed {
@@ -23,10 +24,11 @@
 .sidebarContent {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   padding: 24px;
   justify-content: flex-start;
   position: relative;
+  padding-bottom: 40px;
 }
 
 .menuSection {
@@ -34,12 +36,14 @@
   top: 50%;
   left: 0;
   right: 0;
-  transform: translateY(calc(-50% + 10px));
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .logo {
@@ -56,6 +60,8 @@
   top: 0;
   left: 0;
   right: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .logoContainer {
@@ -116,7 +122,7 @@
   margin-bottom: 0;
   margin-top: 0;
   align-self: center;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   background: none;
   border: none;
   cursor: pointer;
@@ -133,7 +139,7 @@
   z-index: 100 !important;
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 0;
   background-color: var(--color-bg);
   color: rgba(138, 253, 129, 0.9);
   border: 1px solid rgba(138, 253, 129, 0.2);
@@ -166,6 +172,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .navList {
@@ -173,10 +182,16 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .navItem {
   display: block;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .navLink {
@@ -184,16 +199,19 @@
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  border-radius: 10px;
+  border-radius: 0;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: all 0.2s ease;
   font-weight: 500;
   font-size: 0.9375rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .navLink:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   color: white;
 }
 
@@ -239,16 +257,17 @@
 }
 
 .sidebarCollapsed .menuSection {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
+  position: relative;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  pointer-events: auto;
+  z-index: 1;
+  margin-top: 74px;
+  margin-bottom: 24px;
 }
 
 .sidebarCollapsed .toggleButton {
@@ -408,7 +427,7 @@
     width: 32px;
     height: 32px;
     font-size: 1rem;
-    border-radius: 6px;
+    border-radius: 0;
     line-height: 32px;
   }
 }

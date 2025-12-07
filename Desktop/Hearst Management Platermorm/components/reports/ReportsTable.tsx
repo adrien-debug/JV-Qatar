@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { Report } from '@/lib/mock-reports';
 import { mockReports } from '@/lib/mock-reports';
-import Link from 'next/link';
 import { formatDate } from '@/lib/format';
+import Modal from '@/components/ui/Modal';
 import styles from './ReportsTable.module.css';
 
 function formatFileSize(kb: number): string {
@@ -38,10 +38,29 @@ const statusColors = {
   failed: 'var(--color-danger)'
 };
 
+const typeIcons = {
+  performance: '📊',
+  risk: '⚠️',
+  compliance: '✅',
+  operational: '⚙️',
+  custom: '📄'
+};
+
+const frequencyIcons = {
+  daily: '📅',
+  weekly: '📆',
+  monthly: '🗓️',
+  quarterly: '📋',
+  annual: '📑',
+  'on-demand': '🔔'
+};
+
 export default function ReportsTable() {
   const [filterType, setFilterType] = useState<'all' | Report['type']>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | Report['status']>('all');
   const [filterFrequency, setFilterFrequency] = useState<'all' | Report['frequency']>('all');
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredReports = mockReports.filter(report => {
     const typeMatch = filterType === 'all' || report.type === filterType;
@@ -56,17 +75,7 @@ export default function ReportsTable() {
   const generatingCount = mockReports.filter(r => r.status === 'generating').length;
 
   return (
-    <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Reports</h1>
-          <p className={styles.subtitle}>
-            Generate, schedule, and manage reports across all products, mandates, and operational areas.
-          </p>
-        </div>
-      </div>
-
+    <>
       {/* Filters */}
       <div className={styles.filters}>
         <div className={styles.filterGroup}>
@@ -202,7 +211,7 @@ export default function ReportsTable() {
         </div>
       </div>
 
-      {/* Reports Table */}
+      {/* Reports Table - Simplified */}
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
@@ -211,22 +220,22 @@ export default function ReportsTable() {
               <th className={styles.tableHeaderCell}>Type</th>
               <th className={styles.tableHeaderCell}>Frequency</th>
               <th className={styles.tableHeaderCell}>Status</th>
-              <th className={styles.tableHeaderCell}>Entity</th>
-              <th className={styles.tableHeaderCell}>Format</th>
-              <th className={styles.tableHeaderCell}>Size</th>
-              <th className={styles.tableHeaderCell}>Last Generated</th>
-              <th className={styles.tableHeaderCell}>Next Generation</th>
               <th className={styles.tableHeaderCell} style={{ textAlign: 'center' }}>Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredReports.map((report) => (
-              <tr key={report.id} className={styles.tableBodyRow}>
-                <td className={`${styles.tableCell} ${styles.tableCellName}`}>
-                  <div>
-                    <div className={styles.reportName}>{report.name}</div>
-                    <div className={styles.reportDescription}>{report.description}</div>
-                  </div>
+              <tr 
+                key={report.id} 
+                className={styles.tableBodyRow}
+                onClick={() => {
+                  setSelectedReport(report);
+                  setIsModalOpen(true);
+                }}
+              >
+                <td className={styles.tableCell}>
+                  <div className={styles.reportName}>{report.name}</div>
+                  <div className={styles.reportEntity}>{report.productName || report.mandateName || 'Global'}</div>
                 </td>
                 <td className={styles.tableCell}>
                   <span className={styles.typeBadge} data-type={report.type}>
@@ -239,51 +248,21 @@ export default function ReportsTable() {
                   </span>
                 </td>
                 <td className={styles.tableCell}>
-                  <span 
-                    className={styles.statusBadge}
-                    style={{ 
-                      backgroundColor: `${statusColors[report.status]}15`,
-                      color: statusColors[report.status],
-                      borderColor: `${statusColors[report.status]}40`
-                    }}
-                  >
+                  <span className={styles.statusBadge}>
                     {report.status.charAt(0).toUpperCase() + report.status.slice(1)}
                   </span>
                 </td>
-                <td className={styles.tableCell}>
-                  {report.productName || report.mandateName || 'Global'}
-                </td>
-                <td className={styles.tableCell}>
-                  <span className={styles.formatBadge} data-format={report.format}>
-                    {report.format.toUpperCase()}
-                  </span>
-                </td>
-                <td className={styles.tableCell}>
-                  {report.size ? formatFileSize(report.size) : '—'}
-                </td>
-                <td className={styles.tableCell}>
-                  {report.lastGenerated 
-                    ? formatDate(report.lastGenerated, { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                    : '—'
-                  }
-                </td>
-                <td className={styles.tableCell}>
-                  {report.nextGeneration 
-                    ? formatDate(report.nextGeneration, { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                    : '—'
-                  }
-                </td>
                 <td className={styles.tableCell} style={{ textAlign: 'center' }}>
-                  <div className={styles.actionButtons}>
-                    {report.status === 'completed' && (
-                      <button className={styles.downloadButton}>
-                        Download
-                      </button>
-                    )}
-                    <button className={styles.actionButton}>
-                      View
-                    </button>
-                  </div>
+                  <button 
+                    className={styles.actionButton}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedReport(report);
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    View Details
+                  </button>
                 </td>
               </tr>
             ))}
@@ -291,12 +270,126 @@ export default function ReportsTable() {
         </table>
       </div>
 
+      {/* Modal */}
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedReport(null);
+        }}
+        title={selectedReport?.name}
+      >
+        {selectedReport && (
+          <div>
+            <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Description</span>
+              </div>
+              <p style={{ color: '#ffffff', lineHeight: '1.6', margin: 0 }}>{selectedReport.description}</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Type</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {typeLabels[selectedReport.type]}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Frequency</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {frequencyLabels[selectedReport.frequency]}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Status</span>
+                <div style={{ color: statusColors[selectedReport.status], fontWeight: 600, marginTop: '4px' }}>
+                  {selectedReport.status.charAt(0).toUpperCase() + selectedReport.status.slice(1)}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Format</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {selectedReport.format.toUpperCase()}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Entity</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {selectedReport.productName || selectedReport.mandateName || 'Global'}
+                </div>
+              </div>
+              {selectedReport.size && (
+                <div>
+                  <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Size</span>
+                  <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                    {formatFileSize(selectedReport.size)}
+                  </div>
+                </div>
+              )}
+              {selectedReport.lastGenerated && (
+                <div>
+                  <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Last Generated</span>
+                  <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                    {formatDate(selectedReport.lastGenerated, { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </div>
+                </div>
+              )}
+              {selectedReport.nextGeneration && (
+                <div>
+                  <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Next Generation</span>
+                  <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                    {formatDate(selectedReport.nextGeneration, { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </div>
+                </div>
+              )}
+              {selectedReport.recipient && (
+                <div>
+                  <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Recipient</span>
+                  <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                    {selectedReport.recipient}
+                  </div>
+                </div>
+              )}
+            </div>
+            {selectedReport.status === 'completed' && (
+              <div style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                <button style={{
+                  padding: '12px 24px',
+                  background: 'var(--color-primary)',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '0',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}>
+                  Download Report
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </Modal>
+
       {filteredReports.length === 0 && (
         <div className={styles.emptyState}>
           No reports found for the selected filters.
         </div>
       )}
-    </div>
+    </>
   );
 }
 

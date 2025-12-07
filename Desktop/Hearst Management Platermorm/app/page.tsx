@@ -4,12 +4,10 @@ import { mockProducts } from '@/lib/mock-data';
 import { formatCurrency } from '@/lib/format';
 import {
   mockPerformanceData,
-  mockAllocationData,
-  mockTrendData,
   mockTopPerformers
 } from '@/lib/mock-overview';
-import PerformanceChart from '@/components/overview/PerformanceChart';
-import AllocationChart from '@/components/overview/AllocationChart';
+import HeroPerformanceCurve from '@/components/overview/HeroPerformanceCurve';
+import PerformanceTable from '@/components/overview/PerformanceTable';
 import TopPerformers from '@/components/overview/TopPerformers';
 import styles from './page.module.css';
 
@@ -56,31 +54,14 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* Charts Grid - Performance & Allocation */}
-        <div className={styles.chartsGrid}>
-          <PerformanceChart data={mockPerformanceData} />
-          <AllocationChart data={mockAllocationData} />
-        </div>
+        {/* Hero Performance Curve */}
+        <HeroPerformanceCurve data={mockPerformanceData} totalAUM={totalAUM} avgYTD={avgYTD} />
+
+        {/* Performance Table */}
+        <PerformanceTable data={mockPerformanceData} />
 
         {/* Top Performers */}
         <TopPerformers data={mockTopPerformers} />
-
-        {/* Trend Metrics */}
-        <Card className={styles.trendCard}>
-          <h3 className={styles.trendTitle}>Performance Trends</h3>
-          <div className={styles.trendGrid}>
-            {mockTrendData.map((trend, index) => (
-              <div key={index} className={styles.trendItem}>
-                <div className={styles.trendPeriod}>{trend.period}</div>
-                <div className={styles.trendValue}>+{trend.value.toFixed(1)}%</div>
-                <div className={styles.trendChange}>
-                  <span className={styles.trendChangePositive}>+{trend.change.toFixed(1)}%</span>
-                  <span className={styles.trendChangeLabel}>vs prev</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
       </div>
     </DashboardLayout>
   );

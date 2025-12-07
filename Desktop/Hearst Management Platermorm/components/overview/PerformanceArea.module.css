@@ -24,7 +24,7 @@
 .title {
   font-size: var(--font-size-h1);
   font-weight: 500;
-  color: #ffffff;
+  color: #000000;
   letter-spacing: 0.01em;
 }
 
@@ -54,7 +54,7 @@
 .legendDotSecondary {
   width: 14px;
   height: 14px;
-  border-radius: 7px;
+  border-radius: 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
 }
 
@@ -92,7 +92,7 @@
 }
 
 .gridLine {
-  stroke: rgba(255, 255, 255, 0.12);
+  stroke: rgba(0, 0, 0, 0.12);
   stroke-width: 1;
   stroke-dasharray: 4 4;
 }

@@ -1,43 +1,88 @@
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  background: #ffffff;
   background-attachment: fixed;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  padding-top: 90px;
-  padding-left: 48px;
-  padding-right: 48px;
-  padding-bottom: 48px;
+  margin-left: 220px;
+  padding-top: 74px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: var(--spacing-section);
   min-height: calc(100vh - 74px);
   overflow-y: auto;
-  transition: margin-left 0.3s ease, max-width 0.3s ease, padding 0.3s ease;
+  width: calc(100% - 220px);
+  max-width: 100%;
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-@media (max-width: 1024px) {
+.mainCollapsed {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) and (min-width: 769px) {
   .main {
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 90px;
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 74px;
+    padding-bottom: var(--spacing-section-tablet);
+  }
+  
+  .mainCollapsed {
+    margin-left: 70px;
+    width: calc(100% - 70px);
   }
 }
 
 @media (max-width: 768px) {
   .main {
     margin-left: 0;
-    padding-left: 16px;
-    padding-right: 16px;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 66px;
-    padding-bottom: 32px;
+    padding-bottom: var(--spacing-block-mobile);
+  }
+  
+  .mainCollapsed {
+    margin-left: 0;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .main {
-    padding-left: 12px;
-    padding-right: 12px;
+    margin-left: 0;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 66px;
-    padding-bottom: 24px;
+    padding-bottom: var(--spacing-section-mobile);
+  }
+  
+  .mainCollapsed {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* Large screens optimization */
+@media (min-width: 1440px) {
+  .main {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+  }
+  
+  .mainCollapsed {
+    margin-left: 80px;
+    width: calc(100% - 80px);
   }
 }

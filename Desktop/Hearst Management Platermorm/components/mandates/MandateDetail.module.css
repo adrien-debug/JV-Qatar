@@ -3,28 +3,28 @@
 }
 
 .header {
-  margin: 16px -48px 40px -48px;
-  padding: 24px 48px;
-  background: rgba(138, 253, 129, 0.1);
+  margin: 0;
+  padding: var(--spacing-section) var(--spacing-section);
+  background: #0a0b0d;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid rgba(138, 253, 129, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 1024px) {
   .header {
-    margin-left: -32px;
-    margin-right: -32px;
-    padding-left: 32px;
-    padding-right: 32px;
+    margin: 0;
+    margin: 0;
+    padding: var(--spacing-section) var(--spacing-section);
+    padding: var(--spacing-section) var(--spacing-section);
   }
 }
 
 @media (max-width: 768px) {
   .header {
-    margin-left: -16px;
+    margin: 0;
     margin-right: -16px;
-    padding-left: 16px;
+    padding: var(--spacing-section) var(--spacing-section);
     padding-right: 16px;
   }
   
@@ -35,9 +35,9 @@
 
 @media (max-width: 480px) {
   .header {
-    margin-left: -12px;
+    margin: 0;
     margin-right: -12px;
-    padding-left: 12px;
+    padding: var(--spacing-section) var(--spacing-section);
     padding-right: 12px;
   }
   
@@ -48,22 +48,24 @@
 
 .breadcrumb {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 16px;
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--color-text-main);
-  letter-spacing: -0.04em;
+  font-size: var(--font-size-h1);
+  font-weight: 500;
+  margin: 0 0 var(--spacing-compact) 0;
+  color: #f8fafc;
+  letter-spacing: 0.01em;
 }
 
 .subtitle {
-  color: var(--color-text-muted);
-  font-size: 1.125rem;
+  color: #cbd5e1;
+  font-size: var(--font-size-body);
   font-weight: 400;
+  letter-spacing: 0.005em;
+  margin: 0;
 }
 
 .metricsGrid {
@@ -73,7 +75,7 @@
   overflow-x: auto;
   padding-bottom: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-subtle) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
 }
 
 .metricsGrid::-webkit-scrollbar {
@@ -86,7 +88,7 @@
 
 .metricsGrid::-webkit-scrollbar-thumb {
   background: var(--color-border-subtle);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .metricCard {
@@ -96,7 +98,7 @@
 
 .metricLabel {
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -106,7 +108,7 @@
 .metricValue {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #ffffff;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
@@ -128,7 +130,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 24px;
-  color: var(--color-text-main);
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
 
@@ -143,7 +145,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .infoItem:last-child {
@@ -153,13 +155,13 @@
 
 .infoLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }
 
 .infoValue {
   font-size: 0.9375rem;
-  color: var(--color-text-main);
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -174,7 +176,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .summaryItem:last-child {
@@ -184,13 +186,13 @@
 
 .summaryLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }
 
 .summaryValue {
   font-size: 1.125rem;
-  color: var(--color-text-main);
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -200,36 +202,32 @@
 
 .typeBadge {
   display: inline-block;
-  padding: 6px 14px;
-  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border: 1px solid;
+  letter-spacing: 0.12em;
+  border: none;
+  border-bottom: 1px solid rgba(138, 253, 129, 0.4);
+  padding-bottom: 2px;
+  line-height: 1.4;
+  color: #ffffff;
 }
 
-.typeBadge[data-type="market"] {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
-  color: #2563eb;
-  border-color: rgba(59, 130, 246, 0.2);
-}
-
-.typeBadge[data-type="mining"] {
-  background: linear-gradient(135deg, rgba(138, 253, 129, 0.1), rgba(138, 253, 129, 0.05));
-  color: var(--color-primary);
-  border-color: rgba(138, 253, 129, 0.2);
-}
-
+.typeBadge[data-type="market"],
+.typeBadge[data-type="mining"],
 .typeBadge[data-type="bouquet"] {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
-  color: #7c3aed;
-  border-color: rgba(139, 92, 246, 0.2);
+  background: transparent;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(138, 253, 129, 0.4);
 }
 
 .actionButton {
   padding: 8px 20px;
-  border-radius: 8px;
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 500;
   background: var(--color-primary);
@@ -255,16 +253,16 @@
 
 .portfolioCard {
   padding: 28px 32px;
-  background: var(--color-surface);
-  border-radius: 20px;
-  border: 1px solid var(--color-border-subtle);
-  box-shadow: var(--shadow-md);
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolioCard:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  box-shadow: none;
+  transform: none;
 }
 
 .portfolioHeader {
@@ -273,13 +271,13 @@
   align-items: flex-start;
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .portfolioName {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #ffffff;
   margin: 0;
 }
 
@@ -291,7 +289,7 @@
 .portfolioMetricLabel {
   display: block;
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -301,7 +299,7 @@
   display: block;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
 
@@ -316,7 +314,7 @@
 
 .lastRebalanced {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 @media (max-width: 1024px) {

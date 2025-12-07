@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import { Mandate } from '@/lib/mock-mandates';
 import { mockMandates } from '@/lib/mock-mandates';
-import Link from 'next/link';
 import { formatCurrency, formatDate } from '@/lib/format';
+import Modal from '@/components/ui/Modal';
+import MandateDetail from './MandateDetail';
 import styles from './MandatesTable.module.css';
 
 const typeLabels = {
@@ -26,9 +27,12 @@ const riskProfileColors = {
   aggressive: 'var(--color-warning)'
 };
 
+
 export default function MandatesTable() {
   const [filterStatus, setFilterStatus] = useState<'all' | Mandate['status']>('all');
   const [filterType, setFilterType] = useState<'all' | Mandate['type']>('all');
+  const [selectedMandate, setSelectedMandate] = useState<Mandate | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredMandates = mockMandates.filter(mandate => {
     const statusMatch = filterStatus === 'all' || mandate.status === filterStatus;
@@ -44,17 +48,7 @@ export default function MandatesTable() {
     : 0;
 
   return (
-    <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Portfolio</h1>
-          <p className={styles.subtitle}>
-            Manage client mandates, portfolios, and allocations across all products.
-          </p>
-        </div>
-      </div>
-
+    <>
       {/* Filters */}
       <div className={styles.filters}>
         <div className={styles.filterGroup}>
@@ -145,52 +139,35 @@ export default function MandatesTable() {
         </div>
       </div>
 
-      {/* Mandates Table */}
+      {/* Mandates Table - Simplified */}
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
             <tr className={styles.tableHeaderRow}>
-              <th className={styles.tableHeaderCell}>Mandate ID</th>
               <th className={styles.tableHeaderCell}>Name</th>
-              <th className={styles.tableHeaderCell}>Client</th>
               <th className={styles.tableHeaderCell}>Type</th>
-              <th className={styles.tableHeaderCell}>Status</th>
               <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>AUM</th>
-              <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>YTD Performance</th>
-              <th className={styles.tableHeaderCell}>Risk Profile</th>
-              <th className={styles.tableHeaderCell}>Jurisdiction</th>
-              <th className={styles.tableHeaderCell}>Manager</th>
-              <th className={styles.tableHeaderCell}>Inception</th>
+              <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>YTD</th>
               <th className={styles.tableHeaderCell} style={{ textAlign: 'center' }}>Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredMandates.map((mandate) => (
-              <tr key={mandate.id} className={styles.tableBodyRow}>
-                <td className={`${styles.tableCell} ${styles.tableCellId}`}>
-                  {mandate.id}
-                </td>
+              <tr 
+                key={mandate.id} 
+                className={styles.tableBodyRow}
+                onClick={() => {
+                  setSelectedMandate(mandate);
+                  setIsModalOpen(true);
+                }}
+              >
                 <td className={styles.tableCell}>
                   <div className={styles.mandateName}>{mandate.name}</div>
-                </td>
-                <td className={styles.tableCell}>
                   <div className={styles.clientName}>{mandate.clientName}</div>
                 </td>
                 <td className={styles.tableCell}>
                   <span className={styles.typeBadge} data-type={mandate.type}>
                     {typeLabels[mandate.type]}
-                  </span>
-                </td>
-                <td className={styles.tableCell}>
-                  <span 
-                    className={styles.statusBadge}
-                    style={{ 
-                      backgroundColor: `${statusColors[mandate.status]}15`,
-                      color: statusColors[mandate.status],
-                      borderColor: `${statusColors[mandate.status]}40`
-                    }}
-                  >
-                    {mandate.status.charAt(0).toUpperCase() + mandate.status.slice(1)}
                   </span>
                 </td>
                 <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
@@ -201,33 +178,17 @@ export default function MandatesTable() {
                     {mandate.ytdPerformance > 0 ? '+' : ''}{mandate.ytdPerformance.toFixed(1)}%
                   </span>
                 </td>
-                <td className={styles.tableCell}>
-                  <span 
-                    className={styles.riskBadge}
-                    style={{ 
-                      backgroundColor: `${riskProfileColors[mandate.riskProfile]}15`,
-                      color: riskProfileColors[mandate.riskProfile],
-                      borderColor: `${riskProfileColors[mandate.riskProfile]}40`
+                <td className={styles.tableCell} style={{ textAlign: 'center' }}>
+                  <button 
+                    className={styles.actionButton}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedMandate(mandate);
+                      setIsModalOpen(true);
                     }}
                   >
-                    {mandate.riskProfile.charAt(0).toUpperCase() + mandate.riskProfile.slice(1)}
-                  </span>
-                </td>
-                <td className={styles.tableCell}>
-                  {mandate.jurisdiction}
-                </td>
-                <td className={styles.tableCell}>
-                  {mandate.manager}
-                </td>
-                <td className={styles.tableCell}>
-                  {formatDate(mandate.inceptionDate)}
-                </td>
-                <td className={styles.tableCell} style={{ textAlign: 'center' }}>
-                  <Link href={`/mandates/${mandate.id}`} style={{ textDecoration: 'none' }}>
-                    <button className={styles.actionButton}>
-                      View
-                    </button>
-                  </Link>
+                    View Details
+                  </button>
                 </td>
               </tr>
             ))}
@@ -235,11 +196,23 @@ export default function MandatesTable() {
         </table>
       </div>
 
+      {/* Modal */}
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedMandate(null);
+        }}
+        title={selectedMandate?.name}
+      >
+        {selectedMandate && <MandateDetail mandate={selectedMandate} />}
+      </Modal>
+
       {filteredMandates.length === 0 && (
         <div className={styles.emptyState}>
           No mandates found for the selected filters.
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import { RiskMetric, ComplianceCheck, RiskAlert } from '@/lib/mock-risk';
 import { mockRiskMetrics, mockComplianceChecks, mockRiskAlerts } from '@/lib/mock-risk';
-import Link from 'next/link';
+import Modal from '@/components/ui/Modal';
+import RiskDetail from './RiskDetail';
+import ComplianceDetail from './ComplianceDetail';
 import styles from './RiskComplianceDashboard.module.css';
 
 const riskLevelColors = {
@@ -27,11 +29,17 @@ const alertStatusColors = {
   dismissed: 'var(--color-text-muted)'
 };
 
+
 export default function RiskComplianceDashboard() {
   const [activeTab, setActiveTab] = useState<'overview' | 'risk' | 'compliance' | 'alerts'>('overview');
   const [filterRiskLevel, setFilterRiskLevel] = useState<'all' | RiskMetric['riskLevel']>('all');
   const [filterComplianceStatus, setFilterComplianceStatus] = useState<'all' | ComplianceCheck['status']>('all');
   const [filterAlertSeverity, setFilterAlertSeverity] = useState<'all' | RiskAlert['severity']>('all');
+  const [selectedRisk, setSelectedRisk] = useState<RiskMetric | null>(null);
+  const [selectedCompliance, setSelectedCompliance] = useState<ComplianceCheck | null>(null);
+  const [selectedAlert, setSelectedAlert] = useState<RiskAlert | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<'risk' | 'compliance' | 'alert' | null>(null);
 
   const filteredRiskMetrics = filterRiskLevel === 'all' 
     ? mockRiskMetrics 
@@ -200,7 +208,7 @@ export default function RiskComplianceDashboard() {
             </div>
           </div>
 
-          {/* Risk Metrics Table */}
+          {/* Risk Metrics Table - Simplified */}
           <div className={styles.tableContainer}>
             <table className={styles.table}>
               <thead className={styles.tableHeader}>
@@ -208,67 +216,52 @@ export default function RiskComplianceDashboard() {
                   <th className={styles.tableHeaderCell}>Product</th>
                   <th className={styles.tableHeaderCell}>Risk Level</th>
                   <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Volatility</th>
-                  <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Max Drawdown</th>
-                  <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Sharpe Ratio</th>
-                  <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Beta</th>
-                  <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>VaR 95%</th>
                   <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Stress Score</th>
                   <th className={styles.tableHeaderCell} style={{ textAlign: 'center' }}>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredRiskMetrics.map((metric) => (
-                  <tr key={metric.id} className={styles.tableBodyRow}>
-                    <td className={`${styles.tableCell} ${styles.tableCellName}`}>
-                      {metric.productName}
+                  <tr 
+                    key={metric.id} 
+                    className={styles.tableBodyRow}
+                    onClick={() => {
+                      setSelectedRisk(metric);
+                      setModalType('risk');
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    <td className={styles.tableCell}>
+                      <div className={styles.productName}>{metric.productName}</div>
                     </td>
                     <td className={styles.tableCell}>
-                      <span 
-                        className={styles.riskLevelBadge}
-                        style={{
-                          backgroundColor: `${riskLevelColors[metric.riskLevel]}15`,
-                          color: riskLevelColors[metric.riskLevel],
-                          borderColor: `${riskLevelColors[metric.riskLevel]}40`
-                        }}
-                      >
+                      <span className={styles.riskLevelBadge}>
                         {metric.riskLevel.toUpperCase()}
                       </span>
                     </td>
                     <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
                       {metric.volatility.toFixed(1)}%
                     </td>
-                    <td className={`${styles.tableCell} ${styles.tableCellMetric}`} style={{ color: 'var(--color-danger)' }}>
-                      {metric.maxDrawdown.toFixed(1)}%
-                    </td>
                     <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
-                      {metric.sharpeRatio.toFixed(2)}
-                    </td>
-                    <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
-                      {metric.beta.toFixed(2)}
-                    </td>
-                    <td className={`${styles.tableCell} ${styles.tableCellMetric}`} style={{ color: 'var(--color-danger)' }}>
-                      {metric.var95.toFixed(1)}%
-                    </td>
-                    <td className={styles.tableCell}>
-                      <div className={styles.stressScoreContainer}>
-                        <div className={styles.stressScoreBar}>
-                          <div 
-                            className={styles.stressScoreFill}
-                            style={{ 
-                              width: `${metric.stressTestScore}%`,
-                              backgroundColor: metric.stressTestScore >= 70 ? 'var(--color-success)' : metric.stressTestScore >= 50 ? 'var(--color-warning)' : 'var(--color-danger)'
-                            }}
-                          />
-                        </div>
-                        <span className={styles.stressScoreValue}>{metric.stressTestScore}</span>
-                      </div>
+                      <span style={{ 
+                        color: metric.stressTestScore >= 70 ? 'var(--color-success)' : 
+                               metric.stressTestScore >= 50 ? 'var(--color-warning)' : 'var(--color-danger)'
+                      }}>
+                        {metric.stressTestScore}
+                      </span>
                     </td>
                     <td className={styles.tableCell} style={{ textAlign: 'center' }}>
-                      <Link href={`/products/${metric.productId}`} style={{ textDecoration: 'none' }}>
-                        <button className={styles.actionButton}>
-                          View
-                        </button>
-                      </Link>
+                      <button 
+                        className={styles.actionButton}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedRisk(metric);
+                          setModalType('risk');
+                          setIsModalOpen(true);
+                        }}
+                      >
+                        View Details
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -434,7 +427,7 @@ export default function RiskComplianceDashboard() {
             </div>
           </div>
 
-          {/* Alerts Table */}
+          {/* Alerts Table - Simplified */}
           <div className={styles.tableContainer}>
             <table className={styles.table}>
               <thead className={styles.tableHeader}>
@@ -443,20 +436,23 @@ export default function RiskComplianceDashboard() {
                   <th className={styles.tableHeaderCell}>Type</th>
                   <th className={styles.tableHeaderCell}>Severity</th>
                   <th className={styles.tableHeaderCell}>Status</th>
-                  <th className={styles.tableHeaderCell}>Entity</th>
-                  <th className={styles.tableHeaderCell}>Created</th>
-                  <th className={styles.tableHeaderCell}>Resolved</th>
                   <th className={styles.tableHeaderCell} style={{ textAlign: 'center' }}>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredAlerts.map((alert) => (
-                  <tr key={alert.id} className={styles.tableBodyRow}>
-                    <td className={`${styles.tableCell} ${styles.tableCellName}`}>
-                      <div>
-                        <div className={styles.alertTitle}>{alert.title}</div>
-                        <div className={styles.alertDescription}>{alert.description}</div>
-                      </div>
+                  <tr 
+                    key={alert.id} 
+                    className={styles.tableBodyRow}
+                    onClick={() => {
+                      setSelectedAlert(alert);
+                      setModalType('alert');
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    <td className={styles.tableCell}>
+                      <div className={styles.alertTitle}>{alert.title}</div>
+                      <div className={styles.alertEntity}>{alert.productName || alert.mandateName || 'Global'}</div>
                     </td>
                     <td className={styles.tableCell}>
                       <span className={styles.typeBadge} data-type={alert.type}>
@@ -464,44 +460,26 @@ export default function RiskComplianceDashboard() {
                       </span>
                     </td>
                     <td className={styles.tableCell}>
-                      <span 
-                        className={styles.severityBadge}
-                        style={{
-                          backgroundColor: `${riskLevelColors[alert.severity]}15`,
-                          color: riskLevelColors[alert.severity],
-                          borderColor: `${riskLevelColors[alert.severity]}40`
-                        }}
-                      >
+                      <span className={styles.severityBadge}>
                         {alert.severity.toUpperCase()}
                       </span>
                     </td>
                     <td className={styles.tableCell}>
-                      <span 
-                        className={styles.statusBadge}
-                        style={{
-                          backgroundColor: `${alertStatusColors[alert.status]}15`,
-                          color: alertStatusColors[alert.status],
-                          borderColor: `${alertStatusColors[alert.status]}40`
-                        }}
-                      >
+                      <span className={styles.statusBadge}>
                         {alert.status.charAt(0).toUpperCase() + alert.status.slice(1)}
                       </span>
                     </td>
-                    <td className={styles.tableCell}>
-                      {alert.productName || alert.mandateName || 'Global'}
-                    </td>
-                    <td className={styles.tableCell}>
-                      {new Date(alert.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                    </td>
-                    <td className={styles.tableCell}>
-                      {alert.resolvedAt 
-                        ? new Date(alert.resolvedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                        : '—'
-                      }
-                    </td>
                     <td className={styles.tableCell} style={{ textAlign: 'center' }}>
-                      <button className={styles.actionButton}>
-                        View
+                      <button 
+                        className={styles.actionButton}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedAlert(alert);
+                          setModalType('alert');
+                          setIsModalOpen(true);
+                        }}
+                      >
+                        View Details
                       </button>
                     </td>
                   </tr>
@@ -511,6 +489,104 @@ export default function RiskComplianceDashboard() {
           </div>
         </>
       )}
+
+      {/* Modals */}
+      <Modal 
+        isOpen={isModalOpen && modalType === 'risk' && selectedRisk !== null} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedRisk(null);
+          setModalType(null);
+        }}
+        title={selectedRisk?.productName}
+      >
+        {selectedRisk && <RiskDetail metric={selectedRisk} />}
+      </Modal>
+
+      <Modal 
+        isOpen={isModalOpen && modalType === 'compliance' && selectedCompliance !== null} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedCompliance(null);
+          setModalType(null);
+        }}
+        title={selectedCompliance?.name}
+      >
+        {selectedCompliance && <ComplianceDetail check={selectedCompliance} />}
+      </Modal>
+
+      <Modal 
+        isOpen={isModalOpen && modalType === 'alert' && selectedAlert !== null} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedAlert(null);
+          setModalType(null);
+        }}
+        title={selectedAlert?.title}
+      >
+        {selectedAlert && (
+          <div>
+            <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Description</span>
+              </div>
+              <p style={{ color: '#ffffff', lineHeight: '1.6', margin: 0 }}>{selectedAlert.description}</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Type</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {selectedAlert.type.charAt(0).toUpperCase() + selectedAlert.type.slice(1)}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Severity</span>
+                <div style={{ color: riskLevelColors[selectedAlert.severity], fontWeight: 600, marginTop: '4px' }}>
+                  {selectedAlert.severity.toUpperCase()}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Status</span>
+                <div style={{ color: alertStatusColors[selectedAlert.status], fontWeight: 600, marginTop: '4px' }}>
+                  {selectedAlert.status.charAt(0).toUpperCase() + selectedAlert.status.slice(1)}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Entity</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {selectedAlert.productName || selectedAlert.mandateName || 'Global'}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Created</span>
+                <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                  {new Date(selectedAlert.createdAt).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </div>
+              </div>
+              {selectedAlert.resolvedAt && (
+                <div>
+                  <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.6)' }}>Resolved</span>
+                  <div style={{ color: '#ffffff', fontWeight: 600, marginTop: '4px' }}>
+                    {new Date(selectedAlert.resolvedAt).toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

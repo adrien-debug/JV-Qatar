@@ -9,14 +9,14 @@
 }
 
 .tableRow {
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .tableCell {
   text-align: left;
   padding: 12px 16px;
   font-size: 0.875rem;
-  color: var(--color-text-main);
+  color: #000000;
 }
 
 .tableCellHeader {
@@ -24,6 +24,6 @@
   padding: 12px 16px;
   font-weight: 600;
   font-size: 0.875rem;
-  color: var(--color-text-main);
+  color: #000000;
 }
 

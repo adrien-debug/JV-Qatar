@@ -8,7 +8,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 24px;
-  color: var(--color-text-main);
+  color: #000000;
   letter-spacing: -0.02em;
 }
 
@@ -23,18 +23,18 @@
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--color-text-main);
+  color: #000000;
   letter-spacing: -0.01em;
 }
 
 .input {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 12px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
   font-size: 0.9375rem;
-  color: var(--color-text-main);
-  background: var(--color-surface);
+  color: #000000;
+  background: transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
 }
@@ -48,11 +48,11 @@
 .textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 12px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
   font-size: 0.9375rem;
-  color: var(--color-text-main);
-  background: var(--color-surface);
+  color: #000000;
+  background: transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
   resize: vertical;
@@ -68,11 +68,11 @@
 .select {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 12px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
   font-size: 0.9375rem;
-  color: var(--color-text-main);
-  background: var(--color-surface);
+  color: #000000;
+  background: transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
   cursor: pointer;
@@ -92,14 +92,14 @@
 
 .assetButton {
   padding: 12px 16px;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 500;
-  border: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--color-surface);
-  color: var(--color-text-main);
+  background: transparent;
+  color: #000000;
 }
 
 .assetButtonSelected {
@@ -112,7 +112,7 @@
 .assetButton:hover {
   border-color: var(--color-primary);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .jurisdictionContainer {
@@ -123,14 +123,14 @@
 
 .jurisdictionButton {
   padding: 10px 20px;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 0.875rem;
   font-weight: 500;
-  border: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--color-surface);
-  color: var(--color-text-main);
+  background: transparent;
+  color: #000000;
 }
 
 .jurisdictionButtonSelected {
@@ -143,7 +143,7 @@
 .jurisdictionButton:hover {
   border-color: var(--color-primary);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .actions {

@@ -3,28 +3,28 @@
 }
 
 .header {
-  margin: 16px -48px 40px -48px;
-  padding: 24px 48px;
-  background: rgba(138, 253, 129, 0.1);
+  margin: 0;
+  padding: var(--spacing-section) var(--spacing-section);
+  background: #0a0b0d;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid rgba(138, 253, 129, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 1024px) {
   .header {
-    margin-left: -32px;
-    margin-right: -32px;
-    padding-left: 32px;
-    padding-right: 32px;
+    margin: 0;
+    margin: 0;
+    padding: var(--spacing-section) var(--spacing-section);
+    padding: var(--spacing-section) var(--spacing-section);
   }
 }
 
 @media (max-width: 768px) {
   .header {
-    margin-left: -16px;
+    margin: 0;
     margin-right: -16px;
-    padding-left: 16px;
+    padding: var(--spacing-section) var(--spacing-section);
     padding-right: 16px;
   }
   
@@ -35,9 +35,9 @@
 
 @media (max-width: 480px) {
   .header {
-    margin-left: -12px;
+    margin: 0;
     margin-right: -12px;
-    padding-left: 12px;
+    padding: var(--spacing-section) var(--spacing-section);
     padding-right: 12px;
   }
   
@@ -48,22 +48,24 @@
 
 .breadcrumb {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 16px;
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--color-text-main);
-  letter-spacing: -0.04em;
+  font-size: var(--font-size-h1);
+  font-weight: 500;
+  margin: 0 0 var(--spacing-compact) 0;
+  color: #f8fafc;
+  letter-spacing: 0.01em;
 }
 
 .subtitle {
-  color: var(--color-text-muted);
-  font-size: 1.125rem;
+  color: #cbd5e1;
+  font-size: var(--font-size-body);
   font-weight: 400;
+  letter-spacing: 0.005em;
+  margin: 0;
 }
 
 .metricsGrid {
@@ -73,7 +75,7 @@
   overflow-x: auto;
   padding-bottom: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-subtle) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.08) transparent;
 }
 
 .metricsGrid::-webkit-scrollbar {
@@ -86,7 +88,7 @@
 
 .metricsGrid::-webkit-scrollbar-thumb {
   background: var(--color-border-subtle);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .metricCard {
@@ -96,7 +98,7 @@
 
 .metricLabel {
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -106,7 +108,7 @@
 .metricValue {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #000000;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
@@ -128,7 +130,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 24px;
-  color: var(--color-text-main);
+  color: #000000;
   letter-spacing: -0.02em;
 }
 
@@ -143,7 +145,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .infoItem:last-child {
@@ -153,13 +155,13 @@
 
 .infoLabel {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
 }
 
 .infoValue {
   font-size: 0.9375rem;
-  color: var(--color-text-main);
+  color: #000000;
   font-weight: 600;
 }
 

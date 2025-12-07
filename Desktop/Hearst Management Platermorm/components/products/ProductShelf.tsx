@@ -23,15 +23,7 @@ export default function ProductShelf() {
     : mockProducts.filter(p => p.type === filterType);
 
   return (
-    <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <h1 className={styles.title}>Product Catalog</h1>
-        <p className={styles.subtitle}>
-          Browse all available products across Market, Mining-Enhanced, and Bouquet families.
-        </p>
-      </div>
-
+    <>
       {/* Filters */}
       <div className={styles.filters}>
         <button
@@ -126,7 +118,7 @@ export default function ProductShelf() {
           No products found for this filter.
         </div>
       )}
-    </div>
+    </>
   );
 }
 

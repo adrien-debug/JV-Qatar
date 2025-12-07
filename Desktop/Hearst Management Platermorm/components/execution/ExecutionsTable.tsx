@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import { Execution } from '@/lib/mock-executions';
 import { mockExecutions } from '@/lib/mock-executions';
-import Link from 'next/link';
 import { formatCurrency, formatDate, formatNumber } from '@/lib/format';
+import Modal from '@/components/ui/Modal';
+import ExecutionDetail from './ExecutionDetail';
 import styles from './ExecutionsTable.module.css';
 
 const typeLabels = {
@@ -13,6 +14,7 @@ const typeLabels = {
   rebalance: 'Rebalance',
   allocation: 'Allocation'
 };
+
 
 const statusColors = {
   pending: 'var(--color-warning)',
@@ -25,6 +27,8 @@ const statusColors = {
 export default function ExecutionsTable() {
   const [filterStatus, setFilterStatus] = useState<'all' | Execution['status']>('all');
   const [filterType, setFilterType] = useState<'all' | Execution['type']>('all');
+  const [selectedExecution, setSelectedExecution] = useState<Execution | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredExecutions = mockExecutions.filter(execution => {
     const statusMatch = filterStatus === 'all' || execution.status === filterStatus;
@@ -38,17 +42,7 @@ export default function ExecutionsTable() {
   const pendingCount = filteredExecutions.filter(e => e.status === 'pending' || e.status === 'executing').length;
 
   return (
-    <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Execution</h1>
-          <p className={styles.subtitle}>
-            Monitor and manage trade executions across all products and mandates.
-          </p>
-        </div>
-      </div>
-
+    <>
       {/* Filters */}
       <div className={styles.filters}>
         <div className={styles.filterGroup}>
@@ -143,7 +137,7 @@ export default function ExecutionsTable() {
         </div>
       </div>
 
-      {/* Executions Table */}
+      {/* Executions Table - Simplified */}
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
@@ -152,28 +146,28 @@ export default function ExecutionsTable() {
               <th className={styles.tableHeaderCell}>Product</th>
               <th className={styles.tableHeaderCell}>Type</th>
               <th className={styles.tableHeaderCell}>Status</th>
-              <th className={styles.tableHeaderCell}>Asset</th>
-              <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Quantity</th>
-              <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Price</th>
               <th className={styles.tableHeaderCell} style={{ textAlign: 'right' }}>Value</th>
-              <th className={styles.tableHeaderCell}>Venue</th>
-              <th className={styles.tableHeaderCell}>Timestamp</th>
               <th className={styles.tableHeaderCell} style={{ textAlign: 'center' }}>Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredExecutions.map((execution) => (
-              <tr key={execution.id} className={styles.tableBodyRow}>
-                <td className={`${styles.tableCell} ${styles.tableCellOrderId}`}>
-                  {execution.orderId}
+              <tr 
+                key={execution.id} 
+                className={styles.tableBodyRow}
+                onClick={() => {
+                  setSelectedExecution(execution);
+                  setIsModalOpen(true);
+                }}
+              >
+                <td className={styles.tableCell}>
+                  <div className={styles.orderId}>{execution.orderId}</div>
                 </td>
                 <td className={styles.tableCell}>
-                  <div>
-                    <div className={styles.productName}>{execution.productName}</div>
-                    {execution.mandateName && (
-                      <div className={styles.mandateName}>{execution.mandateName}</div>
-                    )}
-                  </div>
+                  <div className={styles.productName}>{execution.productName}</div>
+                  {execution.mandateName && (
+                    <div className={styles.mandateName}>{execution.mandateName}</div>
+                  )}
                 </td>
                 <td className={styles.tableCell}>
                   <span className={styles.typeBadge} data-type={execution.type}>
@@ -181,48 +175,24 @@ export default function ExecutionsTable() {
                   </span>
                 </td>
                 <td className={styles.tableCell}>
-                  <span 
-                    className={styles.statusBadge}
-                    style={{ 
-                      backgroundColor: `${statusColors[execution.status]}15`,
-                      color: statusColors[execution.status],
-                      borderColor: `${statusColors[execution.status]}40`
-                    }}
-                  >
+                  <span className={styles.statusBadge}>
                     {execution.status.charAt(0).toUpperCase() + execution.status.slice(1)}
                   </span>
-                </td>
-                <td className={styles.tableCell}>
-                  <span className={styles.assetBadge}>{execution.asset}</span>
-                </td>
-                <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
-                  {execution.quantity > 0 ? formatNumber(execution.quantity, { decimals: 1 }) : '—'}
-                </td>
-                <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
-                  {execution.price > 0 ? formatCurrency(execution.price) : '—'}
                 </td>
                 <td className={`${styles.tableCell} ${styles.tableCellMetric}`}>
                   {formatCurrency(execution.value)}
                 </td>
-                <td className={styles.tableCell}>
-                  {execution.executionVenue}
-                </td>
-                <td className={styles.tableCell}>
-                  <div className={styles.timestamp}>
-                    {formatDate(execution.timestamp)}
-                  </div>
-                  {execution.executedAt && (
-                    <div className={styles.executedAt}>
-                      Exec: {formatDate(execution.executedAt)}
-                    </div>
-                  )}
-                </td>
                 <td className={styles.tableCell} style={{ textAlign: 'center' }}>
-                  <Link href={`/execution/${execution.id}`} style={{ textDecoration: 'none' }}>
-                    <button className={styles.actionButton}>
-                      View
-                    </button>
-                  </Link>
+                  <button 
+                    className={styles.actionButton}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedExecution(execution);
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    View Details
+                  </button>
                 </td>
               </tr>
             ))}
@@ -230,12 +200,24 @@ export default function ExecutionsTable() {
         </table>
       </div>
 
+      {/* Modal */}
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedExecution(null);
+        }}
+        title={selectedExecution?.orderId}
+      >
+        {selectedExecution && <ExecutionDetail execution={selectedExecution} />}
+      </Modal>
+
       {filteredExecutions.length === 0 && (
         <div className={styles.emptyState}>
           No executions found for the selected filters.
         </div>
       )}
-    </div>
+    </>
   );
 }
 
