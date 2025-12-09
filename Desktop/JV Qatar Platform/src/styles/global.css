@@ -1,0 +1,157 @@
+/**
+ * Styles globaux - JV Qatar Platform
+ * Utilise les tokens de design HEARST AI
+ */
+
+@import './tokens.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-display);
+  line-height: var(--line-height-display);
+}
+
+h2 {
+  font-size: var(--font-size-page-title);
+  line-height: var(--line-height-page-title);
+}
+
+h3 {
+  font-size: var(--font-size-section-title);
+  line-height: var(--line-height-section-title);
+}
+
+h4 {
+  font-size: var(--font-size-subsection-title);
+  line-height: var(--line-height-subsection-title);
+}
+
+p {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+/* === FOCUS STATES === */
+:focus-visible {
+  outline: var(--outline-focus-width) var(--outline-focus-style) var(--outline-focus-color);
+  outline-offset: var(--outline-focus-offset);
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-grey-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-grey-400);
+}
+
+/* === SELECTION === */
+::selection {
+  background-color: var(--color-primary-hearst-green);
+  color: var(--color-text-default);
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes flow {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(138, 253, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(138, 253, 129, 0.6);
+  }
+}
+
+/* === UTILITY CLASSES === */
+.container {
+  max-width: var(--structure-content-max-width);
+  margin: 0 auto;
+  padding: var(--structure-content-padding);
+}
+
+.section {
+  padding: var(--spacing-8) 0;
+}
+
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.bg-primary {
+  background-color: var(--color-bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--color-bg-tertiary);
+}
+

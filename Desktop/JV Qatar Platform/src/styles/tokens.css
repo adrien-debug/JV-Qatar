@@ -1,0 +1,315 @@
+/**
+ * Variables CSS - Design Tokens HEARST AI
+ * Tous les tokens convertis en variables CSS pour utilisation globale
+ */
+
+:root {
+  /* === COULEURS PRIMAIRES === */
+  --color-primary-hearst-green: #8afd81;
+  --color-primary-hearst-green-dark: #6fdc66;
+  --color-primary-hearst-green-light: #a5ff9c;
+  --color-primary-green: #8afd81;
+  --color-primary-accent: #8afd81;
+  --color-primary-hearst: #8afd81;
+
+  /* === LIGHT GREEN === */
+  --color-light-green-1: #E5FFEB;
+  --color-light-green-2: #CFFFDA;
+  --color-light-green-3: #B8FFCA;
+  --color-light-green-4: #A3FFBA;
+  --color-light-green-5: #8DFFA9;
+  --color-light-green-primary: #A7FB90;
+
+  /* === SECONDARY === */
+  --color-secondary-accent: #7bed9f;
+  --color-secondary-mint-500: #7bed9f;
+  --color-secondary-success: #8afd81;
+  --color-secondary-success-dark: #27ae60;
+  --color-secondary-warning: #f6c344;
+  --color-secondary-warning-dark: #f39c12;
+  --color-secondary-danger: #ff6b6b;
+  --color-secondary-error: #e74c3c;
+  --color-secondary-info: #4ecdc4;
+  --color-secondary-info-dark: #3498db;
+
+  /* === ASH GREY === */
+  --color-ash-grey-1: #D9E1DD;
+  --color-ash-grey-2: #C4CFCB;
+  --color-ash-grey-3: #ADBAB6;
+  --color-ash-grey-4: #9EB3A8;
+  --color-ash-grey-5: #75847C;
+  --color-ash-grey-accent: #9EB3A8;
+
+  /* === BACKGROUNDS === */
+  --color-bg-primary-dark: #000000;
+  --color-bg-primary: #0a0a0a;
+  --color-bg-primary-grey: #1a1a1a;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #242424;
+  --color-bg-hover: #2a2a2a;
+  --color-bg-dark-900: #0A0A0A;
+  --color-bg-dark-800: #141414;
+  --color-bg-dark-700: #1A1A1A;
+
+  /* === GREY === */
+  --color-grey-100: #2a2a2a;
+  --color-grey-200: #3a3a3a;
+  --color-grey-300: #4a4a4a;
+  --color-grey-400: #666666;
+  --color-grey-500: #999999;
+  --color-grey-subtle: #F8F8F8;
+  --color-grey-subtle-darker: #E5E5E5;
+
+  /* === BLACK === */
+  --color-black-pure: #000000;
+  --color-black-900: #1A1A1A;
+  --color-black-800: #2D2D2D;
+  --color-black-700: #404040;
+
+  /* === WARM GREY === */
+  --color-warm-grey-100: #F5F3F0;
+  --color-warm-grey-200: #E8E4DF;
+  --color-warm-grey-300: #D4CEC7;
+  --color-warm-grey-400: #B8AFA5;
+  --color-warm-grey-500: #9C8F83;
+
+  /* === TERRACOTTA === */
+  --color-terracotta-100: #F5E6E0;
+  --color-terracotta-200: #E8C9BD;
+  --color-terracotta-300: #D4A68F;
+  --color-terracotta-400: #B87D5F;
+  --color-terracotta-500: #9C5A3F;
+
+  /* === TEXT === */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b8b8b8;
+  --color-text-muted: #6b6b6b;
+  --color-text-default: #000000;
+  --color-text-negative: #FFFFFF;
+  --color-text-unrestricted: #A7FB90;
+  --color-text-accent: #9EB3A8;
+  --color-text-accent-lighter: #C4CFCB;
+  --color-text-accent-darker: #75847C;
+  --color-text-secondary-variant-1: #9CA3AF;
+  --color-text-secondary-variant-2: #D1D5DB;
+  --color-text-tertiary: #9CA3AF;
+  --color-text-auxiliary: #E5E7EB;
+  --color-text-error: #FF4444;
+  --color-text-warning: #FFB800;
+  --color-text-success: #00C853;
+
+  /* === SYSTEM === */
+  --color-system-error: #FF4444;
+  --color-system-warning: #FFB800;
+  --color-system-success: #00C853;
+  --color-system-info: #3498DB;
+
+  /* === GRAPHICS === */
+  --color-graphics-1: #A7FB90;
+  --color-graphics-2: #9EB3A8;
+  --color-graphics-3: #FFB800;
+  --color-graphics-4: #FF4444;
+  --color-graphics-5: #00C853;
+  --color-graphics-6: #8DFFA9;
+  --color-graphics-7: #CFFFDA;
+  --color-graphics-8: #75847C;
+  --color-graphics-9: #B8FFCA;
+  --color-graphics-10: #D9E1DD;
+  --color-graphics-11: #9C5A3F;
+  --color-graphics-12: #B87D5F;
+  --color-graphics-13: #D4A68F;
+  --color-graphics-14: #E8C9BD;
+  --color-graphics-15: #F5E6E0;
+
+  /* === NEUTRAL === */
+  --color-neutral-white: #FFFFFF;
+  --color-neutral-grey-subtle: #F8F8F8;
+  --color-neutral-grey-subtle-darker: #E5E5E5;
+
+  /* === SPACING === */
+  --spacing-0: 0px;
+  --spacing-1: 2px;
+  --spacing-2: 4px;
+  --spacing-3: 8px;
+  --spacing-4: 12px;
+  --spacing-5: 16px;
+  --spacing-6: 24px;
+  --spacing-7: 32px;
+  --spacing-8: 48px;
+  --spacing-9: 64px;
+  --spacing-10: 80px;
+
+  /* === TYPOGRAPHY === */
+  --font-family-primary: 'FK Grotesk Trial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-family-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-display: 52px;
+  --font-size-page-title: 32px;
+  --font-size-section-title: 25px;
+  --font-size-subsection-title: 18px;
+  --font-size-body: 16px;
+  --font-size-body-minor: 14px;
+  --font-size-caption: 12px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-display: 64px;
+  --line-height-page-title: 40px;
+  --line-height-section-title: 32px;
+  --line-height-subsection-title: 24px;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.5px;
+  --letter-spacing-wider: 1px;
+
+  /* === RADIUS === */
+  --radius-flat: 0px;
+  --radius-small: 8px;
+  --radius-default: 16px;
+  --radius-section: 20px;
+  --radius-rounded: 1000px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* === BORDERS === */
+  --border-thin-width: 1px;
+  --border-thin-style: solid;
+  --border-thin-color: #2a2a2a;
+  --border-thin-radius: 8px;
+  --border-medium-width: 2px;
+  --border-medium-style: solid;
+  --border-medium-color: #2a2a2a;
+  --border-medium-radius: 16px;
+  --border-thick-width: 3px;
+  --border-thick-style: solid;
+  --border-thick-color: #2a2a2a;
+  --border-thick-radius: 20px;
+  --border-hover-color: #3a3a3a;
+  --border-active-color: #8afd81;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-glow-green: 0 0 20px rgba(167, 251, 144, 0.3), 0 0 40px rgba(167, 251, 144, 0.1);
+  --shadow-glow-accent: 0 0 20px rgba(158, 179, 168, 0.2), 0 0 40px rgba(158, 179, 168, 0.1);
+
+  /* === TRANSITIONS === */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 250ms;
+  --transition-duration-slow: 350ms;
+  --transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* === GRADIENTS === */
+  --gradient-primary: linear-gradient(135deg, #A7FB90 0%, #8DFFA9 50%, #B8FFCA 100%);
+  --gradient-accent: linear-gradient(135deg, #9EB3A8 0%, #ADBAB6 50%, #C4CFCB 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(167, 251, 144, 0.1) 0%, rgba(207, 253, 218, 0.05) 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+
+  /* === BLUR === */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(16px);
+  --blur-xl: blur(24px);
+
+  /* === LAYOUT === */
+  --layout-sidebar-width: 200px;
+  --layout-header-height: 70px;
+  --layout-dashboard-width: 1440px;
+  --layout-grid-columns: 12;
+  --layout-grid-gutter: 24px;
+  --layout-grid-gap: 24px;
+  --layout-breakpoint-mobile: 768px;
+  --layout-breakpoint-tablet: 1024px;
+  --layout-breakpoint-desktop: 1440px;
+
+  /* === DIVIDERS === */
+  --divider-horizontal-height: 1px;
+  --divider-horizontal-color: #2a2a2a;
+  --divider-horizontal-margin: 24px 0;
+  --divider-vertical-width: 1px;
+  --divider-vertical-color: #2a2a2a;
+  --divider-vertical-margin: 0 24px;
+  --divider-section-height: 2px;
+  --divider-section-color: #3a3a3a;
+  --divider-section-margin: 32px 0;
+
+  /* === CONNECTORS === */
+  --connector-default-stroke: #9EB3A8;
+  --connector-default-stroke-width: 2px;
+  --connector-default-stroke-linecap: round;
+  --connector-default-stroke-linejoin: round;
+  --connector-active-stroke: #8afd81;
+  --connector-active-stroke-width: 3px;
+  --connector-hover-stroke: #a5ff9c;
+  --connector-hover-stroke-width: 2.5px;
+
+  /* === STROKE === */
+  --stroke-icon-default: #ffffff;
+  --stroke-icon-active: #8afd81;
+  --stroke-icon-secondary: #b8b8b8;
+  --stroke-icon-muted: #6b6b6b;
+  --stroke-width-thin: 1px;
+  --stroke-width-default: 2px;
+  --stroke-width-thick: 3px;
+  --stroke-linecap: round;
+  --stroke-linejoin: round;
+
+  /* === OUTLINE === */
+  --outline-focus-width: 2px;
+  --outline-focus-style: solid;
+  --outline-focus-color: #8afd81;
+  --outline-focus-offset: 4px;
+  --outline-error-width: 2px;
+  --outline-error-style: solid;
+  --outline-error-color: #ff4444;
+
+  /* === OVERLAYS === */
+  --overlay-0: rgba(0, 0, 0, 0);
+  --overlay-1: rgba(0, 0, 0, 0.1);
+  --overlay-2: rgba(0, 0, 0, 0.2);
+  --overlay-3: rgba(0, 0, 0, 0.3);
+  --overlay-4: rgba(0, 0, 0, 0.4);
+  --overlay-5: rgba(0, 0, 0, 0.5);
+
+  /* === STRUCTURE === */
+  --structure-sidebar-width: 200px;
+  --structure-sidebar-border-right: 1px solid #2a2a2a;
+  --structure-header-height: 70px;
+  --structure-header-border-bottom: 1px solid #2a2a2a;
+  --structure-content-max-width: 1600px;
+  --structure-content-padding: 48px 80px;
+
+  /* === ICONS === */
+  --icon-size-standard: 24px;
+  --icon-style: outline-rounded;
+  --icon-stroke-width: 2px;
+}
+
