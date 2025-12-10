@@ -1,0 +1,8 @@
+{
+  "/overview/page": "app/overview/page.js",
+  "/full-view/page": "app/full-view/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/conteneurs/page": "app/conteneurs/page.js",
+  "/reseau/page": "app/reseau/page.js",
+  "/blocks/[id]/page": "app/blocks/[id]/page.js"
+}

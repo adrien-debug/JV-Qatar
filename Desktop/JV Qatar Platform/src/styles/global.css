@@ -22,41 +22,53 @@ body {
   font-size: var(--font-size-body);
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-content);
   letter-spacing: var(--letter-spacing-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* === TYPOGRAPHY === */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 h1 {
   font-size: var(--font-size-display);
   line-height: var(--line-height-display);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
 }
 
 h2 {
   font-size: var(--font-size-page-title);
   line-height: var(--line-height-page-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
 }
 
 h3 {
   font-size: var(--font-size-section-title);
   line-height: var(--line-height-section-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
 }
 
 h4 {
   font-size: var(--font-size-subsection-title);
   line-height: var(--line-height-subsection-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
 }
 
 p {
   font-size: var(--font-size-body);
   line-height: var(--line-height-normal);
   color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
 }
 
 /* === FOCUS STATES === */
@@ -72,22 +84,22 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-grey-300);
+  background: #E0E0E0;
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-grey-400);
+  background: var(--color-text-secondary);
 }
 
 /* === SELECTION === */
 ::selection {
   background-color: var(--color-primary-hearst-green);
-  color: var(--color-text-default);
+  color: #FFFFFF;
 }
 
 /* === ANIMATIONS === */
@@ -113,10 +125,50 @@ p {
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 10px rgba(138, 253, 129, 0.3);
+    box-shadow: none;
   }
   50% {
-    box-shadow: 0 0 20px rgba(138, 253, 129, 0.6);
+    box-shadow: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
   }
 }
 

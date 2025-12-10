@@ -28,22 +28,17 @@ export default function TransformerNode({
       style={{
         padding: 'var(--spacing-4)',
         backgroundColor: isActive
-          ? 'var(--color-bg-hover)'
-          : 'var(--color-bg-tertiary)',
+          ? 'rgba(46, 204, 113, 0.08)'
+          : 'transparent',
         borderRadius: 'var(--radius-default)',
         border: isSelected
           ? '2px solid var(--color-primary-hearst-green)'
           : isHovered
-          ? '2px solid var(--color-ash-grey-accent)'
-          : 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
+          ? '1px solid var(--color-primary-hearst-green)'
+          : '1px solid #E0E0E0',
         cursor: 'pointer',
         transition: 'var(--transition-base)',
-        transform: isActive ? 'scale(1.05)' : 'none',
-        boxShadow: isSelected
-          ? 'var(--shadow-glow-green)'
-          : isHovered
-          ? 'var(--shadow-md)'
-          : 'none',
+        boxShadow: 'none',
         textAlign: 'center',
         minWidth: '140px'
       }}
@@ -60,7 +55,7 @@ export default function TransformerNode({
       }}>
         <TransformerIcon
           size={40}
-          color={isActive ? 'var(--color-primary-hearst-green)' : 'var(--color-ash-grey-accent)'}
+          color={isActive ? 'var(--color-primary-hearst-green)' : 'var(--color-text-secondary)'}
           isActive={isActive}
         />
         <div style={{
@@ -68,7 +63,7 @@ export default function TransformerNode({
           fontWeight: 'var(--font-weight-bold)',
           color: isActive
             ? 'var(--color-primary-hearst-green)'
-            : 'var(--color-text-secondary)',
+            : 'var(--color-text-primary)',
           textAlign: 'center'
         }}>
           {transformer.name.split('–')[1].trim()}

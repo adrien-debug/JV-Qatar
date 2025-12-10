@@ -16,10 +16,10 @@ interface GlobalInfoPanelProps {
 export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
   return (
     <div style={{
-      padding: 'var(--spacing-8)',
-      backgroundColor: 'var(--color-bg-secondary)',
+      padding: 'var(--spacing-5)',
+      backgroundColor: 'transparent',
       borderRadius: 'var(--radius-default)',
-      border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+      border: '1px solid #E0E0E0'
     }}>
       <div style={{
         display: 'grid',
@@ -30,11 +30,11 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
         <div>
           <h3 style={{
             fontSize: 'var(--font-size-subsection-title)',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--color-primary-hearst-green)',
+            fontWeight: 'var(--font-weight-semibold)',
+            color: 'var(--color-text-primary)',
             marginBottom: 'var(--spacing-4)'
           }}>
-            Informations du Site
+            Site Information
           </h3>
           <div style={{
             display: 'flex',
@@ -46,7 +46,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Puissance totale:
+                Total Power:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -62,7 +62,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Courant @ 33 kV:
+                Current @ 33 kV:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -78,7 +78,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Par bloc:
+                Per Block:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -96,11 +96,11 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
         <div>
           <h3 style={{
             fontSize: 'var(--font-size-subsection-title)',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--color-primary-hearst-green)',
+            fontWeight: 'var(--font-weight-semibold)',
+            color: 'var(--color-text-primary)',
             marginBottom: 'var(--spacing-4)'
           }}>
-            Spécifications Conteneur
+            Container Specifications
           </h3>
           <div style={{
             display: 'flex',
@@ -128,7 +128,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Puissance totale:
+                Total Power:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -144,7 +144,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Tension:
+                Voltage:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -160,7 +160,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Courant:
+                Current:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -178,11 +178,11 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
         <div>
           <h3 style={{
             fontSize: 'var(--font-size-subsection-title)',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--color-primary-hearst-green)',
+            fontWeight: 'var(--font-weight-semibold)',
+            color: 'var(--color-text-primary)',
             marginBottom: 'var(--spacing-4)'
           }}>
-            Connexion Réseau
+            Grid Connection
           </h3>
           <div style={{
             display: 'flex',
@@ -194,7 +194,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Opérateur:
+                Operator:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -242,7 +242,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Puissance max contrat:
+                Max Contract Power:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',
@@ -260,11 +260,11 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
         <div>
           <h3 style={{
             fontSize: 'var(--font-size-subsection-title)',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--color-primary-hearst-green)',
+            fontWeight: 'var(--font-weight-semibold)',
+            color: 'var(--color-text-primary)',
             marginBottom: 'var(--spacing-4)'
           }}>
-            Transformateurs
+            Transformers
           </h3>
           <div style={{
             display: 'flex',
@@ -276,7 +276,7 @@ export default function GlobalInfoPanel({ site }: GlobalInfoPanelProps) {
                 fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-secondary)'
               }}>
-                Puissance nominale:
+                Rated Power:
               </span>
               <span style={{
                 fontSize: 'var(--font-size-body)',

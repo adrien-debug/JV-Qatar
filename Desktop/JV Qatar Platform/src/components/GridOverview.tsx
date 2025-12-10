@@ -16,10 +16,10 @@ export default function GridOverview({ site }: GridOverviewProps) {
 
   return (
     <div style={{
-      padding: 'var(--spacing-8)',
-      backgroundColor: 'var(--color-bg-secondary)',
+      padding: 'var(--spacing-5)',
+      backgroundColor: 'transparent',
       borderRadius: 'var(--radius-default)',
-      border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+      border: '1px solid #E0E0E0'
     }}>
       {/* Diagram Flow */}
       <div style={{
@@ -32,13 +32,13 @@ export default function GridOverview({ site }: GridOverviewProps) {
         <div
           style={{
             padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-tertiary)',
+            backgroundColor: '#F5F5F5',
             borderRadius: 'var(--radius-default)',
             border: '2px solid var(--color-primary-hearst-green)',
             minWidth: '300px',
             textAlign: 'center',
             position: 'relative',
-            boxShadow: 'var(--shadow-glow-green)',
+            boxShadow: 'none',
             transition: 'var(--transition-base)'
           }}
           title="132 kV transmission level (Kahramaa grid)"
@@ -106,9 +106,9 @@ export default function GridOverview({ site }: GridOverviewProps) {
         <div
           style={{
             padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-tertiary)',
+            backgroundColor: '#F5F5F5',
             borderRadius: 'var(--radius-default)',
-            border: '2px solid var(--color-ash-grey-accent)',
+            border: '2px solid var(--color-primary-hearst-green)',
             minWidth: '300px',
             textAlign: 'center',
             transition: 'var(--transition-base)',
@@ -123,7 +123,7 @@ export default function GridOverview({ site }: GridOverviewProps) {
             gap: 'var(--spacing-3)',
             marginBottom: 'var(--spacing-3)'
           }}>
-            <SubstationIcon size={32} color="var(--color-ash-grey-accent)" />
+            <SubstationIcon size={32} color="var(--color-primary-hearst-green)" />
             <div style={{
               fontSize: 'var(--font-size-subsection-title)',
               fontWeight: 'var(--font-weight-semibold)',
@@ -179,9 +179,9 @@ export default function GridOverview({ site }: GridOverviewProps) {
         <div
           style={{
             padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-tertiary)',
+            backgroundColor: '#F5F5F5',
             borderRadius: 'var(--radius-default)',
-            border: '2px solid var(--color-ash-grey-accent)',
+            border: '2px solid var(--color-primary-hearst-green)',
             minWidth: '300px',
             textAlign: 'center'
           }}
@@ -260,8 +260,8 @@ export default function GridOverview({ site }: GridOverviewProps) {
                 style={{
                   padding: 'var(--spacing-6)',
                   backgroundColor: hoveredBlockId === block.id
-                    ? 'var(--color-bg-hover)'
-                    : 'var(--color-bg-tertiary)',
+                    ? 'rgba(46, 204, 113, 0.08)'
+                    : '#F5F5F5',
                   borderRadius: 'var(--radius-default)',
                   border: hoveredBlockId === block.id
                     ? '2px solid var(--color-primary-hearst-green)'
@@ -285,7 +285,7 @@ export default function GridOverview({ site }: GridOverviewProps) {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'linear-gradient(135deg, rgba(138, 253, 129, 0.1) 0%, rgba(138, 253, 129, 0.05) 100%)',
+                    background: 'rgba(46, 204, 113, 0.05)',
                     zIndex: 0
                   }} />
                 )}

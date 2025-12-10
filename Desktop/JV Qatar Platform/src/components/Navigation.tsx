@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { siteConfig } from '@/lib/siteConfig'
 
 interface NavItem {
@@ -14,9 +15,7 @@ const navItems: NavItem[] = [
   { label: 'Accueil', href: '/' },
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Menu', href: '/menu' },
-  { label: 'Architecture', href: '/architecture' },
-  { label: 'Architecture 2D', href: '/architecture-2d' },
-  { label: 'Conteneurs', href: '/conteneurs' },
+  { label: 'Containers', href: '/conteneurs' },
 ]
 
 export default function Navigation() {
@@ -28,14 +27,14 @@ export default function Navigation() {
       top: 0,
       zIndex: 1000,
       backgroundColor: 'var(--color-bg-primary)',
-      borderBottom: '2px solid var(--color-ash-grey-accent)',
+      borderBottom: '1px solid #E0E0E0',
       backdropFilter: 'blur(10px)',
       boxShadow: 'var(--shadow-md)'
     }}>
       <div style={{
         maxWidth: 'var(--structure-content-max-width)',
         margin: '0 auto',
-        padding: 'var(--spacing-4) var(--spacing-8)',
+        padding: 'var(--spacing-4) var(--spacing-5)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -51,13 +50,16 @@ export default function Navigation() {
             gap: 'var(--spacing-3)'
           }}
         >
-          <div style={{
-            width: '8px',
-            height: '8px',
-            borderRadius: '50%',
-            backgroundColor: 'var(--color-primary-hearst-green)',
-            boxShadow: '0 0 12px var(--color-primary-hearst-green)'
-          }} />
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            width={40}
+            height={40}
+            style={{
+              display: 'block',
+              flexShrink: 0
+            }}
+          />
           <span style={{
             fontSize: 'var(--font-size-subsection-title)',
             fontWeight: 'var(--font-weight-bold)',
@@ -86,7 +88,7 @@ export default function Navigation() {
                     ? 'var(--color-primary-hearst-green)'
                     : 'transparent',
                   color: isActive
-                    ? 'var(--color-text-default)'
+                    ? '#000000'
                     : 'var(--color-text-secondary)',
                   textDecoration: 'none',
                   borderRadius: 'var(--radius-small)',
@@ -102,7 +104,7 @@ export default function Navigation() {
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.backgroundColor = 'var(--color-bg-secondary)'
+                    e.currentTarget.style.backgroundColor = 'rgba(46, 204, 113, 0.05)'
                     e.currentTarget.style.color = 'var(--color-text-primary)'
                   }
                 }}

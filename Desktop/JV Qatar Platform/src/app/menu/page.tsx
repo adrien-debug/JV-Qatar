@@ -1,67 +1,55 @@
 'use client'
 
 import { siteConfig } from '@/lib/siteConfig'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import HomeIcon from '@/components/icons/HomeIcon'
+import PlugIcon from '@/components/icons/PlugIcon'
+import ContainerIcon from '@/components/icons/ContainerIcon'
+import ChartIcon from '@/components/icons/ChartIcon'
 
 export default function MenuPage() {
-  const router = useRouter()
-
   const menuSections = [
     {
-      title: 'Vue d\'ensemble',
+      title: 'Overview',
       items: [
         {
-          title: 'Accueil',
-          description: 'Vue globale de l\'installation avec architecture électrique',
+          title: 'Overview',
+          description: 'Complete and simplified view of the entire architecture',
+          href: '/overview',
+          iconComponent: HomeIcon
+        },
+        {
+          title: 'Home',
+          description: 'Global view of the installation with electrical architecture',
           href: '/',
-          icon: '🏠'
-        },
-        {
-          title: 'Architecture Globale',
-          description: 'Diagramme complet de l\'architecture électrique du site',
-          href: '/architecture',
-          icon: '⚡'
-        },
-        {
-          title: 'Architecture 2D Interactive',
-          description: 'Visualisation 2D interactive avec SVG de l\'architecture complète',
-          href: '/architecture-2d',
-          icon: '📐'
+          iconComponent: HomeIcon
         }
       ]
     },
     {
-      title: 'Blocs de Puissance',
+      title: 'Power Blocks',
       items: siteConfig.blocks.map((block) => ({
         title: block.name,
-        description: `${block.numContainers} conteneurs • ${block.targetPowerMW} MW • ${block.numTransformers} transformateurs`,
+        description: `${block.numContainers} containers • ${block.targetPowerMW} MW • ${block.numTransformers} transformers`,
         href: `/blocks/${block.id}`,
-        icon: '🔌'
+        iconComponent: PlugIcon
       }))
     },
     {
-      title: 'Informations Techniques',
+      title: 'Technical Information',
       items: [
         {
-          title: 'Spécifications des Conteneurs',
-          description: `Type: ${siteConfig.containerSpec.type} • Puissance: ${siteConfig.containerSpec.totalPowerMW} MW • Dimensions et répartition`,
+          title: 'Hardware',
+          description: `Type: ${siteConfig.containerSpec.type} • Power: ${siteConfig.containerSpec.totalPowerMW} MW • Dimensions and distribution`,
           href: '/conteneurs',
-          icon: '📦',
-          disabled: false
-        },
-        {
-          title: 'Connexion au Réseau',
-          description: `Opérateur: ${siteConfig.gridConnection.operator} • ${siteConfig.gridConnection.gridVoltageKV} kV • Détails complets`,
-          href: '/reseau',
-          icon: '🔗',
+          iconComponent: ContainerIcon,
           disabled: false
         },
         {
           title: 'Tableau de Bord',
-          description: 'Vue d\'ensemble des statistiques et métriques du site',
+          description: 'Overview of site statistics and metrics',
           href: '/dashboard',
-          icon: '📊',
+          iconComponent: ChartIcon,
           disabled: false
         }
       ]
@@ -70,44 +58,33 @@ export default function MenuPage() {
 
   return (
     <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'var(--color-bg-primary)',
+      minHeight: 'calc(100vh - var(--structure-header-height))',
+      backgroundColor: 'var(--color-bg-content)',
       color: 'var(--color-text-primary)',
-      padding: 'var(--spacing-8)'
+      padding: 'var(--spacing-8) var(--spacing-6)'
     }}>
       {/* Header */}
       <header style={{
-        marginBottom: 'var(--spacing-10)',
-        paddingBottom: 'var(--spacing-8)',
-        borderBottom: '2px solid var(--color-ash-grey-accent)',
-        position: 'relative'
+        marginBottom: 'var(--spacing-8)',
+        paddingBottom: 'var(--spacing-6)'
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100px',
-          height: '4px',
-          background: 'var(--gradient-primary)',
-          borderRadius: 'var(--radius-full)'
-        }} />
         <h1 style={{
           fontSize: 'var(--font-size-display)',
           lineHeight: 'var(--line-height-display)',
-          color: 'var(--color-primary-hearst-green)',
-          fontWeight: 'var(--font-weight-bold)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)',
           marginBottom: 'var(--spacing-3)',
-          textShadow: '0 0 20px rgba(138, 253, 129, 0.3)',
           letterSpacing: 'var(--letter-spacing-tight)'
         }}>
-          Menu de Navigation
+          Menu
         </h1>
         <p style={{
-          fontSize: 'var(--font-size-body)',
+          fontSize: 'var(--font-size-body-minor)',
           color: 'var(--color-text-secondary)',
-          fontWeight: 'var(--font-weight-medium)'
+          fontWeight: 'var(--font-weight-normal)',
+          lineHeight: 'var(--line-height-relaxed)'
         }}>
-          Accédez rapidement à toutes les sections de la plateforme
+          Quick access to all platform sections
         </p>
       </header>
 
@@ -115,16 +92,16 @@ export default function MenuPage() {
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 'var(--spacing-10)'
+        gap: 'var(--spacing-4)'
       }}>
         {menuSections.map((section, sectionIndex) => (
           <section key={sectionIndex}>
             <h2 style={{
               fontSize: 'var(--font-size-section-title)',
               lineHeight: 'var(--line-height-section-title)',
-              marginBottom: 'var(--spacing-6)',
+              marginBottom: 'var(--spacing-4)',
               color: 'var(--color-text-primary)',
-              fontWeight: 'var(--font-weight-bold)'
+              fontWeight: 'var(--font-weight-semibold)'
             }}>
               {section.title}
             </h2>
@@ -149,10 +126,11 @@ export default function MenuPage() {
                       }
                     }}
                     style={{
-                      padding: 'var(--spacing-6)',
-                      backgroundColor: 'var(--color-bg-secondary)',
-                      border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
+                      padding: 'var(--spacing-4)',
+                      backgroundColor: 'transparent',
+                      border: '1px solid #E0E0E0',
                       borderRadius: 'var(--radius-default)',
+                      boxShadow: 'var(--shadow-md)',
                       textDecoration: 'none',
                       color: 'inherit',
                       cursor: isDisabled ? 'not-allowed' : 'pointer',
@@ -163,7 +141,7 @@ export default function MenuPage() {
                     }}
                     onMouseEnter={(e: any) => {
                       if (!isDisabled) {
-                        e.currentTarget.style.backgroundColor = 'var(--color-bg-tertiary)'
+                        e.currentTarget.style.backgroundColor = 'rgba(46, 204, 113, 0.05)'
                         e.currentTarget.style.borderColor = 'var(--color-primary-hearst-green)'
                         e.currentTarget.style.transform = 'translateY(-2px)'
                         e.currentTarget.style.boxShadow = 'var(--shadow-lg)'
@@ -171,20 +149,25 @@ export default function MenuPage() {
                     }}
                     onMouseLeave={(e: any) => {
                       if (!isDisabled) {
-                        e.currentTarget.style.backgroundColor = 'var(--color-bg-secondary)'
+                        e.currentTarget.style.backgroundColor = 'rgba(46, 204, 113, 0.05)'
                         e.currentTarget.style.borderColor = 'var(--border-thin-color)'
                         e.currentTarget.style.transform = 'translateY(0)'
-                        e.currentTarget.style.boxShadow = 'none'
+                        e.currentTarget.style.boxShadow = 'var(--shadow-md)'
                       }
                     }}
                   >
                     {/* Icon */}
                     <div style={{
-                      fontSize: 'var(--font-size-display)',
                       marginBottom: 'var(--spacing-4)',
-                      display: 'inline-block'
+                      display: 'inline-block',
+                      color: 'var(--color-primary-hearst-green)'
                     }}>
-                      {item.icon}
+                      {item.iconComponent && (
+                        <item.iconComponent 
+                          size={48} 
+                          color="var(--color-primary-hearst-green)"
+                        />
+                      )}
                     </div>
 
                     {/* Title */}
@@ -240,17 +223,17 @@ export default function MenuPage() {
       {/* Quick Stats Footer */}
       <footer style={{
         marginTop: 'var(--spacing-12)',
-        paddingTop: 'var(--spacing-8)',
-        borderTop: '2px solid var(--color-ash-grey-accent)',
+        paddingTop: 'var(--spacing-5)',
+        borderTop: '1px solid #E0E0E0',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: 'var(--spacing-6)'
+        gap: 'var(--spacing-4)'
       }}>
         <div>
           <div style={{
             fontSize: 'var(--font-size-display)',
             color: 'var(--color-primary-hearst-green)',
-            fontWeight: 'var(--font-weight-bold)',
+              fontWeight: 'var(--font-weight-semibold)',
             marginBottom: 'var(--spacing-2)'
           }}>
             {siteConfig.totalPowerMW} MW
@@ -266,7 +249,7 @@ export default function MenuPage() {
           <div style={{
             fontSize: 'var(--font-size-display)',
             color: 'var(--color-primary-hearst-green)',
-            fontWeight: 'var(--font-weight-bold)',
+              fontWeight: 'var(--font-weight-semibold)',
             marginBottom: 'var(--spacing-2)'
           }}>
             {siteConfig.blocks.length}
@@ -275,14 +258,14 @@ export default function MenuPage() {
             fontSize: 'var(--font-size-body)',
             color: 'var(--color-text-secondary)'
           }}>
-            Blocs de Puissance
+            Power Blocks
           </div>
         </div>
         <div>
           <div style={{
             fontSize: 'var(--font-size-display)',
             color: 'var(--color-primary-hearst-green)',
-            fontWeight: 'var(--font-weight-bold)',
+              fontWeight: 'var(--font-weight-semibold)',
             marginBottom: 'var(--spacing-2)'
           }}>
             {siteConfig.blocks.reduce((sum, b) => sum + b.numContainers, 0)}
@@ -291,14 +274,14 @@ export default function MenuPage() {
             fontSize: 'var(--font-size-body)',
             color: 'var(--color-text-secondary)'
           }}>
-            Conteneurs Totaux
+            Total Containers
           </div>
         </div>
         <div>
           <div style={{
             fontSize: 'var(--font-size-display)',
             color: 'var(--color-primary-hearst-green)',
-            fontWeight: 'var(--font-weight-bold)',
+              fontWeight: 'var(--font-weight-semibold)',
             marginBottom: 'var(--spacing-2)'
           }}>
             {siteConfig.gridConnection.gridVoltageKV} kV
@@ -307,7 +290,7 @@ export default function MenuPage() {
             fontSize: 'var(--font-size-body)',
             color: 'var(--color-text-secondary)'
           }}>
-            Tension Réseau
+            Grid Voltage
           </div>
         </div>
       </footer>

@@ -44,7 +44,7 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
             fontSize: 'var(--font-size-page-title)',
             lineHeight: 'var(--line-height-page-title)',
             color: 'var(--color-primary-hearst-green)',
-            fontWeight: 'var(--font-weight-bold)',
+            fontWeight: 'var(--font-weight-semibold)',
             marginBottom: 'var(--spacing-2)'
           }}>
             {block.name} – Vue Détaillée
@@ -61,10 +61,10 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
         <div style={{
           display: 'flex',
           gap: 'var(--spacing-2)',
-          backgroundColor: 'var(--color-bg-secondary)',
+          backgroundColor: 'transparent',
           padding: 'var(--spacing-2)',
           borderRadius: 'var(--radius-default)',
-          border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+          border: '1px solid #E0E0E0'
         }}>
           {site.blocks.map((b) => (
             <button
@@ -73,10 +73,10 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
               style={{
                 padding: 'var(--spacing-3) var(--spacing-5)',
                 backgroundColor: block.id === b.id
-                  ? 'var(--color-primary-hearst-green)'
+                  ? 'var(--color-bg-active-light)'
                   : 'transparent',
                 color: block.id === b.id
-                  ? 'var(--color-text-default)'
+                  ? 'var(--color-primary-hearst-green)'
                   : 'var(--color-text-secondary)',
                 border: 'none',
                 borderRadius: 'var(--radius-small)',
@@ -100,9 +100,9 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
         gap: 'var(--spacing-4)',
         padding: 'var(--spacing-6)',
-        backgroundColor: 'var(--color-bg-secondary)',
+        backgroundColor: 'transparent',
         borderRadius: 'var(--radius-default)',
-        border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+        border: '1px solid #E0E0E0'
       }}>
         <div>
           <div style={{
@@ -110,11 +110,11 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
             color: 'var(--color-text-muted)',
             marginBottom: 'var(--spacing-1)'
           }}>
-            Puissance du bloc
+            Block Power
           </div>
           <div style={{
             fontSize: 'var(--font-size-section-title)',
-            fontWeight: 'var(--font-weight-bold)',
+            fontWeight: 'var(--font-weight-semibold)',
             color: 'var(--color-primary-hearst-green)'
           }}>
             {block.targetPowerMW} MW
@@ -127,11 +127,11 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
             color: 'var(--color-text-muted)',
             marginBottom: 'var(--spacing-1)'
           }}>
-            Transformateurs
+            Transformers
           </div>
           <div style={{
             fontSize: 'var(--font-size-section-title)',
-            fontWeight: 'var(--font-weight-bold)',
+            fontWeight: 'var(--font-weight-semibold)',
             color: 'var(--color-text-primary)'
           }}>
             {block.numTransformers}
@@ -144,11 +144,11 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
             color: 'var(--color-text-muted)',
             marginBottom: 'var(--spacing-1)'
           }}>
-            Conteneurs
+            Containers
           </div>
           <div style={{
             fontSize: 'var(--font-size-section-title)',
-            fontWeight: 'var(--font-weight-bold)',
+            fontWeight: 'var(--font-weight-semibold)',
             color: 'var(--color-text-primary)'
           }}>
             {block.numContainers}
@@ -161,11 +161,11 @@ export default function BlockHeader({ block, site, onSelectBlock }: BlockHeaderP
             color: 'var(--color-text-muted)',
             marginBottom: 'var(--spacing-1)'
           }}>
-            Courant @ 33 kV
+            Current @ 33 kV
           </div>
           <div style={{
             fontSize: 'var(--font-size-section-title)',
-            fontWeight: 'var(--font-weight-bold)',
+            fontWeight: 'var(--font-weight-semibold)',
             color: 'var(--color-text-primary)'
           }}>
             ~{blockCurrent33kV} A

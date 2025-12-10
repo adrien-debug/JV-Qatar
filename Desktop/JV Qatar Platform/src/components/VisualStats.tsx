@@ -19,19 +19,14 @@ export default function VisualStats({ site }: VisualStatsProps) {
       gap: 'var(--spacing-6)'
     }}>
       {/* Graphique de Puissance */}
-      <div style={{
-        padding: 'var(--spacing-6)',
-        backgroundColor: 'var(--color-bg-secondary)',
-        borderRadius: 'var(--radius-default)',
-        border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-      }}>
+      <div>
         <h3 style={{
           fontSize: 'var(--font-size-subsection-title)',
           color: 'var(--color-text-primary)',
           marginBottom: 'var(--spacing-4)',
           fontWeight: 'var(--font-weight-semibold)'
         }}>
-          Utilisation de la Puissance
+          Power Usage
         </h3>
         <div style={{
           position: 'relative',
@@ -39,9 +34,6 @@ export default function VisualStats({ site }: VisualStatsProps) {
           display: 'flex',
           alignItems: 'flex-end',
           gap: 'var(--spacing-2)',
-          padding: 'var(--spacing-4)',
-          backgroundColor: 'var(--color-bg-tertiary)',
-          borderRadius: 'var(--radius-small)'
         }}>
           {/* Barre de capacité max */}
           <div style={{
@@ -55,7 +47,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
             <div style={{
               width: '100%',
               height: '100%',
-              backgroundColor: 'var(--color-ash-grey-accent)',
+              backgroundColor: '#E0E0E0',
               borderRadius: 'var(--radius-small)',
               opacity: 0.3,
               position: 'absolute',
@@ -67,11 +59,11 @@ export default function VisualStats({ site }: VisualStatsProps) {
               background: 'linear-gradient(180deg, var(--color-primary-hearst-green), var(--color-primary-hearst-green-light))',
               borderRadius: 'var(--radius-small)',
               position: 'relative',
-              boxShadow: '0 0 20px rgba(138, 253, 129, 0.5)',
+              boxShadow: 'none',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--color-text-default)',
+              color: '#FFFFFF',
               fontWeight: 'var(--font-weight-bold)',
               fontSize: 'var(--font-size-body)'
             }}>
@@ -100,7 +92,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
             <div style={{
               width: '100%',
               height: '100%',
-              backgroundColor: 'var(--color-ash-grey-accent)',
+              backgroundColor: '#E0E0E0',
               borderRadius: 'var(--radius-small)',
               opacity: 0.3,
               position: 'absolute',
@@ -118,7 +110,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
               fontSize: 'var(--font-size-caption)',
               color: 'var(--color-text-muted)'
             }}>
-              Disponible
+              Available
             </div>
           </div>
         </div>
@@ -129,31 +121,26 @@ export default function VisualStats({ site }: VisualStatsProps) {
           fontSize: 'var(--font-size-caption)',
           color: 'var(--color-text-secondary)'
         }}>
-          <span>Utilisé: {site.totalPowerMW} MW</span>
+          <span>Used: {site.totalPowerMW} MW</span>
           <span>Max: {maxPower} MW</span>
         </div>
       </div>
 
       {/* Graphique de Répartition par Bloc */}
-      <div style={{
-        padding: 'var(--spacing-6)',
-        backgroundColor: 'var(--color-bg-secondary)',
-        borderRadius: 'var(--radius-default)',
-        border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-      }}>
+      <div>
         <h3 style={{
           fontSize: 'var(--font-size-subsection-title)',
           color: 'var(--color-text-primary)',
           marginBottom: 'var(--spacing-4)',
           fontWeight: 'var(--font-weight-semibold)'
         }}>
-          Répartition par Bloc
+          Distribution by Block
         </h3>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
           gap: 'var(--spacing-3)',
-          height: '200px',
+          height: '160px',
           justifyContent: 'space-between'
         }}>
           {site.blocks.map((block, index) => {
@@ -180,7 +167,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
                     boxShadow: `0 0 8px ${colors[index % colors.length]}`
                   }} />
                   <span style={{
-                    fontSize: 'var(--font-size-body)',
+                    fontSize: 'var(--font-size-body-minor)',
                     color: 'var(--color-text-primary)',
                     fontWeight: 'var(--font-weight-semibold)',
                     minWidth: '80px'
@@ -188,7 +175,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
                     {block.name}
                   </span>
                   <span style={{
-                    fontSize: 'var(--font-size-body)',
+                    fontSize: 'var(--font-size-body-minor)',
                     color: 'var(--color-text-secondary)'
                   }}>
                     {block.targetPowerMW} MW
@@ -197,7 +184,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
                 <div style={{
                   width: '100%',
                   height: '24px',
-                  backgroundColor: 'var(--color-bg-tertiary)',
+                  backgroundColor: '#F5F5F5',
                   borderRadius: 'var(--radius-full)',
                   overflow: 'hidden',
                   position: 'relative'
@@ -213,9 +200,9 @@ export default function VisualStats({ site }: VisualStatsProps) {
                     alignItems: 'center',
                     justifyContent: 'flex-end',
                     paddingRight: 'var(--spacing-2)',
-                    color: 'var(--color-text-default)',
+                    color: '#FFFFFF',
                     fontSize: 'var(--font-size-caption)',
-                    fontWeight: 'var(--font-weight-semibold)'
+                    fontWeight: 'var(--font-weight-bold)'
                   }}>
                     {percentage.toFixed(1)}%
                   </div>
@@ -226,12 +213,8 @@ export default function VisualStats({ site }: VisualStatsProps) {
         </div>
       </div>
 
-      {/* Graphique Circulaire Conteneurs/Transformateurs */}
+      {/* Circular Chart Containers/Transformers */}
       <div style={{
-        padding: 'var(--spacing-6)',
-        backgroundColor: 'var(--color-bg-secondary)',
-        borderRadius: 'var(--radius-default)',
-        border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -241,24 +224,26 @@ export default function VisualStats({ site }: VisualStatsProps) {
           fontSize: 'var(--font-size-subsection-title)',
           color: 'var(--color-text-primary)',
           marginBottom: 'var(--spacing-4)',
-          fontWeight: 'var(--font-weight-semibold)'
+          fontWeight: 'var(--font-weight-semibold)',
+          width: '100%',
+          textAlign: 'center'
         }}>
-          Équipements
+          Equipment
         </h3>
         <div style={{
           position: 'relative',
-          width: '180px',
-          height: '180px',
+          width: '140px',
+          height: '140px',
           marginBottom: 'var(--spacing-4)'
         }}>
           {/* SVG Circle Chart */}
-          <svg width="180" height="180" style={{ transform: 'rotate(-90deg)' }}>
+          <svg width="140" height="140" style={{ transform: 'rotate(-90deg)' }}>
             <circle
-              cx="90"
-              cy="90"
-              r="70"
+              cx="70"
+              cy="70"
+              r="55"
               fill="none"
-              stroke="var(--color-bg-tertiary)"
+              stroke="#F5F5F5"
               strokeWidth="20"
             />
             <circle
@@ -268,21 +253,21 @@ export default function VisualStats({ site }: VisualStatsProps) {
               fill="none"
               stroke="var(--color-primary-hearst-green)"
               strokeWidth="20"
-              strokeDasharray={`${(totalContainers / (totalContainers + totalTransformers)) * 439.8} 439.8`}
+              strokeDasharray={`${(totalContainers / (totalContainers + totalTransformers)) * 345.6} 345.6`}
               strokeLinecap="round"
               style={{
                 filter: 'drop-shadow(0 0 8px var(--color-primary-hearst-green))'
               }}
             />
             <circle
-              cx="90"
-              cy="90"
-              r="70"
+              cx="70"
+              cy="70"
+              r="55"
               fill="none"
               stroke="var(--color-secondary-info)"
               strokeWidth="20"
-              strokeDasharray={`${(totalTransformers / (totalContainers + totalTransformers)) * 439.8} 439.8`}
-              strokeDashoffset={`-${(totalContainers / (totalContainers + totalTransformers)) * 439.8}`}
+              strokeDasharray={`${(totalTransformers / (totalContainers + totalTransformers)) * 345.6} 345.6`}
+              strokeDashoffset={`-${(totalContainers / (totalContainers + totalTransformers)) * 345.6}`}
               strokeLinecap="round"
               style={{
                 filter: 'drop-shadow(0 0 8px var(--color-secondary-info))'
@@ -297,7 +282,7 @@ export default function VisualStats({ site }: VisualStatsProps) {
             textAlign: 'center'
           }}>
             <div style={{
-              fontSize: 'var(--font-size-section-title)',
+              fontSize: 'var(--font-size-body)',
               color: 'var(--color-text-primary)',
               fontWeight: 'var(--font-weight-bold)'
             }}>
@@ -325,8 +310,8 @@ export default function VisualStats({ site }: VisualStatsProps) {
               backgroundColor: 'var(--color-primary-hearst-green)',
               boxShadow: '0 0 8px var(--color-primary-hearst-green)'
             }} />
-            <span style={{ fontSize: 'var(--font-size-caption)', color: 'var(--color-text-secondary)' }}>
-              {totalContainers} Conteneurs
+            <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>
+              {totalContainers} Containers
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-2)' }}>
@@ -337,8 +322,8 @@ export default function VisualStats({ site }: VisualStatsProps) {
               backgroundColor: 'var(--color-secondary-info)',
               boxShadow: '0 0 8px var(--color-secondary-info)'
             }} />
-            <span style={{ fontSize: 'var(--font-size-caption)', color: 'var(--color-text-secondary)' }}>
-              {totalTransformers} Transformateurs
+            <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>
+              {totalTransformers} Transformers
             </span>
           </div>
         </div>

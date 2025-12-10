@@ -25,15 +25,71 @@ export default function BlockDiagram({
 
   return (
     <div style={{
-      padding: 'var(--spacing-8)',
-      backgroundColor: 'var(--color-bg-secondary)',
+      padding: 'var(--spacing-5)',
+      backgroundColor: 'transparent',
       borderRadius: 'var(--radius-default)',
-      border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
+      border: '1px solid #E0E0E0',
       minHeight: '600px'
     }}>
+      {/* Légende Explicative */}
+      <div style={{
+        marginBottom: 'var(--spacing-5)',
+        padding: 'var(--spacing-4)',
+        backgroundColor: 'transparent',
+        borderRadius: 'var(--radius-default)',
+        border: '1px solid #E0E0E0',
+        boxShadow: 'none'
+      }}>
+        <h3 style={{
+          fontSize: 'var(--font-size-subsection-title)',
+          color: 'var(--color-primary-hearst-green)',
+          fontWeight: 'var(--font-weight-semibold)',
+          marginBottom: 'var(--spacing-4)',
+          lineHeight: 'var(--line-height-relaxed)'
+        }}>
+          Diagram Legend
+        </h3>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: 'var(--spacing-4)',
+          fontSize: 'var(--font-size-body-minor)',
+          color: 'var(--color-text-primary)',
+          lineHeight: 'var(--line-height-relaxed)'
+        }}>
+          <div>
+            <strong style={{ color: 'var(--color-text-primary)' }}>Green Line:</strong><br/>
+            Grid electricity
+          </div>
+          <div>
+            <strong style={{ color: 'var(--color-text-primary)' }}>Blue Boxes:</strong><br/>
+            Transformers
+          </div>
+          <div>
+            <strong style={{ color: 'var(--color-text-primary)' }}>Small Boxes:</strong><br/>
+            Containers (2 per transformer)
+          </div>
+          <div>
+            <strong style={{ color: 'var(--color-text-primary)' }}>Vertical Lines:</strong><br/>
+            Electrical cables
+          </div>
+        </div>
+        <div style={{
+          marginTop: 'var(--spacing-4)',
+          padding: 'var(--spacing-3)',
+          backgroundColor: '#F5F5F5',
+          borderRadius: 'var(--radius-small)',
+          fontSize: 'var(--font-size-body-minor)',
+          color: 'var(--color-text-primary)',
+          border: '1px solid var(--color-primary-hearst-green)'
+        }}>
+          <strong style={{ color: 'var(--color-text-primary)' }}>Tip:</strong> Hover or click on an element to see details
+        </div>
+      </div>
+
       {/* 33 kV Feeder Line */}
       <div style={{
-        marginBottom: 'var(--spacing-8)',
+        marginBottom: 'var(--spacing-5)',
         textAlign: 'center',
         position: 'relative'
       }}>
@@ -44,7 +100,7 @@ export default function BlockDiagram({
           marginBottom: 'var(--spacing-3)',
           position: 'relative',
           overflow: 'hidden',
-          boxShadow: '0 0 10px rgba(138, 253, 129, 0.3)'
+            boxShadow: 'none'
         }}>
           <div style={{
             position: 'absolute',
@@ -52,14 +108,14 @@ export default function BlockDiagram({
             left: '-100%',
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(90deg, transparent, rgba(138, 253, 129, 0.6), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(46, 204, 113, 0.3), transparent)',
             animation: 'flow 2s linear infinite'
           }} />
         </div>
         <div style={{
           fontSize: 'var(--font-size-body)',
           color: 'var(--color-primary-hearst-green)',
-          fontWeight: 'var(--font-weight-bold)',
+          fontWeight: 'var(--font-weight-semibold)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -70,15 +126,23 @@ export default function BlockDiagram({
             height: '8px',
             borderRadius: '50%',
             backgroundColor: 'var(--color-primary-hearst-green)',
-            boxShadow: '0 0 8px var(--color-primary-hearst-green)'
+            boxShadow: 'none'
           }} />
-          33 kV Feeder
+          Grid Electricity
+          <span style={{
+            fontSize: 'var(--font-size-body)',
+            color: 'var(--color-text-secondary)',
+            fontWeight: 'normal',
+            marginLeft: 'var(--spacing-2)'
+          }}>
+            33 kV
+          </span>
           <div style={{
             width: '8px',
             height: '8px',
             borderRadius: '50%',
             backgroundColor: 'var(--color-primary-hearst-green)',
-            boxShadow: '0 0 8px var(--color-primary-hearst-green)'
+            boxShadow: 'none'
           }} />
         </div>
       </div>
@@ -88,7 +152,7 @@ export default function BlockDiagram({
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
         gap: 'var(--spacing-6)',
-        rowGap: 'var(--spacing-10)'
+        rowGap: 'var(--spacing-6)'
       }}>
         {block.transformers.map((transformer) => {
           const isHovered = hoveredTransformerId === transformer.id || selectedTransformerId === transformer.id
@@ -124,11 +188,11 @@ export default function BlockDiagram({
                 height: '40px',
                 backgroundColor: isHovered || isContainerHovered
                   ? 'var(--color-primary-hearst-green)'
-                  : 'var(--color-ash-grey-accent)',
+                  : '#E0E0E0',
                 transition: 'all var(--transition-base)',
                 borderRadius: 'var(--radius-full)',
                 boxShadow: (isHovered || isContainerHovered)
-                  ? '0 0 8px var(--color-primary-hearst-green)'
+                  ? 'none'
                   : 'none'
               }}>
                 {(isHovered || isContainerHovered) && (
@@ -138,7 +202,7 @@ export default function BlockDiagram({
                     left: 0,
                     right: 0,
                     height: '50%',
-                    backgroundColor: 'var(--color-primary-hearst-green-light)',
+                    backgroundColor: 'rgba(46, 204, 113, 0.2)',
                     borderRadius: 'var(--radius-full)',
                     animation: 'pulse 1.5s ease-in-out infinite'
                   }} />

@@ -5,12 +5,13 @@
 
 :root {
   /* === COULEURS PRIMAIRES === */
-  --color-primary-hearst-green: #8afd81;
-  --color-primary-hearst-green-dark: #6fdc66;
-  --color-primary-hearst-green-light: #a5ff9c;
-  --color-primary-green: #8afd81;
-  --color-primary-accent: #8afd81;
-  --color-primary-hearst: #8afd81;
+  --color-primary-hearst-green: #2ECC71;
+  --color-primary-hearst-green-dark: #27AE60;
+  --color-primary-hearst-green-light: #58D68D;
+  --color-primary-green: #2ECC71;
+  --color-primary-accent: #2ECC71;
+  --color-primary-hearst: #2ECC71;
+  --color-accent-vibrant: #2ECC71;
 
   /* === LIGHT GREEN === */
   --color-light-green-1: #E5FFEB;
@@ -18,12 +19,12 @@
   --color-light-green-3: #B8FFCA;
   --color-light-green-4: #A3FFBA;
   --color-light-green-5: #8DFFA9;
-  --color-light-green-primary: #A7FB90;
+  --color-light-green-primary: #58D68D;
 
   /* === SECONDARY === */
   --color-secondary-accent: #7bed9f;
   --color-secondary-mint-500: #7bed9f;
-  --color-secondary-success: #8afd81;
+  --color-secondary-success: #2ECC71;
   --color-secondary-success-dark: #27ae60;
   --color-secondary-warning: #f6c344;
   --color-secondary-warning-dark: #f39c12;
@@ -41,15 +42,19 @@
   --color-ash-grey-accent: #9EB3A8;
 
   /* === BACKGROUNDS === */
-  --color-bg-primary-dark: #000000;
-  --color-bg-primary: #0a0a0a;
-  --color-bg-primary-grey: #1a1a1a;
-  --color-bg-secondary: #1a1a1a;
+  --color-bg-primary-dark: #121212;
+  --color-bg-primary: #FFFFFF;
+  --color-bg-primary-grey: #121212;
+  --color-bg-secondary: #121212;
   --color-bg-tertiary: #242424;
   --color-bg-hover: #2a2a2a;
-  --color-bg-dark-900: #0A0A0A;
-  --color-bg-dark-800: #141414;
+  --color-bg-dark-900: #121212;
+  --color-bg-dark-800: #121212;
   --color-bg-dark-700: #1A1A1A;
+  --color-bg-sidebar: #121212;
+  --color-bg-header: #121212;
+  --color-bg-content: #FFFFFF;
+  --color-bg-active-light: rgba(46, 204, 113, 0.15);
 
   /* === GREY === */
   --color-grey-100: #2a2a2a;
@@ -81,12 +86,13 @@
   --color-terracotta-500: #9C5A3F;
 
   /* === TEXT === */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #b8b8b8;
+  --color-text-primary: #333333;
+  --color-text-primary-on-dark: #F2F2F2;
+  --color-text-secondary: #888888;
   --color-text-muted: #6b6b6b;
   --color-text-default: #000000;
   --color-text-negative: #FFFFFF;
-  --color-text-unrestricted: #A7FB90;
+  --color-text-unrestricted: #2ECC71;
   --color-text-accent: #9EB3A8;
   --color-text-accent-lighter: #C4CFCB;
   --color-text-accent-darker: #75847C;
@@ -96,7 +102,7 @@
   --color-text-auxiliary: #E5E7EB;
   --color-text-error: #FF4444;
   --color-text-warning: #FFB800;
-  --color-text-success: #00C853;
+  --color-text-success: #2ECC71;
 
   /* === SYSTEM === */
   --color-system-error: #FF4444;
@@ -105,7 +111,7 @@
   --color-system-info: #3498DB;
 
   /* === GRAPHICS === */
-  --color-graphics-1: #A7FB90;
+  --color-graphics-1: #2ECC71;
   --color-graphics-2: #9EB3A8;
   --color-graphics-3: #FFB800;
   --color-graphics-4: #FF4444;
@@ -140,7 +146,7 @@
   --spacing-10: 80px;
 
   /* === TYPOGRAPHY === */
-  --font-family-primary: 'FK Grotesk Trial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-family-primary: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Poppins', Oxygen, Ubuntu, Cantarell, sans-serif;
   --font-family-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
 
   --font-size-xs: 0.75rem;
@@ -151,13 +157,15 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 2rem;
   --font-size-4xl: 2.5rem;
-  --font-size-display: 52px;
-  --font-size-page-title: 32px;
-  --font-size-section-title: 25px;
+  --font-size-display: 32px;
+  --font-size-page-title: 28px;
+  --font-size-section-title: 18px;
   --font-size-subsection-title: 18px;
   --font-size-body: 16px;
   --font-size-body-minor: 14px;
   --font-size-caption: 12px;
+  --font-size-metric-large: 30px;
+  --font-size-metric-label: 14px;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -167,10 +175,10 @@
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
-  --line-height-display: 64px;
-  --line-height-page-title: 40px;
-  --line-height-section-title: 32px;
-  --line-height-subsection-title: 24px;
+  --line-height-display: 44px;
+  --line-height-page-title: 30px;
+  --line-height-section-title: 24px;
+  --line-height-subsection-title: 22px;
 
   --letter-spacing-tight: -0.02em;
   --letter-spacing-normal: 0em;
@@ -203,7 +211,7 @@
   --border-thick-color: #2a2a2a;
   --border-thick-radius: 20px;
   --border-hover-color: #3a3a3a;
-  --border-active-color: #8afd81;
+  --border-active-color: #2ECC71;
 
   /* === SHADOWS === */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
@@ -211,8 +219,8 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-glow-green: 0 0 20px rgba(167, 251, 144, 0.3), 0 0 40px rgba(167, 251, 144, 0.1);
-  --shadow-glow-accent: 0 0 20px rgba(158, 179, 168, 0.2), 0 0 40px rgba(158, 179, 168, 0.1);
+  --shadow-glow-green: none;
+  --shadow-glow-accent: none;
 
   /* === TRANSITIONS === */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -227,9 +235,9 @@
   --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* === GRADIENTS === */
-  --gradient-primary: linear-gradient(135deg, #A7FB90 0%, #8DFFA9 50%, #B8FFCA 100%);
+  --gradient-primary: linear-gradient(135deg, #2ECC71 0%, #58D68D 50%, #58D68D 100%);
   --gradient-accent: linear-gradient(135deg, #9EB3A8 0%, #ADBAB6 50%, #C4CFCB 100%);
-  --gradient-subtle: linear-gradient(135deg, rgba(167, 251, 144, 0.1) 0%, rgba(207, 253, 218, 0.05) 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(46, 204, 113, 0.05) 100%);
   --gradient-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
   --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 
@@ -240,7 +248,8 @@
   --blur-xl: blur(24px);
 
   /* === LAYOUT === */
-  --layout-sidebar-width: 200px;
+  --layout-sidebar-width: 220px;
+  --layout-sidebar-width-collapsed: 60px;
   --layout-header-height: 70px;
   --layout-dashboard-width: 1440px;
   --layout-grid-columns: 12;
@@ -252,13 +261,13 @@
 
   /* === DIVIDERS === */
   --divider-horizontal-height: 1px;
-  --divider-horizontal-color: #2a2a2a;
+  --divider-horizontal-color: #E0E0E0;
   --divider-horizontal-margin: 24px 0;
   --divider-vertical-width: 1px;
-  --divider-vertical-color: #2a2a2a;
+  --divider-vertical-color: #E0E0E0;
   --divider-vertical-margin: 0 24px;
   --divider-section-height: 2px;
-  --divider-section-color: #3a3a3a;
+  --divider-section-color: #E0E0E0;
   --divider-section-margin: 32px 0;
 
   /* === CONNECTORS === */
@@ -266,14 +275,14 @@
   --connector-default-stroke-width: 2px;
   --connector-default-stroke-linecap: round;
   --connector-default-stroke-linejoin: round;
-  --connector-active-stroke: #8afd81;
+  --connector-active-stroke: #2ECC71;
   --connector-active-stroke-width: 3px;
-  --connector-hover-stroke: #a5ff9c;
+  --connector-hover-stroke: #58D68D;
   --connector-hover-stroke-width: 2.5px;
 
   /* === STROKE === */
   --stroke-icon-default: #ffffff;
-  --stroke-icon-active: #8afd81;
+  --stroke-icon-active: #2ECC71;
   --stroke-icon-secondary: #b8b8b8;
   --stroke-icon-muted: #6b6b6b;
   --stroke-width-thin: 1px;
@@ -285,7 +294,7 @@
   /* === OUTLINE === */
   --outline-focus-width: 2px;
   --outline-focus-style: solid;
-  --outline-focus-color: #8afd81;
+  --outline-focus-color: #2ECC71;
   --outline-focus-offset: 4px;
   --outline-error-width: 2px;
   --outline-error-style: solid;
@@ -300,10 +309,11 @@
   --overlay-5: rgba(0, 0, 0, 0.5);
 
   /* === STRUCTURE === */
-  --structure-sidebar-width: 200px;
-  --structure-sidebar-border-right: 1px solid #2a2a2a;
+  --structure-sidebar-width: 220px;
+  --structure-sidebar-width-collapsed: 60px;
+  --structure-sidebar-border-right: 1px solid #E0E0E0;
   --structure-header-height: 70px;
-  --structure-header-border-bottom: 1px solid #2a2a2a;
+  --structure-header-border-bottom: 1px solid #E0E0E0;
   --structure-content-max-width: 1600px;
   --structure-content-padding: 48px 80px;
 

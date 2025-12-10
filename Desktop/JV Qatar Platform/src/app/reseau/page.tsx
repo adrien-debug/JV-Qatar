@@ -5,112 +5,100 @@ import { siteConfig, siteCurrent33kV, blockCurrent33kV } from '@/lib/siteConfig'
 export default function ReseauPage() {
   return (
     <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'var(--color-bg-primary)',
+      minHeight: 'calc(100vh - var(--structure-header-height))',
+      backgroundColor: 'var(--color-bg-content)',
       color: 'var(--color-text-primary)',
-      padding: 'var(--spacing-8)'
+      padding: 'var(--spacing-8) var(--spacing-6)'
     }}>
       {/* Header */}
       <header style={{
-        marginBottom: 'var(--spacing-10)',
-        paddingBottom: 'var(--spacing-8)',
-        borderBottom: '2px solid var(--color-ash-grey-accent)',
-        position: 'relative'
+        marginBottom: 'var(--spacing-8)',
+        paddingBottom: 'var(--spacing-6)'
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100px',
-          height: '4px',
-          background: 'var(--gradient-primary)',
-          borderRadius: 'var(--radius-full)'
-        }} />
         <h1 style={{
           fontSize: 'var(--font-size-display)',
           lineHeight: 'var(--line-height-display)',
-          color: 'var(--color-primary-hearst-green)',
-          fontWeight: 'var(--font-weight-bold)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)',
           marginBottom: 'var(--spacing-3)',
-          textShadow: '0 0 20px rgba(138, 253, 129, 0.3)',
           letterSpacing: 'var(--letter-spacing-tight)'
         }}>
-          Connexion au Réseau
+          Network
         </h1>
         <p style={{
-          fontSize: 'var(--font-size-body)',
+          fontSize: 'var(--font-size-body-minor)',
           color: 'var(--color-text-secondary)',
-          fontWeight: 'var(--font-weight-medium)'
+          fontWeight: 'var(--font-weight-normal)',
+          lineHeight: 'var(--line-height-relaxed)'
         }}>
-          Détails complets sur la connexion électrique et l'infrastructure réseau
+          Complete details on electrical connection and network infrastructure
         </p>
       </header>
 
       {/* Informations Opérateur */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
+          marginBottom: 'var(--spacing-4)',
+          color: 'var(--color-primary-hearst-green)',
+          fontWeight: 'var(--font-weight-semibold)'
         }}>
-          Opérateur Réseau
+          Network Operator
         </h2>
-        <div style={{
-          padding: 'var(--spacing-8)',
-          backgroundColor: 'var(--color-bg-secondary)',
-          borderRadius: 'var(--radius-default)',
-          border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-        }}>
+        <div>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: 'var(--spacing-6)'
+            gap: 'var(--spacing-4)'
           }}>
             <div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
-                color: 'var(--color-text-muted)',
-                marginBottom: 'var(--spacing-2)'
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
                 Opérateur
               </div>
               <div style={{
-                fontSize: 'var(--font-size-subsection-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-primary-hearst-green)',
-                fontWeight: 'var(--font-weight-bold)'
+                fontWeight: 'var(--font-weight-semibold)'
               }}>
                 {siteConfig.gridConnection.operator}
               </div>
             </div>
             <div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
-                color: 'var(--color-text-muted)',
-                marginBottom: 'var(--spacing-2)'
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
-                Tension Réseau
+                Grid Voltage
               </div>
               <div style={{
-                fontSize: 'var(--font-size-subsection-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-primary)',
-                fontWeight: 'var(--font-weight-bold)'
+                fontWeight: 'var(--font-weight-semibold)'
               }}>
                 {siteConfig.gridConnection.gridVoltageKV} kV
               </div>
             </div>
             <div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
-                color: 'var(--color-text-muted)',
-                marginBottom: 'var(--spacing-2)'
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
                 Puissance Maximale Contractée
               </div>
               <div style={{
-                fontSize: 'var(--font-size-subsection-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-primary)',
-                fontWeight: 'var(--font-weight-bold)'
+                fontWeight: 'var(--font-weight-semibold)'
               }}>
                 {siteConfig.gridConnection.maxContractPowerMW} MW
               </div>
@@ -120,55 +108,53 @@ export default function ReseauPage() {
       </section>
 
       {/* Poste de Transformation */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
+          marginBottom: 'var(--spacing-4)',
+          color: 'var(--color-primary-hearst-green)',
+          fontWeight: 'var(--font-weight-semibold)'
         }}>
           Poste de Transformation
         </h2>
-        <div style={{
-          padding: 'var(--spacing-8)',
-          backgroundColor: 'var(--color-bg-secondary)',
-          borderRadius: 'var(--radius-default)',
-          border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-        }}>
+        <div>
           <div style={{
-            marginBottom: 'var(--spacing-6)'
+            marginBottom: 'var(--spacing-4)'
           }}>
-            <div style={{
-              fontSize: 'var(--font-size-caption)',
-              color: 'var(--color-text-muted)',
-              marginBottom: 'var(--spacing-2)'
-            }}>
-              Nom du Poste
-            </div>
-            <div style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-text-primary)',
-              fontWeight: 'var(--font-weight-semibold)'
-            }}>
-              {siteConfig.gridConnection.substationName}
-            </div>
+              <div style={{
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}>
+                Nom du Poste
+              </div>
+              <div style={{
+                fontSize: 'var(--font-size-body)',
+                color: 'var(--color-text-primary)',
+                fontWeight: 'var(--font-weight-semibold)'
+              }}>
+                {siteConfig.gridConnection.substationName}
+              </div>
           </div>
 
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: 'var(--spacing-6)'
+            gap: 'var(--spacing-4)'
           }}>
             <div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
-                color: 'var(--color-text-muted)',
-                marginBottom: 'var(--spacing-2)'
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
                 Tension Primaire
               </div>
               <div style={{
-                fontSize: 'var(--font-size-body)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-primary)',
                 fontWeight: 'var(--font-weight-semibold)'
               }}>
@@ -177,14 +163,15 @@ export default function ReseauPage() {
             </div>
             <div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
-                color: 'var(--color-text-muted)',
-                marginBottom: 'var(--spacing-2)'
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
                 Tension Secondaire
               </div>
               <div style={{
-                fontSize: 'var(--font-size-body)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-primary)',
                 fontWeight: 'var(--font-weight-semibold)'
               }}>
@@ -193,16 +180,17 @@ export default function ReseauPage() {
             </div>
             <div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
-                color: 'var(--color-text-muted)',
-                marginBottom: 'var(--spacing-2)'
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-2)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
                 Rapport de Transformation
               </div>
               <div style={{
-                fontSize: 'var(--font-size-body)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-primary-hearst-green)',
-                fontWeight: 'var(--font-weight-bold)'
+                fontWeight: 'var(--font-weight-semibold)'
               }}>
                 {siteConfig.gridConnection.substationPrimaryKV}/{siteConfig.gridConnection.substationSecondaryKV} kV
               </div>
@@ -212,26 +200,22 @@ export default function ReseauPage() {
       </section>
 
       {/* Paramètres Électriques */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
+          marginBottom: 'var(--spacing-4)',
+          color: 'var(--color-primary-hearst-green)',
+          fontWeight: 'var(--font-weight-semibold)'
         }}>
           Paramètres Électriques
         </h2>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'var(--spacing-6)'
+          gap: 'var(--spacing-4)'
         }}>
-          <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-          }}>
+          <div>
             <h3 style={{
               fontSize: 'var(--font-size-subsection-title)',
               color: 'var(--color-primary-hearst-green)',
@@ -249,8 +233,8 @@ export default function ReseauPage() {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Tension:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>Tension</span>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
                   {siteConfig.gridConnection.gridVoltageKV} kV
                 </span>
               </div>
@@ -258,20 +242,15 @@ export default function ReseauPage() {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Source:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  Réseau Kahramaa
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>Source</span>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
+                  Kahramaa Grid
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-          }}>
+          <div>
             <h3 style={{
               fontSize: 'var(--font-size-subsection-title)',
               color: 'var(--color-primary-hearst-green)',
@@ -298,8 +277,8 @@ export default function ReseauPage() {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Courant Total:</span>
-                <span style={{ color: 'var(--color-primary-hearst-green)', fontWeight: 'var(--font-weight-bold)' }}>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>Courant Total</span>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-primary-hearst-green)', fontWeight: 'var(--font-weight-bold)' }}>
                   ~{siteCurrent33kV} A
                 </span>
               </div>
@@ -307,20 +286,15 @@ export default function ReseauPage() {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Puissance:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>Puissance</span>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
                   {siteConfig.totalPowerMW} MW
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-          }}>
+          <div>
             <h3 style={{
               fontSize: 'var(--font-size-subsection-title)',
               color: 'var(--color-primary-hearst-green)',
@@ -347,8 +321,8 @@ export default function ReseauPage() {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Distribution:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>Distribution</span>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
                   Par Transformateur
                 </span>
               </div>
@@ -356,8 +330,8 @@ export default function ReseauPage() {
                 display: 'flex',
                 justifyContent: 'space-between'
               }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Conteneurs:</span>
-                <span style={{ color: 'var(--color-primary-hearst-green)', fontWeight: 'var(--font-weight-bold)' }}>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-text-secondary)' }}>Containers</span>
+                <span style={{ fontSize: 'var(--font-size-body-minor)', color: 'var(--color-primary-hearst-green)', fontWeight: 'var(--font-weight-bold)' }}>
                   {siteConfig.containerSpec.containersPerTransformer} par TX
                 </span>
               </div>
@@ -371,43 +345,39 @@ export default function ReseauPage() {
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
+          marginBottom: 'var(--spacing-4)',
+          color: 'var(--color-primary-hearst-green)',
+          fontWeight: 'var(--font-weight-semibold)'
         }}>
         Schéma de Connexion
         </h2>
-        <div style={{
-          padding: 'var(--spacing-8)',
-          backgroundColor: 'var(--color-bg-secondary)',
-          borderRadius: 'var(--radius-default)',
-          border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-        }}>
+        <div>
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 'var(--spacing-6)',
+            gap: 'var(--spacing-4)',
             alignItems: 'center'
           }}>
             {/* Niveau 132kV */}
             <div style={{
-              padding: 'var(--spacing-6)',
-              backgroundColor: 'var(--color-bg-tertiary)',
+              padding: 'var(--spacing-4)',
+              backgroundColor: '#F5F5F5',
               borderRadius: 'var(--radius-default)',
               border: '2px solid var(--color-primary-hearst-green)',
               minWidth: '300px',
               textAlign: 'center',
-              boxShadow: 'var(--shadow-glow-green)'
+              boxShadow: 'none'
             }}>
               <div style={{
-                fontSize: 'var(--font-size-subsection-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-primary-hearst-green)',
-                fontWeight: 'var(--font-weight-bold)',
+                fontWeight: 'var(--font-weight-semibold)',
                 marginBottom: 'var(--spacing-2)'
               }}>
                 Réseau Kahramaa
               </div>
               <div style={{
-                fontSize: 'var(--font-size-body)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-secondary)'
               }}>
                 {siteConfig.gridConnection.gridVoltageKV} kV
@@ -425,15 +395,15 @@ export default function ReseauPage() {
 
             {/* Poste de Transformation */}
             <div style={{
-              padding: 'var(--spacing-6)',
-              backgroundColor: 'var(--color-bg-tertiary)',
+              padding: 'var(--spacing-4)',
+              backgroundColor: '#F5F5F5',
               borderRadius: 'var(--radius-default)',
-              border: '2px solid var(--color-ash-grey-accent)',
+              border: '1px solid #E0E0E0',
               minWidth: '300px',
               textAlign: 'center'
             }}>
               <div style={{
-                fontSize: 'var(--font-size-subsection-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-primary)',
                 fontWeight: 'var(--font-weight-semibold)',
                 marginBottom: 'var(--spacing-2)'
@@ -458,15 +428,15 @@ export default function ReseauPage() {
 
             {/* Distribution 33kV */}
             <div style={{
-              padding: 'var(--spacing-6)',
-              backgroundColor: 'var(--color-bg-tertiary)',
+              padding: 'var(--spacing-4)',
+              backgroundColor: '#F5F5F5',
               borderRadius: 'var(--radius-default)',
-              border: '2px solid var(--color-ash-grey-accent)',
+              border: '1px solid #E0E0E0',
               minWidth: '300px',
               textAlign: 'center'
             }}>
               <div style={{
-                fontSize: 'var(--font-size-subsection-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-text-primary)',
                 fontWeight: 'var(--font-weight-semibold)',
                 marginBottom: 'var(--spacing-2)'
@@ -489,7 +459,7 @@ export default function ReseauPage() {
               borderRadius: 'var(--radius-full)'
             }} />
 
-            {/* Blocs de Puissance */}
+            {/* Power Blocks */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
@@ -502,9 +472,9 @@ export default function ReseauPage() {
                   key={block.id}
                   style={{
                     padding: 'var(--spacing-4)',
-                    backgroundColor: 'var(--color-bg-tertiary)',
+                    backgroundColor: '#F5F5F5',
                     borderRadius: 'var(--radius-default)',
-                    border: '1px solid var(--color-ash-grey-accent)',
+                    border: '1px solid #E0E0E0',
                     textAlign: 'center'
                   }}
                 >

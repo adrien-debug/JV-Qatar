@@ -3,6 +3,8 @@
 import { PowerBlock } from '@/lib/types'
 import Link from 'next/link'
 import { useState } from 'react'
+import ContainerIcon from '@/components/icons/ContainerIcon'
+import TransformerIcon from '@/components/icons/TransformerIcon'
 
 interface VisualBlockCardProps {
   block: PowerBlock
@@ -22,16 +24,8 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={{
-        padding: 'var(--spacing-6)',
-        backgroundColor: 'var(--color-bg-secondary)',
-        borderRadius: 'var(--radius-default)',
-        border: isHovered
-          ? '2px solid var(--color-primary-hearst-green)'
-          : 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
         cursor: 'pointer',
         transition: 'all var(--transition-base)',
-        transform: isHovered ? 'translateY(-6px) scale(1.02)' : 'none',
-        boxShadow: isHovered ? 'var(--shadow-glow-green)' : 'var(--shadow-sm)',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -43,7 +37,7 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'linear-gradient(135deg, rgba(138, 253, 129, 0.1) 0%, rgba(138, 253, 129, 0.05) 100%)',
+            background: 'rgba(46, 204, 113, 0.05)',
             zIndex: 0
           }} />
         )}
@@ -57,7 +51,7 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
             marginBottom: 'var(--spacing-4)'
           }}>
             <div style={{
-              fontSize: 'var(--font-size-section-title)',
+              fontSize: 'var(--font-size-subsection-title)',
               fontWeight: 'var(--font-weight-bold)',
               color: 'var(--color-primary-hearst-green)',
               display: 'flex',
@@ -65,17 +59,17 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
               gap: 'var(--spacing-2)'
             }}>
               <div style={{
-                width: '12px',
-                height: '12px',
+                width: '10px',
+                height: '10px',
                 borderRadius: '50%',
                 backgroundColor: 'var(--color-primary-hearst-green)',
-                boxShadow: '0 0 12px var(--color-primary-hearst-green)',
+                boxShadow: 'none',
                 animation: isHovered ? 'pulse 2s ease-in-out infinite' : 'none'
               }} />
               {block.name}
             </div>
             <div style={{
-              fontSize: 'var(--font-size-display)',
+              fontSize: 'var(--font-size-section-title)',
               color: 'var(--color-primary-hearst-green)',
               fontWeight: 'var(--font-weight-bold)'
             }}>
@@ -87,19 +81,28 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 'var(--spacing-4)',
-            marginBottom: 'var(--spacing-4)'
+            gap: 'var(--spacing-3)',
+            marginBottom: 'var(--spacing-4)',
           }}>
             {/* Conteneurs Bar */}
-            <div>
+            <div style={{
+            }}>
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 marginBottom: 'var(--spacing-2)',
-                fontSize: 'var(--font-size-caption)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-secondary)'
               }}>
-                <span>📦 Conteneurs</span>
+                <span style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--spacing-2)'
+                }}>
+                  <ContainerIcon size={16} color="var(--color-text-secondary)" />
+                  Containers
+                </span>
                 <span style={{ fontWeight: 'var(--font-weight-semibold)' }}>
                   {block.numContainers} / 16
                 </span>
@@ -107,7 +110,7 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
               <div style={{
                 width: '100%',
                 height: '28px',
-                backgroundColor: 'var(--color-bg-tertiary)',
+                backgroundColor: '#F5F5F5',
                 borderRadius: 'var(--radius-full)',
                 overflow: 'hidden',
                 position: 'relative'
@@ -118,12 +121,12 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
                   background: 'linear-gradient(90deg, var(--color-primary-hearst-green), var(--color-primary-hearst-green-light))',
                   borderRadius: 'var(--radius-full)',
                   transition: 'width 0.8s ease-out',
-                  boxShadow: '0 0 15px rgba(138, 253, 129, 0.6)',
+                  boxShadow: 'none',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-end',
                   paddingRight: 'var(--spacing-2)',
-                  color: 'var(--color-text-default)',
+                  color: '#FFFFFF',
                   fontSize: 'var(--font-size-caption)',
                   fontWeight: 'var(--font-weight-bold)'
                 }}>
@@ -133,15 +136,24 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
             </div>
 
             {/* Transformateurs Bar */}
-            <div>
+            <div style={{
+            }}>
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 marginBottom: 'var(--spacing-2)',
-                fontSize: 'var(--font-size-caption)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-secondary)'
               }}>
-                <span>🔌 Transformateurs</span>
+                <span style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--spacing-2)'
+                }}>
+                  <TransformerIcon size={16} color="var(--color-text-secondary)" />
+                  Transformers
+                </span>
                 <span style={{ fontWeight: 'var(--font-weight-semibold)' }}>
                   {block.numTransformers} / 8
                 </span>
@@ -149,7 +161,7 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
               <div style={{
                 width: '100%',
                 height: '28px',
-                backgroundColor: 'var(--color-bg-tertiary)',
+                backgroundColor: '#F5F5F5',
                 borderRadius: 'var(--radius-full)',
                 overflow: 'hidden',
                 position: 'relative'
@@ -160,12 +172,12 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
                   background: 'linear-gradient(90deg, var(--color-secondary-info), var(--color-secondary-info-dark))',
                   borderRadius: 'var(--radius-full)',
                   transition: 'width 0.8s ease-out',
-                  boxShadow: '0 0 15px rgba(78, 205, 196, 0.6)',
+                  boxShadow: 'none',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-end',
                   paddingRight: 'var(--spacing-2)',
-                  color: 'var(--color-text-default)',
+                  color: '#FFFFFF',
                   fontSize: 'var(--font-size-caption)',
                   fontWeight: 'var(--font-weight-bold)'
                 }}>
@@ -182,19 +194,19 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
             gap: 'var(--spacing-3)',
             marginBottom: 'var(--spacing-4)',
             padding: 'var(--spacing-4)',
-            backgroundColor: 'var(--color-bg-tertiary)',
+            backgroundColor: '#F5F5F5',
             borderRadius: 'var(--radius-small)'
           }}>
             <div style={{ textAlign: 'center' }}>
               <div style={{
-                fontSize: 'var(--font-size-section-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-primary-hearst-green)',
                 fontWeight: 'var(--font-weight-bold)'
               }}>
                 {block.numContainers}
               </div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-secondary)'
               }}>
                 Conteneurs
@@ -202,14 +214,14 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{
-                fontSize: 'var(--font-size-section-title)',
+                fontSize: 'var(--font-size-body)',
                 color: 'var(--color-secondary-info)',
                 fontWeight: 'var(--font-weight-bold)'
               }}>
                 {block.numTransformers}
               </div>
               <div style={{
-                fontSize: 'var(--font-size-caption)',
+                fontSize: 'var(--font-size-body-minor)',
                 color: 'var(--color-text-secondary)'
               }}>
                 Transformateurs
@@ -220,11 +232,11 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
           {/* Action Button */}
           <div style={{
             padding: 'var(--spacing-3)',
-            backgroundColor: isHovered ? 'var(--color-primary-hearst-green)' : 'var(--color-bg-tertiary)',
-            color: isHovered ? 'var(--color-text-default)' : 'var(--color-text-primary)',
+            backgroundColor: isHovered ? 'var(--color-primary-hearst-green)' : '#F5F5F5',
+            color: isHovered ? '#FFFFFF' : 'var(--color-text-primary)',
             borderRadius: 'var(--radius-small)',
             textAlign: 'center',
-            fontSize: 'var(--font-size-body)',
+            fontSize: 'var(--font-size-body-minor)',
             fontWeight: 'var(--font-weight-semibold)',
             transition: 'all var(--transition-base)',
             display: 'flex',
@@ -232,7 +244,7 @@ export default function VisualBlockCard({ block }: VisualBlockCardProps) {
             justifyContent: 'center',
             gap: 'var(--spacing-2)'
           }}>
-            Voir les détails
+            View Details
             <span style={{ transform: isHovered ? 'translateX(4px)' : 'none', transition: 'transform var(--transition-base)' }}>
               →
             </span>

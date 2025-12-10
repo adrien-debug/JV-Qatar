@@ -7,66 +7,42 @@ import GlobalInfoPanel from '@/components/GlobalInfoPanel'
 export default function ArchitecturePage() {
   return (
     <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'var(--color-bg-primary)',
+      minHeight: 'calc(100vh - var(--structure-header-height))',
+      backgroundColor: 'var(--color-bg-content)',
       color: 'var(--color-text-primary)',
-      padding: 'var(--spacing-8)'
+      padding: 'var(--spacing-8) var(--spacing-6)'
     }}>
       {/* Header */}
       <header style={{
-        marginBottom: 'var(--spacing-10)',
-        paddingBottom: 'var(--spacing-8)',
-        borderBottom: '2px solid var(--color-ash-grey-accent)',
-        position: 'relative'
+        marginBottom: 'var(--spacing-8)',
+        paddingBottom: 'var(--spacing-6)'
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100px',
-          height: '4px',
-          background: 'var(--gradient-primary)',
-          borderRadius: 'var(--radius-full)'
-        }} />
         <h1 style={{
           fontSize: 'var(--font-size-display)',
           lineHeight: 'var(--line-height-display)',
-          color: 'var(--color-primary-hearst-green)',
-          fontWeight: 'var(--font-weight-bold)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)',
           marginBottom: 'var(--spacing-3)',
-          textShadow: '0 0 20px rgba(138, 253, 129, 0.3)',
           letterSpacing: 'var(--letter-spacing-tight)'
         }}>
-          Architecture Électrique Globale
+          Architecture
         </h1>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--spacing-3)'
+        <p style={{
+          fontSize: 'var(--font-size-body-minor)',
+          color: 'var(--color-text-secondary)',
+          fontWeight: 'var(--font-weight-normal)',
+          lineHeight: 'var(--line-height-relaxed)'
         }}>
-          <div style={{
-            width: '6px',
-            height: '6px',
-            borderRadius: '50%',
-            backgroundColor: 'var(--color-primary-hearst-green)',
-            boxShadow: '0 0 8px var(--color-primary-hearst-green)'
-          }} />
-          <p style={{
-            fontSize: 'var(--font-size-body)',
-            color: 'var(--color-text-secondary)',
-            fontWeight: 'var(--font-weight-medium)'
-          }}>
-            {siteConfig.location}
-          </p>
-        </div>
+          Global electrical architecture overview
+        </p>
       </header>
 
       {/* Architecture Diagram */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
+          marginBottom: 'var(--spacing-4)',
           color: 'var(--color-text-primary)'
         }}>
           Diagramme de l'Architecture
@@ -79,7 +55,7 @@ export default function ArchitecturePage() {
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
+          marginBottom: 'var(--spacing-4)',
           color: 'var(--color-text-primary)'
         }}>
           Informations Globales

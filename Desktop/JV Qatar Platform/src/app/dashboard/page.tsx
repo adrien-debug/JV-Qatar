@@ -1,180 +1,250 @@
 'use client'
 
-import { siteConfig, siteCurrent33kV, blockCurrent33kV } from '@/lib/siteConfig'
-import Link from 'next/link'
-import VisualStats from '@/components/VisualStats'
+import { useState, useEffect } from 'react'
+import ElectricityTracking from '@/components/ElectricityTracking'
+import BitcoinMiningTracking from '@/components/BitcoinMiningTracking'
+import { getCurrentElectricityMetrics, getCurrentMiningMetrics } from '@/lib/mockData'
+import LightningIcon from '@/components/icons/LightningIcon'
+import PlugIcon from '@/components/icons/PlugIcon'
+import ContainerIcon from '@/components/icons/ContainerIcon'
+
+type TabType = 'electricity' | 'mining'
 
 export default function DashboardPage() {
-  const totalContainers = siteConfig.blocks.reduce((sum, block) => sum + block.numContainers, 0)
-  const totalTransformers = siteConfig.blocks.reduce((sum, block) => sum + block.numTransformers, 0)
-  const totalPowerMW = siteConfig.totalPowerMW
+  const [activeTab, setActiveTab] = useState<TabType>('electricity')
+  const [electricityMetrics, setElectricityMetrics] = useState(getCurrentElectricityMetrics())
+  const [miningMetrics, setMiningMetrics] = useState(getCurrentMiningMetrics())
 
-  const stats = [
+  useEffect(() => {
+    // Update metrics every 5 seconds
+    const interval = setInterval(() => {
+      setElectricityMetrics(getCurrentElectricityMetrics())
+      setMiningMetrics(getCurrentMiningMetrics())
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // KPIs pour Électricité
+  const electricityKPIs = [
     {
-      label: 'Puissance Totale',
-      value: `${totalPowerMW} MW`,
-      icon: '⚡',
-      color: 'var(--color-primary-hearst-green)',
-      href: '/architecture'
+      label: 'Puissance Consommée',
+      description: 'Énergie utilisée en ce moment',
+      value: `${electricityMetrics.totalPowerMW} MW`,
+      icon: LightningIcon,
+      color: '#1E8449'
     },
     {
-      label: 'Conteneurs',
-      value: totalContainers.toString(),
-      icon: '📦',
-      color: 'var(--color-secondary-info)',
-      href: '/conteneurs'
+      label: 'Tension du Réseau',
+      description: 'Niveau de tension électrique',
+      value: `${electricityMetrics.voltageKV} kV`,
+      icon: PlugIcon,
+      color: '#1E8449'
     },
     {
-      label: 'Transformateurs',
-      value: totalTransformers.toString(),
-      icon: '🔌',
-      color: 'var(--color-primary-hearst-green)',
-      href: '/architecture'
+      label: 'Courant Électrique',
+      description: 'Intensité du courant',
+      value: `${electricityMetrics.currentA} A`,
+      icon: LightningIcon,
+      color: '#1E8449'
     },
     {
-      label: 'Blocs de Puissance',
-      value: siteConfig.blocks.length.toString(),
-      icon: '🏗️',
-      color: 'var(--color-secondary-accent)',
-      href: '/'
+      label: 'Efficacité Énergétique',
+      description: 'Rendement du système',
+      value: `${electricityMetrics.efficiencyPercent}%`,
+      icon: PlugIcon,
+      color: '#1E8449'
+    },
+    {
+      label: 'Coût par Heure',
+      description: 'Dépense électrique actuelle',
+      value: `$${electricityMetrics.costPerHourUSD.toFixed(2)}`,
+      icon: LightningIcon,
+      color: '#1E8449'
     }
   ]
 
-  const quickLinks = [
-    { label: 'Architecture 2D', href: '/architecture-2d', icon: '📐' },
-    { label: 'Spécifications Conteneurs', href: '/conteneurs', icon: '📦' },
-    { label: 'Architecture Globale', href: '/architecture', icon: '⚡' },
-    { label: 'Menu Principal', href: '/menu', icon: '📋' }
+  // KPIs pour Bitcoin Mining
+  const miningKPIs = [
+    {
+      label: 'Puissance de Calcul',
+      description: 'Vitesse de minage (Hashrate)',
+      value: `${miningMetrics.hashrateTHs} TH/s`,
+      subValue: 'Térahashes par seconde',
+      icon: LightningIcon,
+      color: '#1E8449',
+      status: 'excellent'
+    },
+    {
+      label: 'Revenus du Jour',
+      description: 'Gains générés aujourd\'hui',
+      value: `$${miningMetrics.dailyRevenueUSD.toLocaleString()}`,
+      subValue: `${miningMetrics.dailyRevenueBTC.toFixed(4)} BTC`,
+      icon: LightningIcon,
+      color: '#1E8449',
+      status: 'good'
+    },
+    {
+      label: 'Conteneurs en Fonction',
+      description: 'Machines de minage actives',
+      value: `${miningMetrics.activeContainers} / 64`,
+      subValue: `${Math.round((miningMetrics.activeContainers / 64) * 100)}% opérationnels`,
+      icon: ContainerIcon,
+      color: '#1E8449',
+      status: miningMetrics.activeContainers >= 63 ? 'excellent' : 'good'
+    },
+    {
+      label: 'Température',
+      description: 'Température moyenne des machines',
+      value: `${miningMetrics.avgTemperature}°C`,
+      subValue: miningMetrics.avgTemperature < 30 ? 'Optimal' : 'Attention',
+      icon: LightningIcon,
+      color: '#1E8449',
+      status: miningMetrics.avgTemperature < 30 ? 'excellent' : 'warning'
+    },
+    {
+      label: 'Efficacité Énergétique',
+      description: 'Consommation par unité de calcul',
+      value: `${miningMetrics.efficiencyJTH} J/TH`,
+      subValue: 'Joules par Térahash',
+      icon: LightningIcon,
+      color: '#1E8449',
+      status: 'good'
+    }
   ]
+
+  const currentKPIs = activeTab === 'electricity' ? electricityKPIs : miningKPIs
 
   return (
     <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'var(--color-bg-primary)',
-      color: 'var(--color-text-primary)',
-      padding: 'var(--spacing-8)'
+      minHeight: 'calc(100vh - var(--structure-header-height))',
+      backgroundColor: 'var(--color-bg-content)',
+      color: 'var(--color-text-primary)'
     }}>
-      {/* Header */}
-      <header style={{
-        marginBottom: 'var(--spacing-10)',
-        paddingBottom: 'var(--spacing-8)',
-        borderBottom: '2px solid var(--color-ash-grey-accent)',
-        position: 'relative'
+      {/* Bande noire avec KPIs */}
+      <div style={{
+        backgroundColor: '#0A0A0A',
+        padding: '24px 48px',
+        borderBottom: '1px solid #1E8449'
       }}>
         <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100px',
-          height: '4px',
-          background: 'var(--gradient-primary)',
-          borderRadius: 'var(--radius-full)'
-        }} />
-        <h1 style={{
-          fontSize: 'var(--font-size-display)',
-          lineHeight: 'var(--line-height-display)',
-          color: 'var(--color-primary-hearst-green)',
-          fontWeight: 'var(--font-weight-bold)',
-          marginBottom: 'var(--spacing-3)',
-          textShadow: '0 0 20px rgba(138, 253, 129, 0.3)',
-          letterSpacing: 'var(--letter-spacing-tight)'
-        }}>
-          Tableau de Bord
-        </h1>
-        <p style={{
-          fontSize: 'var(--font-size-body)',
-          color: 'var(--color-text-secondary)',
-          fontWeight: 'var(--font-weight-medium)'
-        }}>
-          Vue d'ensemble des statistiques et métriques du site
-        </p>
-      </header>
-
-      {/* Statistiques Visuelles */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
-        <h2 style={{
-          fontSize: 'var(--font-size-section-title)',
-          lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
-        }}>
-          Visualisations Statistiques
-        </h2>
-        <VisualStats site={siteConfig} />
-      </section>
-
-      {/* Statistiques Principales */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
-        <h2 style={{
-          fontSize: 'var(--font-size-section-title)',
-          lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
-        }}>
-          Statistiques Globales
-        </h2>
-        <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: 'var(--spacing-6)'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '20px',
+          maxWidth: '1600px',
+          margin: '0 auto'
         }}>
-          {stats.map((stat, index) => (
-            <Link
-              key={index}
-              href={stat.href}
-              style={{
-                textDecoration: 'none',
-                color: 'inherit'
-              }}
-            >
-              <div style={{
-                padding: 'var(--spacing-6)',
-                backgroundColor: 'var(--color-bg-secondary)',
-                borderRadius: 'var(--radius-default)',
-                border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
-                cursor: 'pointer',
-                transition: 'var(--transition-base)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--spacing-4)',
-                position: 'relative',
-                overflow: 'hidden'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = stat.color
-                e.currentTarget.style.transform = 'translateY(-4px)'
-                e.currentTarget.style.boxShadow = `0 0 20px ${stat.color}40`
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-thin-color)'
-                e.currentTarget.style.transform = 'none'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
+          {currentKPIs.map((kpi, index) => {
+            const IconComponent = kpi.icon
+            return (
+              <div
+                key={index}
+                style={{
+                  padding: '24px',
+                  backgroundColor: '#121212',
+                  border: `1px solid ${kpi.color}40`,
+                  borderRadius: '8px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px',
+                  position: 'relative',
+                  boxShadow: `0 4px 12px ${kpi.color}15`,
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = `${kpi.color}80`
+                  e.currentTarget.style.boxShadow = `0 6px 16px ${kpi.color}25`
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = `${kpi.color}40`
+                  e.currentTarget.style.boxShadow = `0 4px 12px ${kpi.color}15`
+                  e.currentTarget.style.transform = 'translateY(0)'
+                }}
               >
+                {kpi.status && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '16px',
+                    right: '16px',
+                    width: '10px',
+                    height: '10px',
+                    borderRadius: '50%',
+                    backgroundColor: kpi.status === 'excellent' 
+                      ? '#2ECC71' 
+                      : kpi.status === 'good'
+                      ? '#27AE60'
+                      : '#58D68D',
+                    boxShadow: `0 0 8px ${kpi.status === 'excellent' 
+                      ? '#2ECC71' 
+                      : kpi.status === 'good'
+                      ? '#27AE60'
+                      : '#58D68D'}40`
+                  }} />
+                )}
                 <div style={{
                   display: 'flex',
-                  alignItems: 'center',
+                  alignItems: 'flex-start',
                   justifyContent: 'space-between'
                 }}>
                   <div style={{
-                    fontSize: 'var(--font-size-display)',
-                    color: stat.color,
-                    fontWeight: 'var(--font-weight-bold)'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '6px',
+                    flex: 1
                   }}>
-                    {stat.value}
+                    <div style={{
+                      fontSize: '28px',
+                      color: kpi.color,
+                      fontWeight: 700,
+                      lineHeight: 1.1,
+                      fontFamily: 'var(--font-family-primary)',
+                      letterSpacing: '-0.5px'
+                    }}>
+                      {kpi.value}
+                    </div>
+                    {kpi.subValue && (
+                      <div style={{
+                        fontSize: '12px',
+                        color: '#CCCCCC',
+                        fontWeight: 400,
+                        fontFamily: 'var(--font-family-primary)',
+                        opacity: 0.9
+                      }}>
+                        {kpi.subValue}
+                      </div>
+                    )}
                   </div>
-                  <div style={{
-                    fontSize: 'var(--font-size-section-title)'
-                  }}>
-                    {stat.icon}
-                  </div>
+                  <IconComponent size={32} color={kpi.color} />
                 </div>
                 <div style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)',
-                  fontWeight: 'var(--font-weight-medium)'
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                  paddingTop: '8px',
+                  borderTop: '1px solid #1E1E1E'
                 }}>
-                  {stat.label}
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#FFFFFF',
+                    fontWeight: 600,
+                    fontFamily: 'var(--font-family-primary)',
+                    letterSpacing: '0.2px',
+                    textTransform: 'uppercase'
+                  }}>
+                    {kpi.label}
+                  </div>
+                  {kpi.description && (
+                    <div style={{
+                      fontSize: '11px',
+                      color: '#999999',
+                      fontWeight: 400,
+                      fontFamily: 'var(--font-family-primary)',
+                      lineHeight: 1.4
+                    }}>
+                      {kpi.description}
+                    </div>
+                  )}
                 </div>
                 <div style={{
                   position: 'absolute',
@@ -182,259 +252,107 @@ export default function DashboardPage() {
                   left: 0,
                   width: '100%',
                   height: '3px',
-                  background: `linear-gradient(90deg, ${stat.color}, transparent)`,
-                  transform: 'scaleX(0)',
-                  transformOrigin: 'left',
-                  transition: 'var(--transition-base)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scaleX(1)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scaleX(0)'
-                }}
-                />
+                  background: `linear-gradient(90deg, ${kpi.color}, ${kpi.color}80)`,
+                  borderRadius: '0 0 8px 8px'
+                }} />
               </div>
-            </Link>
-          ))}
+            )
+          })}
         </div>
-      </section>
+      </div>
 
-      {/* Informations Techniques */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
-        <h2 style={{
-          fontSize: 'var(--font-size-section-title)',
-          lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
-        }}>
-          Informations Techniques
-        </h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'var(--spacing-6)'
-        }}>
-          <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-          }}>
-            <h3 style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-primary-hearst-green)',
-              marginBottom: 'var(--spacing-4)',
-              fontWeight: 'var(--font-weight-semibold)'
-            }}>
-              Connexion Réseau
-            </h3>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--spacing-3)'
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Opérateur:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.gridConnection.operator}
-                </span>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Tension:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.gridConnection.gridVoltageKV} kV
-                </span>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Puissance Max:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.gridConnection.maxContractPowerMW} MW
-                </span>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Courant @ 33kV:</span>
-                <span style={{ color: 'var(--color-primary-hearst-green)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  ~{siteCurrent33kV} A
-                </span>
-              </div>
-            </div>
-          </div>
+      {/* Menu Onglets */}
+      <div style={{
+        backgroundColor: '#FFFFFF',
+        padding: '0 48px',
+        borderBottom: '1px solid #E5E5E5',
+        display: 'flex',
+        gap: '0',
+        maxWidth: '1600px',
+        margin: '0 auto'
+      }}>
+        <button
+          onClick={() => setActiveTab('electricity')}
+          style={{
+            padding: '16px 24px',
+            fontSize: '12px',
+            fontWeight: 500,
+            color: activeTab === 'electricity' 
+              ? '#1A1A1A' 
+              : '#666666',
+            backgroundColor: 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'electricity' 
+              ? '2px solid #1E8449' 
+              : '2px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            position: 'relative',
+            fontFamily: 'var(--font-family-primary)',
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+            transition: 'color 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            if (activeTab !== 'electricity') {
+              e.currentTarget.style.color = '#1A1A1A'
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (activeTab !== 'electricity') {
+              e.currentTarget.style.color = '#666666'
+            }
+          }}
+        >
+          Électricité
+        </button>
+        <button
+          onClick={() => setActiveTab('mining')}
+          style={{
+            padding: '16px 24px',
+            fontSize: '12px',
+            fontWeight: 500,
+            color: activeTab === 'mining' 
+              ? '#1A1A1A' 
+              : '#666666',
+            backgroundColor: 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'mining' 
+              ? '2px solid #1E8449' 
+              : '2px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            position: 'relative',
+            fontFamily: 'var(--font-family-primary)',
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+            transition: 'color 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            if (activeTab !== 'mining') {
+              e.currentTarget.style.color = '#1A1A1A'
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (activeTab !== 'mining') {
+              e.currentTarget.style.color = '#666666'
+            }
+          }}
+        >
+          Bitcoin Mining
+        </button>
+      </div>
 
-          <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-          }}>
-            <h3 style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-primary-hearst-green)',
-              marginBottom: 'var(--spacing-4)',
-              fontWeight: 'var(--font-weight-semibold)'
-            }}>
-              Spécifications Conteneurs
-            </h3>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--spacing-3)'
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Type:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.containerSpec.type}
-                </span>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Puissance/Unité:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.containerSpec.totalPowerMW} MW
-                </span>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Tension:</span>
-                <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.containerSpec.supplyVoltageKV} kV
-                </span>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ color: 'var(--color-text-secondary)' }}>Par Transformateur:</span>
-                <span style={{ color: 'var(--color-primary-hearst-green)', fontWeight: 'var(--font-weight-semibold)' }}>
-                  {siteConfig.containerSpec.containersPerTransformer}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
-          }}>
-            <h3 style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-primary-hearst-green)',
-              marginBottom: 'var(--spacing-4)',
-              fontWeight: 'var(--font-weight-semibold)'
-            }}>
-              Répartition par Bloc
-            </h3>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--spacing-3)'
-            }}>
-              {siteConfig.blocks.map((block) => (
-                <div
-                  key={block.id}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    padding: 'var(--spacing-3)',
-                    backgroundColor: 'var(--color-bg-tertiary)',
-                    borderRadius: 'var(--radius-small)'
-                  }}
-                >
-                  <span style={{ color: 'var(--color-text-secondary)' }}>{block.name}:</span>
-                  <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                    {block.targetPowerMW} MW
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Liens Rapides */}
-      <section>
-        <h2 style={{
-          fontSize: 'var(--font-size-section-title)',
-          lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
-        }}>
-          Accès Rapide
-        </h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 'var(--spacing-5)'
-        }}>
-          {quickLinks.map((link, index) => (
-            <Link
-              key={index}
-              href={link.href}
-              style={{
-                textDecoration: 'none',
-                color: 'inherit'
-              }}
-            >
-              <div style={{
-                padding: 'var(--spacing-5)',
-                backgroundColor: 'var(--color-bg-secondary)',
-                borderRadius: 'var(--radius-default)',
-                border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
-                cursor: 'pointer',
-                transition: 'var(--transition-base)',
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 'var(--spacing-3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--color-primary-hearst-green)'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = 'var(--shadow-glow-green)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-thin-color)'
-                e.currentTarget.style.transform = 'none'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-              >
-                <div style={{ fontSize: 'var(--font-size-section-title)' }}>
-                  {link.icon}
-                </div>
-                <div style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-primary)',
-                  fontWeight: 'var(--font-weight-semibold)'
-                }}>
-                  {link.label}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* Contenu Graphiques */}
+      <div style={{
+        padding: '32px 48px',
+        maxWidth: '1600px',
+        margin: '0 auto',
+        backgroundColor: '#FAFAFA'
+      }}>
+        {activeTab === 'electricity' && <ElectricityTracking />}
+        {activeTab === 'mining' && <BitcoinMiningTracking />}
+      </div>
     </div>
   )
 }

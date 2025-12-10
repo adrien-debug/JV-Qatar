@@ -2,6 +2,7 @@
 
 import { siteConfig } from '@/lib/siteConfig'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 // Dimensions typiques pour Bitmain ANTSPACE HD5 (Hydro)
@@ -21,60 +22,415 @@ export default function ConteneursPage() {
 
   return (
     <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'var(--color-bg-primary)',
+      minHeight: 'calc(100vh - var(--structure-header-height))',
+      backgroundColor: 'var(--color-bg-content)',
       color: 'var(--color-text-primary)',
-      padding: 'var(--spacing-8)'
+      padding: 'var(--spacing-8) var(--spacing-6)'
     }}>
       {/* Header */}
       <header style={{
-        marginBottom: 'var(--spacing-10)',
-        paddingBottom: 'var(--spacing-8)',
-        borderBottom: '2px solid var(--color-ash-grey-accent)',
-        position: 'relative'
+        marginBottom: 'var(--spacing-8)',
+        paddingBottom: 'var(--spacing-6)'
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100px',
-          height: '4px',
-          background: 'var(--gradient-primary)',
-          borderRadius: 'var(--radius-full)'
-        }} />
         <h1 style={{
           fontSize: 'var(--font-size-display)',
           lineHeight: 'var(--line-height-display)',
-          color: 'var(--color-primary-hearst-green)',
-          fontWeight: 'var(--font-weight-bold)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)',
           marginBottom: 'var(--spacing-3)',
-          textShadow: '0 0 20px rgba(138, 253, 129, 0.3)',
           letterSpacing: 'var(--letter-spacing-tight)'
         }}>
-          Spécifications des Conteneurs
+          Containers
         </h1>
         <p style={{
-          fontSize: 'var(--font-size-body)',
+          fontSize: 'var(--font-size-body-minor)',
           color: 'var(--color-text-secondary)',
-          fontWeight: 'var(--font-weight-medium)'
+          fontWeight: 'var(--font-weight-normal)',
+          lineHeight: 'var(--line-height-relaxed)'
         }}>
-          Détails complets sur les conteneurs de minage et leur répartition
+          Everything you need to know about containers
         </p>
       </header>
 
+      {/* Section Photos des Containers */}
+      <section style={{
+        marginBottom: 'var(--spacing-8)',
+        padding: 'var(--spacing-5)',
+        backgroundColor: 'transparent',
+        borderRadius: 'var(--radius-default)',
+        border: '1px solid #E0E0E0'
+      }}>
+        <h2 style={{
+          fontSize: 'var(--font-size-section-title)',
+          lineHeight: 'var(--line-height-section-title)',
+          marginBottom: 'var(--spacing-5)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)'
+        }}>
+          Galerie Photos
+        </h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--spacing-4)'
+        }}>
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16/9',
+            borderRadius: 'var(--radius-default)',
+            overflow: 'hidden',
+            border: '1px solid #E0E0E0'
+          }}>
+            <Image
+              src="/bitmain-antspace-hd5-hydro.webp"
+              alt="Bitmain ANTSPACE HD5 Hydro"
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16/9',
+            borderRadius: 'var(--radius-default)',
+            overflow: 'hidden',
+            border: '1px solid #E0E0E0'
+          }}>
+            <Image
+              src="/bitmain-antspace-hd5-hydro (1).webp"
+              alt="Bitmain ANTSPACE HD5 Hydro - Vue alternative"
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16/9',
+            borderRadius: 'var(--radius-default)',
+            overflow: 'hidden',
+            border: '1px solid #E0E0E0'
+          }}>
+            <Image
+              src="/Hearst container.webp"
+              alt="Hearst Container"
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16/9',
+            borderRadius: 'var(--radius-default)',
+            overflow: 'hidden',
+            border: '1px solid #E0E0E0'
+          }}>
+            <Image
+              src="/8fddee54-2f77-49ee-af85-0f34ecb8ac78_540.jpg"
+              alt="Container - Installation"
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Section Caractéristiques Hardware */}
+      <section style={{
+        marginBottom: 'var(--spacing-8)',
+        padding: 'var(--spacing-5)',
+        backgroundColor: 'transparent',
+        borderRadius: 'var(--radius-default)',
+        border: '1px solid #E0E0E0',
+        borderLeft: '3px solid var(--color-primary-hearst-green)'
+      }}>
+        <h2 style={{
+          fontSize: 'var(--font-size-section-title)',
+          lineHeight: 'var(--line-height-section-title)',
+          marginBottom: 'var(--spacing-5)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)'
+        }}>
+          Caractéristiques Hardware
+        </h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 'var(--spacing-4)'
+        }}>
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0'
+          }}>
+            <h3 style={{
+              fontSize: 'var(--font-size-subsection-title)',
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-semibold)',
+              marginBottom: 'var(--spacing-3)'
+            }}>
+              Dimensions
+            </h3>
+            <div style={{
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
+              lineHeight: 'var(--line-height-relaxed)'
+            }}>
+              <div style={{ marginBottom: 'var(--spacing-2)' }}>
+                <strong>Longueur:</strong> {containerDimensions.length} m
+              </div>
+              <div style={{ marginBottom: 'var(--spacing-2)' }}>
+                <strong>Largeur:</strong> {containerDimensions.width} m
+              </div>
+              <div style={{ marginBottom: 'var(--spacing-2)' }}>
+                <strong>Hauteur:</strong> {containerDimensions.height} m
+              </div>
+              <div style={{
+                marginTop: 'var(--spacing-3)',
+                paddingTop: 'var(--spacing-3)',
+                borderTop: '1px solid var(--color-ash-grey-accent)',
+                fontSize: 'var(--font-size-body-minor)',
+                color: 'var(--color-text-secondary)'
+              }}>
+                Total: {containerDimensions.length} × {containerDimensions.width} × {containerDimensions.height} m
+              </div>
+            </div>
+          </div>
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0'
+          }}>
+            <h3 style={{
+              fontSize: 'var(--font-size-subsection-title)',
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-semibold)',
+              marginBottom: 'var(--spacing-3)'
+            }}>
+              Machines ASIC
+            </h3>
+            <div style={{
+              fontSize: 'var(--font-size-display)',
+              color: 'var(--color-primary-hearst-green)',
+              fontWeight: 'var(--font-weight-bold)',
+              marginBottom: 'var(--spacing-2)'
+            }}>
+              230
+            </div>
+            <div style={{
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-secondary)'
+            }}>
+              machines par container
+            </div>
+          </div>
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0'
+          }}>
+            <h3 style={{
+              fontSize: 'var(--font-size-subsection-title)',
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-semibold)',
+              marginBottom: 'var(--spacing-3)'
+            }}>
+              Dernière Génération
+            </h3>
+            <div style={{
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
+              lineHeight: 'var(--line-height-relaxed)',
+              marginBottom: 'var(--spacing-2)'
+            }}>
+              <strong style={{ color: 'var(--color-primary-hearst-green)' }}>
+                {siteConfig.containerSpec.type}
+              </strong>
+            </div>
+            <div style={{
+              fontSize: 'var(--font-size-body-minor)',
+              color: 'var(--color-text-secondary)',
+              lineHeight: 'var(--line-height-relaxed)'
+            }}>
+              Refroidissement par immersion liquide - Technologie de pointe pour l'extraction de crypto-monnaies
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Pédagogique - Introduction pour Néophytes */}
+      <section style={{
+        marginBottom: 'var(--spacing-6)',
+        padding: 'var(--spacing-5)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0',
+            borderLeft: '3px solid var(--color-primary-hearst-green)'
+      }}>
+        <h2 style={{
+          fontSize: 'var(--font-size-section-title)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-semibold)',
+          marginBottom: 'var(--spacing-5)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'var(--spacing-3)',
+          lineHeight: 'var(--line-height-relaxed)'
+        }}>
+          Understanding Containers
+        </h2>
+        
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: 'var(--spacing-4)',
+          marginBottom: 'var(--spacing-4)'
+        }}>
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
+          }}>
+            <h3 style={{
+              fontSize: 'var(--font-size-subsection-title)',
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-semibold)',
+              marginBottom: 'var(--spacing-4)',
+              lineHeight: 'var(--line-height-relaxed)'
+            }}>
+              What is a Container?
+            </h3>
+            <p style={{
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
+              lineHeight: 'var(--line-height-relaxed)',
+              marginBottom: 0
+            }}>
+              A <strong style={{ color: 'var(--color-primary-hearst-green)' }}>giant computer</strong> in a metal box.
+              <br/><br/>
+              Contains machines that mine Bitcoin.
+            </p>
+          </div>
+
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
+          }}>
+            <h3 style={{
+              fontSize: 'var(--font-size-subsection-title)',
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-semibold)',
+              marginBottom: 'var(--spacing-4)',
+              lineHeight: 'var(--line-height-relaxed)'
+            }}>
+              How it works?
+            </h3>
+            <p style={{
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
+              lineHeight: 'var(--line-height-relaxed)',
+              marginBottom: 0
+            }}>
+              <strong style={{ color: 'var(--color-primary-hearst-green)' }}>Electricity</strong> from the grid
+              <br/>
+              ↓
+              <br/>
+              <strong style={{ color: 'var(--color-primary-hearst-green)' }}>Transformer</strong> reduces voltage
+              <br/>
+              ↓
+              <br/>
+              <strong style={{ color: 'var(--color-primary-hearst-green)' }}>2 containers</strong> powered
+            </p>
+          </div>
+
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
+          }}>
+            <h3 style={{
+              fontSize: 'var(--font-size-subsection-title)',
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-semibold)',
+              marginBottom: 'var(--spacing-4)',
+              lineHeight: 'var(--line-height-relaxed)'
+            }}>
+              Refroidissement
+            </h3>
+            <p style={{
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
+              lineHeight: 'var(--line-height-relaxed)',
+              marginBottom: 0
+            }}>
+              Machines <strong style={{ color: 'var(--color-primary-hearst-green)' }}>heat up</strong> a lot.
+              <br/><br/>
+              Water <strong style={{ color: 'var(--color-primary-hearst-green)' }}>cools</strong> like a car radiator.
+            </p>
+          </div>
+        </div>
+
+          <div style={{
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid var(--color-primary-hearst-green)',
+            boxShadow: 'none'
+          }}>
+          <h3 style={{
+            fontSize: 'var(--font-size-subsection-title)',
+            color: 'var(--color-text-primary)',
+            fontWeight: 'var(--font-weight-semibold)',
+            marginBottom: 'var(--spacing-4)',
+            lineHeight: 'var(--line-height-relaxed)'
+          }}>
+            Structure Simple
+          </h3>
+          <div style={{
+            fontSize: 'var(--font-size-body)',
+            color: 'var(--color-text-primary)',
+            lineHeight: 'var(--line-height-relaxed)'
+          }}>
+            <div style={{ marginBottom: 'var(--spacing-3)', fontSize: 'var(--font-size-body)', fontWeight: 'var(--font-weight-semibold)' }}>
+              <strong style={{ color: 'var(--color-primary-hearst-green)' }}>1 Block</strong> = <strong style={{ color: 'var(--color-primary-hearst-green)' }}>8 Transformers</strong> = <strong style={{ color: 'var(--color-primary-hearst-green)' }}>16 Containers</strong>
+            </div>
+            <div style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-body-minor)' }}>
+              2 containers per transformer
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Statistiques Globales */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: 'var(--spacing-6)',
-          marginBottom: 'var(--spacing-8)'
+          gap: 'var(--spacing-4)',
+          marginBottom: 'var(--spacing-5)'
         }}>
           <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none',
             position: 'relative',
             overflow: 'hidden'
           }}>
@@ -85,59 +441,65 @@ export default function ConteneursPage() {
               width: '150px',
               height: '150px',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, var(--color-primary-hearst-green)20, transparent 70%)',
+              background: 'radial-gradient(circle, var(--color-primary-hearst-green) 20%, transparent 70%)',
               filter: 'blur(20px)'
             }} />
             <div style={{ position: 'relative', zIndex: 1 }}>
               <div style={{
                 fontSize: 'var(--font-size-display)',
-                color: 'var(--color-primary-hearst-green)',
-                fontWeight: 'var(--font-weight-bold)',
-                marginBottom: 'var(--spacing-2)',
-                textShadow: '0 0 20px rgba(138, 253, 129, 0.5)'
+                color: 'var(--color-text-primary)',
+                fontWeight: 'var(--font-weight-semibold)',
+                marginBottom: 'var(--spacing-3)',
+                textShadow: 'none',
+                lineHeight: 1
               }}>
                 {totalContainers}
               </div>
               <div style={{
                 fontSize: 'var(--font-size-body)',
-                color: 'var(--color-text-secondary)'
+                color: 'var(--color-text-primary)',
+                fontWeight: 'var(--font-weight-medium)'
               }}>
-                Conteneurs Totaux
+                Total Containers
               </div>
             </div>
           </div>
 
           <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
           }}>
             <div style={{
               fontSize: 'var(--font-size-display)',
-              color: 'var(--color-primary-hearst-green)',
+              color: 'var(--color-text-primary)',
               fontWeight: 'var(--font-weight-bold)',
-              marginBottom: 'var(--spacing-2)'
+              marginBottom: 'var(--spacing-3)',
+              lineHeight: 1
             }}>
               {siteConfig.blocks.length}
             </div>
             <div style={{
               fontSize: 'var(--font-size-body)',
-              color: 'var(--color-text-secondary)'
+              color: 'var(--color-text-primary)',
+              fontWeight: 'var(--font-weight-medium)'
             }}>
-              Blocs de Puissance
+              Power Blocks
             </div>
           </div>
 
           <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
           }}>
             <div style={{
               fontSize: 'var(--font-size-display)',
-              color: 'var(--color-primary-hearst-green)',
+              color: 'var(--color-text-primary)',
               fontWeight: 'var(--font-weight-bold)',
               marginBottom: 'var(--spacing-2)'
             }}>
@@ -147,19 +509,20 @@ export default function ConteneursPage() {
               fontSize: 'var(--font-size-body)',
               color: 'var(--color-text-secondary)'
             }}>
-              Conteneurs par Bloc
+              Containers per Block
             </div>
           </div>
 
           <div style={{
-            padding: 'var(--spacing-6)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-4)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
           }}>
             <div style={{
               fontSize: 'var(--font-size-display)',
-              color: 'var(--color-primary-hearst-green)',
+              color: 'var(--color-text-primary)',
               fontWeight: 'var(--font-weight-bold)',
               marginBottom: 'var(--spacing-2)'
             }}>
@@ -176,44 +539,46 @@ export default function ConteneursPage() {
       </section>
 
       {/* Spécifications du Conteneur */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
-          color: 'var(--color-text-primary)'
+          marginBottom: 'var(--spacing-5)',
+          color: 'var(--color-text-primary)',
+          fontWeight: 'var(--font-weight-bold)'
         }}>
-          Spécifications Techniques
+          Specifications
         </h2>
 
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'var(--spacing-6)'
+          gap: 'var(--spacing-4)'
         }}>
           {/* Type et Modèle */}
           <div style={{
-            padding: 'var(--spacing-8)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-5)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
           }}>
             <h3 style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-primary-hearst-green)',
-              marginBottom: 'var(--spacing-4)',
-              fontWeight: 'var(--font-weight-semibold)'
-            }}>
-              Type de Conteneur
-            </h3>
-            <div style={{
               fontSize: 'var(--font-size-body)',
               color: 'var(--color-text-primary)',
+              marginBottom: 'var(--spacing-5)',
+              fontWeight: 'var(--font-weight-bold)',
+              lineHeight: 'var(--line-height-relaxed)'
+            }}>
+              Type
+            </h3>
+            <div style={{
+              fontSize: 'var(--font-size-body-minor)',
+              color: 'var(--color-text-primary)',
               fontWeight: 'var(--font-weight-semibold)',
-              marginBottom: 'var(--spacing-6)',
-              padding: 'var(--spacing-4)',
-              backgroundColor: 'var(--color-bg-tertiary)',
-              borderRadius: 'var(--radius-small)'
+              marginBottom: 'var(--spacing-5)',
+              paddingBottom: 'var(--spacing-4)',
+              borderBottom: '1px solid var(--color-ash-grey-accent)'
             }}>
               {siteConfig.containerSpec.type}
             </div>
@@ -229,15 +594,16 @@ export default function ConteneursPage() {
                 alignItems: 'center'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-primary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Puissance Nominale:
+                  Puissance Minage
                 </span>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
+                  fontSize: 'var(--font-size-body-minor)',
                   color: 'var(--color-text-primary)',
-                  fontWeight: 'var(--font-weight-semibold)'
+                  fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.containerSpec.nominalPowerMW} MW
                 </span>
@@ -249,15 +615,16 @@ export default function ConteneursPage() {
                 alignItems: 'center'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-primary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Puissance Refroidissement:
+                  Puissance Refroidissement
                 </span>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
+                  fontSize: 'var(--font-size-body-minor)',
                   color: 'var(--color-text-primary)',
-                  fontWeight: 'var(--font-weight-semibold)'
+                  fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.containerSpec.coolingPowerMW} MW
                 </span>
@@ -271,14 +638,15 @@ export default function ConteneursPage() {
                 borderTop: '1px solid var(--color-ash-grey-accent)'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-primary)',
+                  fontWeight: 'var(--font-weight-semibold)'
                 }}>
-                  Puissance Totale:
+                  Puissance Totale
                 </span>
                 <span style={{
                   fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-primary-hearst-green)',
+                  color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.containerSpec.totalPowerMW} MW
@@ -291,15 +659,16 @@ export default function ConteneursPage() {
                 alignItems: 'center'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-primary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Tension d'Alimentation:
+                  Tension
                 </span>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
+                  fontSize: 'var(--font-size-body-minor)',
                   color: 'var(--color-text-primary)',
-                  fontWeight: 'var(--font-weight-semibold)'
+                  fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.containerSpec.supplyVoltageKV} kV
                 </span>
@@ -309,42 +678,42 @@ export default function ConteneursPage() {
 
           {/* Dimensions Physiques */}
           <div style={{
-            padding: 'var(--spacing-8)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-5)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
           }}>
             <h3 style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-primary-hearst-green)',
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
               marginBottom: 'var(--spacing-4)',
-              fontWeight: 'var(--font-weight-semibold)'
+              fontWeight: 'var(--font-weight-bold)',
+              lineHeight: 'var(--line-height-relaxed)'
             }}>
-              Dimensions Physiques
+              Physical Dimensions
             </h3>
 
             <div style={{
               display: 'flex',
               flexDirection: 'column',
               gap: 'var(--spacing-4)',
-              marginBottom: 'var(--spacing-6)'
+              marginBottom: 'var(--spacing-4)'
             }}>
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: 'var(--spacing-3)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Longueur:
+                  Longueur
                 </span>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
+                  fontSize: 'var(--font-size-body-minor)',
                   color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-semibold)'
                 }}>
@@ -356,15 +725,13 @@ export default function ConteneursPage() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: 'var(--spacing-3)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Largeur:
+                  Largeur
                 </span>
                 <span style={{
                   fontSize: 'var(--font-size-body)',
@@ -379,15 +746,13 @@ export default function ConteneursPage() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: 'var(--spacing-3)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Hauteur:
+                  Hauteur
                 </span>
                 <span style={{
                   fontSize: 'var(--font-size-body)',
@@ -412,13 +777,14 @@ export default function ConteneursPage() {
                 alignItems: 'center'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Volume:
+                  Volume
                 </span>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
+                  fontSize: 'var(--font-size-body-minor)',
                   color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-semibold)'
                 }}>
@@ -432,17 +798,18 @@ export default function ConteneursPage() {
                 alignItems: 'center'
               }}>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
-                  color: 'var(--color-text-secondary)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Poids:
+                  Poids
                 </span>
                 <span style={{
-                  fontSize: 'var(--font-size-body)',
+                  fontSize: 'var(--font-size-body-minor)',
                   color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-semibold)'
                 }}>
-                  {containerDimensions.weight.toLocaleString()} kg
+                  {containerDimensions.weight.toLocaleString('fr-FR')} kg
                 </span>
               </div>
             </div>
@@ -450,16 +817,18 @@ export default function ConteneursPage() {
 
           {/* Configuration Électrique */}
           <div style={{
-            padding: 'var(--spacing-8)',
-            backgroundColor: 'var(--color-bg-secondary)',
+            padding: 'var(--spacing-5)',
+            backgroundColor: 'transparent',
             borderRadius: 'var(--radius-default)',
-            border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)'
+            border: '1px solid #E0E0E0',
+            boxShadow: 'none'
           }}>
             <h3 style={{
-              fontSize: 'var(--font-size-subsection-title)',
-              color: 'var(--color-primary-hearst-green)',
+              fontSize: 'var(--font-size-body)',
+              color: 'var(--color-text-primary)',
               marginBottom: 'var(--spacing-4)',
-              fontWeight: 'var(--font-weight-semibold)'
+              fontWeight: 'var(--font-weight-bold)',
+              lineHeight: 'var(--line-height-relaxed)'
             }}>
               Configuration Électrique
             </h3>
@@ -470,20 +839,18 @@ export default function ConteneursPage() {
               gap: 'var(--spacing-4)'
             }}>
               <div style={{
-                padding: 'var(--spacing-4)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)'
               }}>
                 <div style={{
-                  fontSize: 'var(--font-size-caption)',
-                  color: 'var(--color-text-muted)',
-                  marginBottom: 'var(--spacing-2)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  marginBottom: 'var(--spacing-2)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Conteneurs par Transformateur
+                  Containers per Transformer
                 </div>
                 <div style={{
-                  fontSize: 'var(--font-size-section-title)',
-                  color: 'var(--color-primary-hearst-green)',
+                  fontSize: 'var(--font-size-body)',
+                  color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.containerSpec.containersPerTransformer}
@@ -491,42 +858,36 @@ export default function ConteneursPage() {
               </div>
 
               <div style={{
-                padding: 'var(--spacing-4)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)'
               }}>
                 <div style={{
-                  fontSize: 'var(--font-size-caption)',
-                  color: 'var(--color-text-muted)',
-                  marginBottom: 'var(--spacing-2)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  marginBottom: 'var(--spacing-2)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
-                  Transformateurs par Bloc
+                  Transformers per Block
                 </div>
                 <div style={{
-                  fontSize: 'var(--font-size-section-title)',
-                  color: 'var(--color-primary-hearst-green)',
+                  fontSize: 'var(--font-size-body)',
+                  color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.blocks[0]?.numTransformers || 8}
                 </div>
               </div>
 
-              <div style={{
-                padding: 'var(--spacing-4)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)',
-                border: '2px solid var(--color-primary-hearst-green)'
-              }}>
+              <div>
                 <div style={{
-                  fontSize: 'var(--font-size-caption)',
-                  color: 'var(--color-text-muted)',
-                  marginBottom: 'var(--spacing-2)'
+                  fontSize: 'var(--font-size-body-minor)',
+                  color: 'var(--color-text-secondary)',
+                  marginBottom: 'var(--spacing-2)',
+                  fontWeight: 'var(--font-weight-medium)'
                 }}>
                   Puissance Totale Site
                 </div>
                 <div style={{
-                  fontSize: 'var(--font-size-section-title)',
-                  color: 'var(--color-primary-hearst-green)',
+                  fontSize: 'var(--font-size-body)',
+                  color: 'var(--color-text-primary)',
                   fontWeight: 'var(--font-weight-bold)'
                 }}>
                   {siteConfig.totalPowerMW} MW
@@ -538,20 +899,20 @@ export default function ConteneursPage() {
       </section>
 
       {/* Répartition par Bloc */}
-      <section style={{ marginBottom: 'var(--spacing-10)' }}>
+      <section style={{ marginBottom: 'var(--spacing-4)' }}>
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
+          marginBottom: 'var(--spacing-4)',
           color: 'var(--color-text-primary)'
         }}>
-          Répartition par Bloc
+          Distribution by Block
         </h2>
 
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 'var(--spacing-6)'
+          gap: 'var(--spacing-4)'
         }}>
           {siteConfig.blocks.map((block) => {
             const isSelected = selectedBlockId === block.id
@@ -567,8 +928,8 @@ export default function ConteneursPage() {
                 }}
               >
                 <div style={{
-                  padding: 'var(--spacing-6)',
-                  backgroundColor: isSelected ? 'var(--color-bg-hover)' : 'var(--color-bg-secondary)',
+                  padding: 'var(--spacing-4)',
+                  backgroundColor: isSelected ? 'rgba(46, 204, 113, 0.08)' : 'transparent',
                   borderRadius: 'var(--radius-default)',
                   border: isSelected
                     ? '2px solid var(--color-primary-hearst-green)'
@@ -576,12 +937,12 @@ export default function ConteneursPage() {
                   cursor: 'pointer',
                   transition: 'var(--transition-base)',
                   transform: isSelected ? 'translateY(-4px)' : 'none',
-                  boxShadow: isSelected ? 'var(--shadow-glow-green)' : 'var(--shadow-sm)'
+                  boxShadow: 'none'
                 }}>
                   <div style={{
-                    fontSize: 'var(--font-size-subsection-title)',
-                    color: 'var(--color-primary-hearst-green)',
-                    fontWeight: 'var(--font-weight-bold)',
+                    fontSize: 'var(--font-size-body)',
+                    color: 'var(--color-text-primary)',
+                    fontWeight: 'var(--font-weight-semibold)',
                     marginBottom: 'var(--spacing-4)'
                   }}>
                     {block.name}
@@ -598,13 +959,14 @@ export default function ConteneursPage() {
                       alignItems: 'center'
                     }}>
                       <span style={{
-                        fontSize: 'var(--font-size-body)',
-                        color: 'var(--color-text-secondary)'
+                        fontSize: 'var(--font-size-body-minor)',
+                        color: 'var(--color-text-secondary)',
+                        fontWeight: 'var(--font-weight-medium)'
                       }}>
-                        Conteneurs:
+                        Containers
                       </span>
                       <span style={{
-                        fontSize: 'var(--font-size-body)',
+                        fontSize: 'var(--font-size-body-minor)',
                         color: 'var(--color-text-primary)',
                         fontWeight: 'var(--font-weight-semibold)'
                       }}>
@@ -618,13 +980,14 @@ export default function ConteneursPage() {
                       alignItems: 'center'
                     }}>
                       <span style={{
-                        fontSize: 'var(--font-size-body)',
-                        color: 'var(--color-text-secondary)'
+                        fontSize: 'var(--font-size-body-minor)',
+                        color: 'var(--color-text-secondary)',
+                        fontWeight: 'var(--font-weight-medium)'
                       }}>
-                        Transformateurs:
+                        Transformers
                       </span>
                       <span style={{
-                        fontSize: 'var(--font-size-body)',
+                        fontSize: 'var(--font-size-body-minor)',
                         color: 'var(--color-text-primary)',
                         fontWeight: 'var(--font-weight-semibold)'
                       }}>
@@ -640,14 +1003,15 @@ export default function ConteneursPage() {
                       borderTop: '1px solid var(--color-ash-grey-accent)'
                     }}>
                       <span style={{
-                        fontSize: 'var(--font-size-body)',
-                        color: 'var(--color-text-secondary)'
+                        fontSize: 'var(--font-size-body-minor)',
+                        color: 'var(--color-text-secondary)',
+                        fontWeight: 'var(--font-weight-medium)'
                       }}>
-                        Puissance:
+                        Puissance
                       </span>
                       <span style={{
-                        fontSize: 'var(--font-size-body)',
-                        color: 'var(--color-primary-hearst-green)',
+                        fontSize: 'var(--font-size-body-minor)',
+                        color: 'var(--color-text-primary)',
                         fontWeight: 'var(--font-weight-bold)'
                       }}>
                         {block.targetPowerMW} MW
@@ -659,13 +1023,13 @@ export default function ConteneursPage() {
                     marginTop: 'var(--spacing-4)',
                     padding: 'var(--spacing-3)',
                     backgroundColor: 'var(--color-primary-hearst-green)',
-                    color: 'var(--color-text-default)',
+                    color: '#FFFFFF',
                     borderRadius: 'var(--radius-small)',
                     textAlign: 'center',
                     fontSize: 'var(--font-size-body)',
                     fontWeight: 'var(--font-weight-semibold)'
                   }}>
-                    Voir les détails →
+                    View Details →
                   </div>
                 </div>
               </Link>
@@ -679,24 +1043,24 @@ export default function ConteneursPage() {
         <h2 style={{
           fontSize: 'var(--font-size-section-title)',
           lineHeight: 'var(--line-height-section-title)',
-          marginBottom: 'var(--spacing-6)',
+          marginBottom: 'var(--spacing-4)',
           color: 'var(--color-text-primary)'
         }}>
-        Visualisation 3D des Dimensions
+        3D Dimension Visualization
         </h2>
 
         <div style={{
-          padding: 'var(--spacing-8)',
-          backgroundColor: 'var(--color-bg-secondary)',
-          borderRadius: 'var(--radius-default)',
-          border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
-          background: 'linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%)'
+          padding: 'var(--spacing-5)',
+            backgroundColor: 'transparent',
+            borderRadius: 'var(--radius-default)',
+            border: '1px solid #E0E0E0',
+            background: 'transparent'
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 'var(--spacing-10)',
+            gap: 'var(--spacing-4)',
             flexWrap: 'wrap'
           }}>
             {/* Vue de côté avec perspective 3D */}
@@ -709,26 +1073,26 @@ export default function ConteneursPage() {
             }}>
               <div style={{
                 fontSize: 'var(--font-size-subsection-title)',
-                color: 'var(--color-primary-hearst-green)',
+                color: 'var(--color-text-primary)',
                 fontWeight: 'var(--font-weight-semibold)',
                 marginBottom: 'var(--spacing-2)'
               }}>
-                Vue de Côté
+                Side View
               </div>
               <div style={{
                 width: `${containerDimensions.length * 25}px`,
                 height: `${containerDimensions.height * 25}px`,
                 background: 'linear-gradient(135deg, var(--color-primary-hearst-green), var(--color-primary-hearst-green-light))',
                 borderRadius: 'var(--radius-small)',
-                border: '3px solid var(--color-primary-hearst-green-light)',
+                border: '2px solid var(--color-primary-hearst-green)',
                 position: 'relative',
-                boxShadow: '0 0 30px rgba(138, 253, 129, 0.6), inset 0 0 20px rgba(138, 253, 129, 0.2)',
+                boxShadow: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--color-text-default)',
+                color: '#FFFFFF',
                 fontSize: 'var(--font-size-body)',
-                fontWeight: 'var(--font-weight-bold)',
+                fontWeight: 'var(--font-weight-semibold)',
                 transform: 'perspective(1000px) rotateY(-5deg) rotateX(5deg)',
                 transition: 'transform var(--transition-base)',
                 cursor: 'pointer'
@@ -740,7 +1104,7 @@ export default function ConteneursPage() {
                 e.currentTarget.style.transform = 'perspective(1000px) rotateY(-5deg) rotateX(5deg)'
               }}
               >
-                <div style={{ textAlign: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                <div style={{ textAlign: 'center', textShadow: 'none' }}>
                   <div style={{ fontSize: 'var(--font-size-body)' }}>{containerDimensions.length}m</div>
                   <div style={{ fontSize: '12px', opacity: 0.9, margin: '4px 0' }}>×</div>
                   <div style={{ fontSize: 'var(--font-size-body)' }}>{containerDimensions.height}m</div>
@@ -769,26 +1133,26 @@ export default function ConteneursPage() {
             }}>
               <div style={{
                 fontSize: 'var(--font-size-subsection-title)',
-                color: 'var(--color-primary-hearst-green)',
+                color: 'var(--color-text-primary)',
                 fontWeight: 'var(--font-weight-semibold)',
                 marginBottom: 'var(--spacing-2)'
               }}>
-                Vue de Dessus
+                Top View
               </div>
               <div style={{
                 width: `${containerDimensions.length * 25}px`,
                 height: `${containerDimensions.width * 25}px`,
                 background: 'linear-gradient(135deg, var(--color-primary-hearst-green), var(--color-primary-hearst-green-light))',
                 borderRadius: 'var(--radius-small)',
-                border: '3px solid var(--color-primary-hearst-green-light)',
+                border: '2px solid var(--color-primary-hearst-green)',
                 position: 'relative',
-                boxShadow: '0 0 30px rgba(138, 253, 129, 0.6), inset 0 0 20px rgba(138, 253, 129, 0.2)',
+                boxShadow: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--color-text-default)',
+                color: '#FFFFFF',
                 fontSize: 'var(--font-size-body)',
-                fontWeight: 'var(--font-weight-bold)',
+                fontWeight: 'var(--font-weight-semibold)',
                 transform: 'perspective(1000px) rotateX(-10deg) rotateZ(5deg)',
                 transition: 'transform var(--transition-base)',
                 cursor: 'pointer'
@@ -800,7 +1164,7 @@ export default function ConteneursPage() {
                 e.currentTarget.style.transform = 'perspective(1000px) rotateX(-10deg) rotateZ(5deg)'
               }}
               >
-                <div style={{ textAlign: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                <div style={{ textAlign: 'center', textShadow: 'none' }}>
                   <div style={{ fontSize: 'var(--font-size-body)' }}>{containerDimensions.length}m</div>
                   <div style={{ fontSize: '12px', opacity: 0.9, margin: '4px 0' }}>×</div>
                   <div style={{ fontSize: 'var(--font-size-body)' }}>{containerDimensions.width}m</div>
@@ -819,7 +1183,7 @@ export default function ConteneursPage() {
               </div>
             </div>
 
-            {/* Informations */}
+            {/* Information */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -831,15 +1195,12 @@ export default function ConteneursPage() {
                 color: 'var(--color-text-secondary)',
                 marginBottom: 'var(--spacing-2)'
               }}>
-                Dimensions Complètes
+                Complete Dimensions
               </div>
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 'var(--spacing-2)',
-                padding: 'var(--spacing-4)',
-                backgroundColor: 'var(--color-bg-tertiary)',
-                borderRadius: 'var(--radius-small)'
               }}>
                 <div style={{
                   display: 'flex',
@@ -865,7 +1226,7 @@ export default function ConteneursPage() {
                 }}>
                   <span style={{ color: 'var(--color-text-secondary)' }}>Poids:</span>
                   <span style={{ color: 'var(--color-text-primary)', fontWeight: 'var(--font-weight-semibold)' }}>
-                    {containerDimensions.weight.toLocaleString()} kg
+                    {containerDimensions.weight.toLocaleString('fr-FR')} kg
                   </span>
                 </div>
               </div>

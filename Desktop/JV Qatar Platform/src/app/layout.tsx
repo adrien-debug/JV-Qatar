@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import '../styles/global.css'
-import Navigation from '@/components/Navigation'
+import SidebarWrapper from '@/components/SidebarWrapper'
 
 export const metadata: Metadata = {
   title: 'Qatar 100MW Hydro Mining Site - Visualization',
@@ -14,9 +14,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>
-        <Navigation />
-        {children}
+      <body style={{
+        margin: 0,
+        padding: 0,
+        overflowX: 'hidden',
+        backgroundColor: 'var(--color-bg-content)'
+      }}>
+        <SidebarWrapper>
+          {children}
+        </SidebarWrapper>
       </body>
     </html>
   )

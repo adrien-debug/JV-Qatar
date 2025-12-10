@@ -10,15 +10,15 @@ interface Architecture2DProps {
 
 // Couleurs du design system (valeurs hex pour SVG)
 const colors = {
-  primaryGreen: '#8afd81',
-  primaryGreenLight: '#a5ff9c',
-  ashGrey: '#9EB3A8',
-  bgPrimary: '#0a0a0a',
-  bgSecondary: '#1a1a1a',
-  bgTertiary: '#242424',
-  bgHover: '#2a2a2a',
-  textPrimary: '#ffffff',
-  textSecondary: '#b8b8b8',
+  primaryGreen: '#2ECC71',
+  primaryGreenLight: '#58D68D',
+  ashGrey: '#E0E0E0',
+  bgPrimary: '#FFFFFF',
+  bgSecondary: '#F5F5F5',
+  bgTertiary: '#F5F5F5',
+  bgHover: 'rgba(46, 204, 113, 0.08)',
+  textPrimary: '#333333',
+  textSecondary: '#888888',
   textMuted: '#6b6b6b',
   textDefault: '#000000',
 }
@@ -35,9 +35,8 @@ export default function Architecture2D({ site }: Architecture2DProps) {
 
   // Positions des éléments
   const gridY = 80
-  const substationY = 220
-  const switchgearY = 360
-  const blocksStartY = 500
+  const switchgearY = 220
+  const blocksStartY = 360
   const blockSpacing = 250
   const blockWidth = 200
   const blockHeight = 150
@@ -48,8 +47,8 @@ export default function Architecture2D({ site }: Architecture2DProps) {
 
   return (
     <div style={{
-      padding: 'var(--spacing-8)',
-      backgroundColor: 'var(--color-bg-secondary)',
+      padding: 'var(--spacing-5)',
+      backgroundColor: 'transparent',
       borderRadius: 'var(--radius-default)',
       border: 'var(--border-thin-width) var(--border-thin-style) var(--border-thin-color)',
       overflow: 'auto'
@@ -60,7 +59,7 @@ export default function Architecture2D({ site }: Architecture2DProps) {
         style={{
           display: 'block',
           margin: '0 auto',
-          backgroundColor: 'var(--color-bg-primary)',
+          backgroundColor: 'var(--color-bg-content)',
           borderRadius: 'var(--radius-default)'
         }}
       >
@@ -121,64 +120,11 @@ export default function Architecture2D({ site }: Architecture2DProps) {
           </text>
         </g>
 
-        {/* Ligne de connexion 1 - Grid vers Substation */}
+        {/* Ligne de connexion 1 - Grid vers Switchgear */}
         <g>
           <line
             x1={centerX}
             y1={gridY + 30}
-            x2={centerX}
-            y2={substationY - 30}
-            stroke={colors.primaryGreen}
-            strokeWidth="4"
-            strokeDasharray="5,5"
-            filter="url(#glow)"
-          />
-          {/* Flèche */}
-          <polygon
-            points={`${centerX},${substationY - 30} ${centerX - 8},${substationY - 50} ${centerX + 8},${substationY - 50}`}
-            fill={colors.primaryGreen}
-          />
-        </g>
-
-        {/* Substation 132/33kV */}
-        <g>
-          <rect
-            x={centerX - 250}
-            y={substationY - 40}
-            width={500}
-            height={80}
-            rx={8}
-            fill={colors.bgTertiary}
-            stroke={colors.ashGrey}
-            strokeWidth="2"
-            filter="url(#shadow)"
-          />
-          <text
-            x={centerX}
-            y={substationY - 5}
-            textAnchor="middle"
-            fill={colors.textPrimary}
-            fontSize="16"
-            fontWeight="semibold"
-          >
-            {site.gridConnection.substationName}
-          </text>
-          <text
-            x={centerX}
-            y={substationY + 20}
-            textAnchor="middle"
-            fill={colors.textSecondary}
-            fontSize="14"
-          >
-            132/33 kV Transformation
-          </text>
-        </g>
-
-        {/* Ligne de connexion 2 - Substation vers Switchgear */}
-        <g>
-          <line
-            x1={centerX}
-            y1={substationY + 40}
             x2={centerX}
             y2={switchgearY - 30}
             stroke={colors.primaryGreen}
@@ -186,11 +132,13 @@ export default function Architecture2D({ site }: Architecture2DProps) {
             strokeDasharray="5,5"
             filter="url(#glow)"
           />
+          {/* Flèche */}
           <polygon
             points={`${centerX},${switchgearY - 30} ${centerX - 8},${switchgearY - 50} ${centerX + 8},${switchgearY - 50}`}
             fill={colors.primaryGreen}
           />
         </g>
+
 
         {/* Client 33kV Switchgear */}
         <g>
@@ -249,7 +197,7 @@ export default function Architecture2D({ site }: Architecture2DProps) {
           </text>
         </g>
 
-        {/* Blocs de puissance */}
+        {/* Power blocks */}
         {site.blocks.map((block, index) => {
           const blockX = centerX - (site.blocks.length - 1) * blockSpacing / 2 + index * blockSpacing
           const isHovered = hoveredBlockId === block.id
@@ -451,7 +399,7 @@ export default function Architecture2D({ site }: Architecture2DProps) {
       <div style={{
         marginTop: 'var(--spacing-6)',
         padding: 'var(--spacing-4)',
-        backgroundColor: 'var(--color-bg-tertiary)',
+        backgroundColor: '#F5F5F5',
         borderRadius: 'var(--radius-small)',
         textAlign: 'center'
       }}>
